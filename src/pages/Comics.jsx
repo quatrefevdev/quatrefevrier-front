@@ -33,7 +33,7 @@ const Comics = ({ search }) => {
       <section className="underheader">
         <div className="previousimg">
           <img
-            src="../src/utils/images/Previous_img.jpg"
+            src="../public/Previous_img.jpg"
             alt="Previousimg"
             onClick={() =>
               page_number > 1
@@ -42,12 +42,12 @@ const Comics = ({ search }) => {
             }
           ></img>
         </div>
-        <img src="../src/utils/images/LogoBatman.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoBatman.png" alt="LogoCharMarvel" />
         <h1>Marvel Comics</h1>
-        <img src="../src/utils/images/LogoBatman.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoBatman.png" alt="LogoCharMarvel" />
         <div className="nextimg">
           <img
-            src="../src/utils/images/Next_img.jpg"
+            src="../public/Next_img.jpg"
             alt="Nextimg"
             onClick={() => setPageNumber(page_number + 1)}
           ></img>

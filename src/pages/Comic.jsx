@@ -32,11 +32,11 @@ const Comic = (search) => {
   ) : (
     <main>
       <section className="underheader">
-        <img src="../src/utils/images/LogoSpiderman.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoSpiderman.png" alt="LogoCharMarvel" />
         <h1>
           <p>{data.title}</p>
         </h1>
-        <img src="../src/utils/images/LogoSpiderman.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoSpiderman.png" alt="LogoCharMarvel" />
       </section>
       <div className="containercomicdiv">
         <section className="comicdivcard">

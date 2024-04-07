@@ -42,9 +42,9 @@ const Login = ({ handleToken }) => {
   return (
     <div className="container-Login">
       <section className="lgunderheader">
-        <img src="../src/utils/images/LogoHulk.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoHulk.png" alt="LogoCharMarvel" />
         <h1>Login</h1>
-        <img src="../src/utils/images/LogoHulk.png" alt="LogoCharMarvel" />
+        <img src="../public/LogoHulk.png" alt="LogoCharMarvel" />
       </section>
 
       <form
