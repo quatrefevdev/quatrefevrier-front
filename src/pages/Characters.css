@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.underheader {
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+.characterscards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+.charcard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #fefee2;
+  color: black;
+  position: relative;
+}
+
+.charname {
+  display: flex;
+  flex-direction: column;
+
+  font-weight: bold;
+  color: #b60e18;
+}
+
+.charname > p {
+  font-size: 20px;
+}
+
+.name {
+  text-align: center;
+}
+
+.chardesc {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow: auto;
+  overflow-y: auto;
+  font-family: "Marvel";
+  padding-left: 10px;
+}
+
+h2 {
+  font-family: "Marvel";
+  font-size: 16px;
+}
+
+.charimg {
+  position: relative;
+  left: -50px;
+}
+
+.cardlink {
+  text-decoration: none;
+  color: black;
+}
+.hearticon {
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid black;
+  color: #b60e18;
+  padding: 15px;
+  top: 500px;
+  left: 860px;
+  z-index: 1;
+  position: absolute;
+}
+
+.nextimg > img {
+  height: 60px;
+  width: 60px;
+}
+.previousimg > img {
+  height: 60px;
+  width: 60px;
+}
+.pagenb {
+  margin-left: 50px;
+}
+.heroenumber {
+  text-align: center;
+}
+.heroenumber > p {
+  font-family: "Marvel";
+  font-size: 16px;
+  font-weight: bold;
+  color: #b60e18;
+}

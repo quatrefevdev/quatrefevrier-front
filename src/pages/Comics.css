@@ -1,0 +1,32 @@
+.comicscontainer {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.comicscards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.comicdivcardd > div {
+  flex-wrap: wrap;
+  width: 220px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.comiclinkdiv {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.comicnamediv > p {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #b60e18;
+}
