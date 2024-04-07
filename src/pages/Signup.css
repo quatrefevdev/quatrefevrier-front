@@ -75,13 +75,13 @@ span {
 
 .checkbox > input {
   position: absolute;
-  left: 820px;
+  left: 370px;
   top: 462px;
 }
 
 .divcheckbox > h3 {
   position: absolute;
-  left: 850px;
+  left: 400px;
   top: 450px;
 }
 .divcheckbox > div {
@@ -112,7 +112,7 @@ span {
 .plusicon {
   position: absolute;
   top: 475px;
-  left: 960px;
+  left: 490px;
   height: 30px;
   margin-top: 20px;
 }
