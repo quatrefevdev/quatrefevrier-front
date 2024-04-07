@@ -7,7 +7,7 @@ const Comics = ({ search }) => {
   return (
     <div className="marvel_pres">
       <img
-        src="../../Pictures/Marvel_presentation.png"
+        src="../pictures/Marvel_presentation.png"
         alt="Marvel_presentation_img"
       />
     </div>

@@ -66,9 +66,9 @@ const Signup = ({ handleToken }) => {
   return (
     <div className="container-Signup">
       <section className="suunderheader">
-        <img src="../.../Pictures/LogoThor.png" alt="LogoCharMarvel" />
+        <img src="../pictures/LogoThor.png" alt="LogoCharMarvel" />
         <h1>Sign up</h1>
-        <img src="../.../Pictures/LogoThor.png" alt="LogoCharMarvel" />
+        <img src="../pictures/LogoThor.png" alt="LogoCharMarvel" />
       </section>
       <form
         style={{ display: "flex", flexDirection: "column" }}

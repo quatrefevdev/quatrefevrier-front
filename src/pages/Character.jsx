@@ -39,11 +39,11 @@ const character = (token) => {
   ) : (
     <main>
       <section className="underheader">
-        <img src="../../Pictures/LogoSuperman.png" alt="LogoCharMarvel" />
+        <img src="../pictures/LogoSuperman.png" alt="LogoCharMarvel" />
         <h1>
           <span>{data.name}</span>
         </h1>
-        <img src="../../Pictures/LogoSuperman.png" alt="LogoCharMarvel" />
+        <img src="../pictures/LogoSuperman.png" alt="LogoCharMarvel" />
       </section>
       <div className="container">
         <section className="charactercard">
@@ -65,7 +65,7 @@ const character = (token) => {
                     {comic.thumbnail.path.includes("image_not_available") ? (
                       <img
                         className="notfoundimg"
-                        src="../../Pictures/Pic_not_found.jpg"
+                        src="../pictures/Pic_not_found.jpg"
                         alt="Pic not found"
                       />
                     ) : (
