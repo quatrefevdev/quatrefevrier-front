@@ -23,20 +23,23 @@ const Characters = ({ search }) => {
       try {
         if (!add_element) {
           const response = await axios.get(
-            `http://localhost:3000/characters?name=${search}&skip=${skip}&limit=${limit}`
+            `https://site--marvelback--7q2nrc54m6wr.code.run/characters?name=${search}&skip=${skip}&limit=${limit}`
           );
           setData(response.data.data.results);
           setIsLoading(false);
         } else {
           console.log(add_element);
-          const addEl = await axios.post("http://localhost:3000/bookmarks", {
-            elementId: add_element,
-            title: "test",
-            name: "",
-            path: "",
-            extension: "",
-            owner: token,
-          });
+          const addEl = await axios.post(
+            "https://site--marvelback--7q2nrc54m6wr.code.run/bookmarks",
+            {
+              elementId: add_element,
+              title: "test",
+              name: "",
+              path: "",
+              extension: "",
+              owner: token,
+            }
+          );
           console.log("EL3", addEl);
           setElement("");
         }

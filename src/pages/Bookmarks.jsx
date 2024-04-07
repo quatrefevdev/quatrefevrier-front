@@ -14,11 +14,14 @@ const Bookmarks = ({ token }) => {
     if (token) {
       try {
         const fetchData = async () => {
-          const response = await axios.get("http://localhost:3000/bookmarks", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const response = await axios.get(
+            "https://site--marvelback--7q2nrc54m6wr.code.run/bookmarks",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           console.log("Bookmarks rsp ", response.data);
           setData(response.data);
           setIsLoading(false);

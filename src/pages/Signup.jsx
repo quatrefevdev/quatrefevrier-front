@@ -28,7 +28,7 @@ const Signup = ({ handleToken }) => {
       if (password.length > 8) {
         const fetchData = async () => {
           const response = await axios.post(
-            "http://localhost:3000/user/signup",
+            "https://site--marvelback--7q2nrc54m6wr.code.run/user/signup",
             {
               email: email,
               username: username,

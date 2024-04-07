@@ -16,10 +16,13 @@ const Login = ({ handleToken }) => {
       setError("Email or Password is missing");
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/user/login", {
-          email: email,
-          password: password,
-        });
+        const response = await axios.post(
+          "https://site--marvelback--7q2nrc54m6wr.code.run/user/login",
+          {
+            email: email,
+            password: password,
+          }
+        );
         console.log("log", response);
         setData(response.data);
         console.log(response.data.token);

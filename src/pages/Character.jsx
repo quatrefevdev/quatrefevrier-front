@@ -10,7 +10,7 @@ const character = (token) => {
   const [newcomic, setComic] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const url = "http://localhost:3000/character/" + id;
+  const url = "https://site--marvelback--7q2nrc54m6wr.code.run/character/" + id;
 
   const fetchData = async () => {
     try {
@@ -20,7 +20,9 @@ const character = (token) => {
       setData(response.data.data);
       setIsLoading(false);
 
-      const comicInfo = await axios.get(`http://localhost:3000/comics/${id}`);
+      const comicInfo = await axios.get(
+        `https://site--marvelback--7q2nrc54m6wr.code.run/comics/${id}`
+      );
 
       console.log("Comic Info", comicInfo.data.data.comics);
       setComic(comicInfo.data.data.comics);

@@ -9,7 +9,8 @@ const Comic = (search) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const url = "http://localhost:3000/comic/" + comicId;
+  const url =
+    "https://site--marvelback--7q2nrc54m6wr.code.run/comic/" + comicId;
 
   const fetchData = async () => {
     try {

@@ -10,7 +10,7 @@ const Comics = ({ search }) => {
   const [page_number, setPageNumber] = useState(1);
   const limit = 100;
   const skip = page_number * limit - limit;
-  const url = `http://localhost:3000/comics?title=${search}&skip=${skip}&limit=${limit}`;
+  const url = `https://site--marvelback--7q2nrc54m6wr.code.run/comics?title=${search}&skip=${skip}&limit=${limit}`;
 
   const fetchData = async () => {
     try {
