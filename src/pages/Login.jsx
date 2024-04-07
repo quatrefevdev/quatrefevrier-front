@@ -8,31 +8,34 @@ const Login = ({ handleToken }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [data, setData] = useState("");
-
-  const handleSubmit = async (event) => {
+  const navigate = useNavigate(); // rappel
+  const handleSubmit = (event) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (!email || !password) {
       setError("Email or Password is missing");
     } else {
-      try {
-        const response = await axios.post(
-          "https://site--marvelback--7q2nrc54m6wr.code.run/user/login",
-          {
-            email: email,
-            password: password,
-          }
-        );
-        console.log("log", response);
-        setData(response.data);
-        console.log(response.data.token);
-        handleToken(response.data.token);
-        setError("");
-        useNavigate("/");
-      } catch (error) {
-        console.log(error);
-        setError("Wrong password or email");
-      }
+      const fetchData = async () => {
+        try {
+          const response = await axios.post(
+            "https://site--marvelback--7q2nrc54m6wr.code.run/user/login",
+            {
+              email: email,
+              password: password,
+            }
+          );
+          console.log("log", response);
+          setData(response.data);
+          console.log("Data", response.data.token);
+          handleToken(response.data.token);
+          setError("");
+          navigate("/");
+        } catch (error) {
+          console.log("LALA", error);
+          setError("Wrong password or email");
+        }
+      };
+      fetchData();
     }
   };
 
