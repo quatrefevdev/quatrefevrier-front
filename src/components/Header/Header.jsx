@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import marvel_logo from "../pictures/Marvel_logo.jpg";
+
 import "./Header.css";
 
 const Onsearch = (searchValue) => {};
@@ -32,7 +32,7 @@ const Header = ({
       <div className="container-header">
         <Link to={`/`}>
           <div className="marvel_logo">
-            <img src={marvel_logo} alt="Marvel_logo_img" />
+            <img src="../pictures/marvel_logo.jpg" alt="Marvel_logo_img" />
           </div>
         </Link>
         <div className="head_div">
