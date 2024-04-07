@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 library.add(faHeart);
 import "./Characters.css";
+import logocharmarvel from "../pictures/LogoCharMarvel.png";
+import nextimg from "../pictures/Next_img.jpg";
+import previmg from "../pictures/Previous_img.jpg";
 
 const Characters = ({ search }) => {
   const [data, setData] = useState([]);
@@ -61,7 +64,7 @@ const Characters = ({ search }) => {
       <section className="underheader">
         <div className="previousimg">
           <img
-            src="../pictures/Previous_img.jpg"
+            src={previmg}
             alt="Previousimg"
             onClick={() =>
               page_number > 1
@@ -70,12 +73,12 @@ const Characters = ({ search }) => {
             }
           ></img>
         </div>
-        <img src="../pictures/LogoCharMarvel.png" alt="LogoCharMarvel" />
+        <img src={logocharmarvel} alt="LogoCharMarvel" />
         <h1>Marvel Characters</h1>
-        <img src="../pictures/LogoCharMarvel.png" alt="LogoCharMarvel" />
+        <img src={logocharmarvel} alt="LogoCharMarvel" />
         <div className="nextimg">
           <img
-            src="../pictures/Next_img.jpg"
+            src={nextimg}
             alt="Nextimg"
             onClick={() => setPageNumber(page_number + 1)}
           ></img>

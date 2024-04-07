@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Comic.css";
 import { useNavigate } from "react-router-dom";
+import spidlogo from "../pictures/LogoSpiderman.png";
 
 const Comic = (search) => {
   const { comicId } = useParams();
@@ -32,11 +33,11 @@ const Comic = (search) => {
   ) : (
     <main>
       <section className="underheader">
-        <img src="../pictures/LogoSpiderman.png" alt="LogoCharMarvel" />
+        <img src={spidlogo} alt="LogoCharMarvel" />
         <h1>
           <p>{data.title}</p>
         </h1>
-        <img src="../pictures/LogoSpiderman.png" alt="LogoCharMarvel" />
+        <img src={spidlogo} alt="LogoCharMarvel" />
       </section>
       <div className="containercomicdiv">
         <section className="comicdivcard">

@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Comics.css";
 import { useNavigate } from "react-router-dom";
+import logobat from "../pictures/LogoBatman.png";
+import nextimg from "../pictures/Next_img.jpg";
+import previmg from "../pictures/Previous_img.jpg";
 
 const Comics = ({ search }) => {
   const [data, setData] = useState([]);
@@ -33,7 +36,7 @@ const Comics = ({ search }) => {
       <section className="underheader">
         <div className="previousimg">
           <img
-            src="../pictures/Previous_img.jpg"
+            src={previmg}
             alt="Previousimg"
             onClick={() =>
               page_number > 1
@@ -42,12 +45,12 @@ const Comics = ({ search }) => {
             }
           ></img>
         </div>
-        <img src="../pictures/LogoBatman.png" alt="LogoCharMarvel" />
+        <img src={logobat} alt="LogoCharMarvel" />
         <h1>Marvel Comics</h1>
-        <img src="../pictures/LogoBatman.png" alt="LogoCharMarvel" />
+        <img src={logobat} alt="LogoCharMarvel" />
         <div className="nextimg">
           <img
-            src="../pictures/Next_img.jpg"
+            src={nextimg}
             alt="Nextimg"
             onClick={() => setPageNumber(page_number + 1)}
           ></img>

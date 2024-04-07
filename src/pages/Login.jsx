@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import LogoHulk from "../pictures/LogoHulk.png";
 
 const Login = ({ handleToken }) => {
   const [email, setEmail] = useState("");
@@ -46,9 +47,9 @@ const Login = ({ handleToken }) => {
   return (
     <div className="container-Login">
       <section className="lgunderheader">
-        <img src="../pictures/LogoHulk.png" alt="LogoCharMarvel" />
+        <img src={LogoHulk} alt="LogoCharMarvel" />
         <h1>Login</h1>
-        <img src="../pictures/LogoHulk.png" alt="LogoCharMarvel" />
+        <img src={LogoHulk} alt="LogoCharMarvel" />
       </section>
 
       <form

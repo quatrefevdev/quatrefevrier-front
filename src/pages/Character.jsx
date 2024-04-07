@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Character.css";
 import { useNavigate } from "react-router-dom";
+import suplogo from "../pictures/LogoSuperman.png";
+import notfoundpic from "../pictures/Pic_not_found.jpg";
 
 const character = (token) => {
   const { id } = useParams();
@@ -39,11 +41,11 @@ const character = (token) => {
   ) : (
     <main>
       <section className="underheader">
-        <img src="../pictures/LogoSuperman.png" alt="LogoCharMarvel" />
+        <img src={suplogo} alt="LogoCharMarvel" />
         <h1>
           <span>{data.name}</span>
         </h1>
-        <img src="../pictures/LogoSuperman.png" alt="LogoCharMarvel" />
+        <img src={suplogo} alt="LogoCharMarvel" />
       </section>
       <div className="container">
         <section className="charactercard">
@@ -65,7 +67,7 @@ const character = (token) => {
                     {comic.thumbnail.path.includes("image_not_available") ? (
                       <img
                         className="notfoundimg"
-                        src="../pictures/Pic_not_found.jpg"
+                        src={notfoundpic}
                         alt="Pic not found"
                       />
                     ) : (
