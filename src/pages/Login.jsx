@@ -27,6 +27,7 @@ const Login = ({ handleToken }) => {
         setData(response.data);
         console.log(response.data.token);
         handleToken(response.data.token);
+        setError("");
         useNavigate("/");
       } catch (error) {
         console.log(error);
