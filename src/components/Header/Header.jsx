@@ -32,7 +32,7 @@ const Header = ({
       <div className="container-header">
         <Link to={`/`}>
           <div className="marvel_logo">
-            <img src="../public/Marvel_logo.jpg" alt="Marvel_logo_img" />
+            <img src="../../Pictures/Marvel_logo.jpg" alt="Marvel_logo_img" />
           </div>
         </Link>
         <div className="head_div">
