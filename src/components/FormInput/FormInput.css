@@ -1,0 +1,18 @@
+.forminput::placeholder {
+  color: white;
+  background-color: #4c548c;
+}
+
+.forminput {
+  background-color: #4c548c;
+  margin-top: 50px;
+  border-width: 0px;
+  border: none;
+  font-family: "Nunito-bold";
+  border-bottom: solid 1px white;
+  margin-bottom: 30px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}

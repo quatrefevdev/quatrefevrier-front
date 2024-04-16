@@ -1,0 +1,39 @@
+/*Import des polices */
+
+@font-face {
+  font-family: "Nunito-Black";
+  src: local("Nunito-Black"), url("./Fonts/Nunito-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-Bold";
+  src: local("Nunito-Bold"), url("./Fonts/Nunito-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-ExtraLight";
+  src: local("Nunito-ExtraLight"),
+    url("./Fonts/Nunito-ExtraLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-Italic-VariableFont_wght";
+  src: local("Nunito-Italic-VariableFont_wght"),
+    url("./Fonts/Nunito-Italic-VariableFont_wght.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-Light";
+  src: local("Nunito-Light"), url("./Fonts/Nunito-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-Medium";
+  src: local("Nunito-Medium"),
+    url("./Fonts/Nunito-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-SemiBold";
+  src: local("Nunito-SemiBold"),
+    url("./Fonts/Nunito-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-VariableFont_wght";
+  src: local("Nunito-VariableFont_wght"),
+    url("./Fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+}
