@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import "./App.scss";
-import "./css/fonts.css";
-
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-// Import Pages:
-import Welcome from "./pages/Welcome";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Welcome />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/login" element={<LogIn />}></Route>
-=======
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -59,7 +40,6 @@ function App() {
 
         <Route path="/login" element={<Login handleToken={handleToken} />} />
         <Route path="/signup" element={<Signup handleToken={handleToken} />} />
->>>>>>> dd49024538311d8ada5ee10525c333868018b465
       </Routes>
     </Router>
   );
