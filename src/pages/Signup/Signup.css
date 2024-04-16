@@ -1,0 +1,76 @@
+.containersignup {
+  margin: 0 auto;
+  max-width: 320px;
+  border: none;
+  height: 700px;
+  background-color: #4c548c;
+}
+
+.inputsignup::placeholder {
+  color: white;
+  background-color: #4c548c;
+}
+.inputsignup {
+  background-color: #4c548c;
+  margin-top: 50px;
+  border-width: 0px;
+  border: none;
+  font-family: "Nunito-Bold";
+  border-bottom: solid 1px white;
+  margin-bottom: 30px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}
+.alreadyaccount {
+  color: white;
+  font-family: "Nunito-Bold";
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 30px;
+  text-align: center;
+}
+.buttonsubmitsignup {
+  width: 105px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: white;
+  color: #4c548c;
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Nunito-Bold";
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.checkboxsignupdiv {
+  margin: 0 auto;
+  color: white;
+  font-family: "Nunito-Bold";
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.titlecheckboxsignup {
+  margin-bottom: 30px;
+}
+.checkboxsignupH {
+  margin-left: 10px;
+}
+.checkboxsignupF {
+  margin-left: 10px;
+}
+.datepickersignup {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.titledatepickersignup {
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+  font-family: "Nunito-Bold";
+}

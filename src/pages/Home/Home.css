@@ -1,0 +1,18 @@
+.marvel_pres > img {
+  object-fit: cover;
+  margin-top: 20px;
+  height: 600px;
+}
+
+@media (max-width: 920px) {
+  .marvel_pres > img {
+    flex-wrap: wrap;
+    max-width: 500px;
+  }
+}
+@media (max-width: 700px) {
+  .marvel_pres > img {
+    flex-wrap: wrap;
+    max-width: 300px;
+  }
+}

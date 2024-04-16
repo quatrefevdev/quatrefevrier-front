@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "quatrefevrier-front",
+=======
+  "name": "04_02",
+>>>>>>> dd49024538311d8ada5ee10525c333868018b465
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +14,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.6.8",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "sass": "^1.75.0"
+=======
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
+    "js-cookie": "^3.0.5",
+    "react": "^18.2.0",
+    "react-datepicker": "^6.8.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-listbox": "^1.2.13",
+    "react-router-dom": "^6.22.3",
+    "react-search-autocomplete": "^8.5.2"
+>>>>>>> dd49024538311d8ada5ee10525c333868018b465
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -25,6 +46,10 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+<<<<<<< HEAD
+=======
+    "sass": "^1.75.0",
+>>>>>>> dd49024538311d8ada5ee10525c333868018b465
     "vite": "^5.2.0"
   }
 }
