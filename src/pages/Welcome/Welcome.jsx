@@ -1,4 +1,5 @@
-import colors from "../../../../recup_git_1604/quatrefevrier-front/src/colors.json";
+import colors from "../../Colors/colors.json";
+import "../../../src/App.scss";
 
 const Welcome = () => {
   return (
