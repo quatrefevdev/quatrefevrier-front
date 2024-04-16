@@ -1,13 +1,20 @@
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "../../App.scss";
+import logo from "../../assets/logo.jpg";
 
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const [type, setType] = useState("");
-
-  return !type ? (
+  const [launching, setLaunching] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setLaunching(false), 2000);
+  }, []);
+  return launching ? (
+    <main className="container startPage" style={{ justifyContent: "center" }}>
+      <img src={logo} alt="logo" />
+    </main>
+  ) : !type ? (
     <main className="container startPage">
       <div className="top">
         <span style={{ backgroundColor: "#ef787c" }}></span>
