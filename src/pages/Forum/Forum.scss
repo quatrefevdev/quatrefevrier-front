@@ -1,0 +1,92 @@
+.forum-section {
+  // Règles générales de la page forum d'un user
+  background-color: #ffff;
+  color: #4c548c;
+
+  .container-forum {
+    width: 500px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 900;
+    margin: 20px 0;
+  }
+  p {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  span {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  // Step 1 et 2 avec personnalisation des recommandations et selection des suggestions
+  .div-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .select {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 8px 16px 8px 16px;
+  }
+
+  // Bouton de la page forum pour les pages (step)
+  .buttonStep {
+    background-color: #ff7979;
+    height: 40px;
+    width: 110px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px 8px 16px;
+    color: white;
+  }
+
+  // bouton pour chercher / créer un forum
+  .buttonCreateSearch {
+    background-color: #ff7979;
+    height: 40px;
+    width: 50%;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px 8px 16px;
+    color: white;
+  }
+
+  // Div des boutons step
+  .handleDisplay {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  // Step 3 => Affichage des forums favoris / vos forums / nos suggestions
+  .forum-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .forum-button {
+    display: flex;
+    align-items: center;
+    border: #4c548c 1px solid;
+    border-radius: 5px;
+    padding: 8px 16px 8px 16px;
+  }
+}
