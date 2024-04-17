@@ -32,6 +32,42 @@
     },
     {
       "cancerkind": "Cancer du pancréas"
+    },
+    {
+      "cancerkind": "Cancer de la peau"
+    },
+    {
+      "cancerkind": "Cancer de la plèvre"
+    },
+    {
+      "cancerkind": "Cancer du poumon"
+    },
+    {
+      "cancerkind": "Cancer du rein"
+    },
+    {
+      "cancerkind": "Cancer du sein"
+    },
+    {
+      "cancerkind": "Cancer du testicule"
+    },
+    {
+      "cancerkind": "Cancer de la thyroïde"
+    },
+    {
+      "cancerkind": "Cancer de la vessie"
+    },
+    {
+      "cancerkind": "Cancer des voies aérodigestives supérieures"
+    },
+    {
+      "cancerkind": "Leucémie"
+    },
+    {
+      "cancerkind": "Lymphome Hodgkinien"
+    },
+    {
+      "cancerkind": "Sarcome"
     }
   ]
 }

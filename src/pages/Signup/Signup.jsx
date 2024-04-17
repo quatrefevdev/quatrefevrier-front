@@ -300,14 +300,6 @@ const Signup = ({ handleToken }) => {
       case 7:
         arr.push(
           <div>
-            {/* <FormInput
-              name="inputsignup"
-              title="Type(s) de cancer"
-              placeholder=""
-              state={cancerkindsel}
-              setState={setCancerKind}
-              type="text"
-            /> */}
             {/* Affichage du contenu de la listbox */}
             {cancerkindfile.results.map((cancer, idx) => {
               return (
