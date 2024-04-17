@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "cancerstep": "En attente de diagnostique"
+    },
+    {
+      "cancerstep": "En cours de traitement"
+    },
+    {
+      "cancerstep": "En suivi post-traitement"
+    },
+    {
+      "cancerstep": "En rémission"
+    },
+    {
+      "cancerstep": "En soins palliatifs"
+    },
+    {
+      "cancerstep": "En rechute"
+    }
+  ]
+}
