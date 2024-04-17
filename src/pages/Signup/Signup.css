@@ -3,33 +3,19 @@
   max-width: 320px;
   border: none;
   height: 700px;
-  background-color: #4c548c;
+  background-color: white;
 }
 
-.inputsignup::placeholder {
-  color: white;
-  background-color: #4c548c;
-}
-.inputsignup {
-  background-color: #4c548c;
-  margin-top: 50px;
-  border-width: 0px;
-  border: none;
-  font-family: "Nunito-Bold";
-  border-bottom: solid 1px white;
-  margin-bottom: 30px;
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: white;
-}
 .alreadyaccount {
-  color: white;
+  color: #4c548c;
   font-family: "Nunito-Bold";
-  text-decoration: none;
   cursor: pointer;
   margin-top: 30px;
+  font-size: 12px;
   text-align: center;
+}
+a:link {
+  text-decoration: none !important;
 }
 .buttonsubmitsignup {
   width: 105px;
@@ -45,24 +31,24 @@
   font-weight: bold;
   font-size: 16px;
 }
-
-.checkboxsignupdiv {
-  margin: 0 auto;
+.helptxtsignup {
   color: white;
+  font-family: "Nunito-Bold";
+  text-align: center;
+  font-size: 12px;
+}
+.sexsignupdiv {
+  margin: 0 auto;
+  color: #4c548c;
   font-family: "Nunito-Bold";
   margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
 }
-.titlecheckboxsignup {
-  margin-bottom: 30px;
+.titlesexsignup {
+  margin-bottom: 10px;
 }
-.checkboxsignupH {
-  margin-left: 10px;
-}
-.checkboxsignupF {
-  margin-left: 10px;
-}
+
 .datepickersignup {
   text-align: center;
   margin-top: 30px;
@@ -71,6 +57,93 @@
 .titledatepickersignup {
   margin-top: 30px;
   text-align: center;
-  color: white;
+  color: #4c548c;
   font-family: "Nunito-Bold";
+}
+.errortxtsignup {
+  text-align: center;
+  color: red;
+  font-family: "Nunito-Bold";
+}
+
+.buttondivsignup {
+  margin-right: 10px;
+}
+.errortxtsignuphidden {
+  visibility: hidden;
+}
+
+.progressbar {
+  width: 50%;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #e6e6e6;
+  margin-bottom: 10px;
+}
+
+.progressbarfill {
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
+  background-color: white;
+  transition: width 0.5s ease-out;
+}
+.progressbardiv {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.rectanglefemmediv > img {
+  height: 80px;
+  width: 40px;
+}
+.rectanglefemmediv {
+  border: 1px solid #4c548c;
+  margin-right: 10px;
+  padding: 10px;
+}
+.rectanglehommediv > img {
+  height: 80px;
+  width: 40px;
+}
+.rectanglehommediv {
+  border: 1px solid #4c548c;
+  margin-right: 10px;
+  padding: 10px;
+}
+.choicesexsignup {
+  display: flex;
+  width: "100%";
+}
+.rectanglefemmedivbold {
+  border: 5px solid #4c548c;
+  border-image: linear-gradient(#4c548c, #ef787c) 27;
+  margin-right: 10px;
+  padding: 10px;
+}
+.rectanglehommedivbold {
+  border: 5px solid #4c548c;
+  border-image: linear-gradient(#4c548c, #ef787c) 27;
+  margin-right: 10px;
+  padding: 10px;
+}
+.cancernotselected {
+  text-align: center;
+  color: #4c548c;
+  font-family: "Nunito-Bold";
+}
+
+.cancerselected {
+  border: 1px solid #4c548c;
+  width: 50px;
+  text-align: center;
+  color: #4c548c;
+  font-family: "Nunito-Bold";
+  border-radius: 5px;
+}
+.cancerselecteddiv {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
 }

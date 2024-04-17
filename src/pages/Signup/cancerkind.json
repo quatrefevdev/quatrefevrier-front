@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "cancerkind": "Cancer du cerveau"
+    },
+    {
+      "cancerkind": "Cancer du col de l'utérus"
+    },
+    {
+      "cancerkind": "Cancer du  côlon et du rectum"
+    },
+    {
+      "cancerkind": "Cancer de l'endomètre"
+    },
+    {
+      "cancerkind": "Cancer de l'estomac"
+    },
+    {
+      "cancerkind": "Cancer du foie"
+    },
+    {
+      "cancerkind": "Cancer lèvre-bouche-larynx"
+    },
+    {
+      "cancerkind": "Cancer de la moelle osseuse"
+    },
+    {
+      "cancerkind": "Cancer de l'oesophage"
+    },
+    {
+      "cancerkind": "Cancer des os"
+    },
+    {
+      "cancerkind": "Cancer du pancréas"
+    }
+  ]
+}
