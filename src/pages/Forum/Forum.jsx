@@ -5,7 +5,9 @@ const Forum = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [step, setStep] = useState(1);
+  const [suggestion, setSuggestion] = useState([]);
 
+  // function to switch between screen
   const handleNextStep = () => {
     setStep(step + 1);
   };
@@ -13,7 +15,20 @@ const Forum = () => {
     setStep(step - 1);
   };
 
-  // Afficher step 1 et 2 seulement la première fois avec user.isNew
+  // function to add / remove  selected item in screen step 1.
+  const handleSuggest = (suggest) => {
+    const newTab = [...suggestion];
+    if (!newTab.includes(suggest)) {
+      newTab.push(suggest);
+      setSuggestion(newTab);
+    } else {
+      const index = newTab.indexOf(suggest);
+      newTab.splice(index, 1);
+      setSuggestion(newTab);
+    }
+    //console.log(suggestion);
+  };
+  // Display screen step 1 & 2 only the first time with user.isNew
   const displayForum = () => {
     switch (step) {
       case 1:
@@ -23,11 +38,22 @@ const Forum = () => {
               <h1>Prersonnalisez vos recommandations</h1>
             </div>
             <div className="div-select">
-              {/* faire un mapping de la liste des recommandations */}
-              <div className="select">
+              {/* Mapping of recommandations  => use a components for render */}
+              <div
+                className="select"
+                style={
+                  suggestion.includes("Gérer effets secondaire")
+                    ? { backgroundColor: "#c3c3e9" }
+                    : null
+                }
+                onClick={() => handleSuggest("Gérer effets secondaire")}
+              >
                 <p>Gérer effets secondaire</p>
               </div>
-              <div className="select">
+              <div
+                className="select"
+                onClick={() => handleSuggest("Eloignement de l'entourage")}
+              >
                 <p>Eloignement de l'entourage</p>
               </div>
               <div className="select">
@@ -52,7 +78,7 @@ const Forum = () => {
               <p>Accédez à d'autres groupes par la suite.</p>
             </div>
 
-            {/* faire un mapping de la liste des suggestions */}
+            {/* Mapping of suggestions  => use a components for render */}
             <div className="div-select">
               <div className="select">
                 <p>Gérer effets secondaire</p>
@@ -81,7 +107,7 @@ const Forum = () => {
             </div>
             <div>
               <h2>Vos forums favoris</h2>
-              {/* faire un mapping forum favoris avec 2 / 3 results */}
+              {/* Mapping favoris with 2 / 3 results */}
               <div className="forum-content">
                 <div>
                   <p>Premier symptômes</p>
@@ -103,7 +129,7 @@ const Forum = () => {
             </div>
             <div>
               <h2>Vos forums</h2>
-              {/* faire un mapping forum avec 2 / 3 results */}
+              {/* Mapping forum with 2 / 3 results */}
               <div className="forum-content">
                 <div>
                   <p>Cosméto clean</p>
@@ -125,7 +151,7 @@ const Forum = () => {
             </div>
             <div>
               <h2>Nos Suggestions</h2>
-              {/* faire un mapping suggestions avec 2 / 3 results */}
+              {/* Mapping suggestions with 2 / 3 results */}
               <div className="forum-content">
                 <div>
                   <p>Menus batch cooking</p>
@@ -145,13 +171,10 @@ const Forum = () => {
                 </div>
               </div>
             </div>
-            {/* Ici juste pour test mais retirer après */}
+            {/* Just for test need to be remove later */}
             <div className="handleDisplay">
               <button className="buttonStep" onClick={handlePreviousStep}>
                 Précédent
-              </button>
-              <button className="buttonStep" onClick={handleNextStep}>
-                Suivant
               </button>
             </div>
           </>
