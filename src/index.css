@@ -1,39 +1,129 @@
-/*Import des polices */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-@font-face {
-  font-family: "Nunito-Black";
-  src: local("Nunito-Black"), url("./Fonts/Nunito-Black.ttf") format("truetype");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-@font-face {
-  font-family: "Nunito-Bold";
-  src: local("Nunito-Bold"), url("./Fonts/Nunito-Bold.ttf") format("truetype");
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
-@font-face {
-  font-family: "Nunito-ExtraLight";
-  src: local("Nunito-ExtraLight"),
-    url("./Fonts/Nunito-ExtraLight.ttf") format("truetype");
+body {
+  line-height: 1;
 }
-@font-face {
-  font-family: "Nunito-Italic-VariableFont_wght";
-  src: local("Nunito-Italic-VariableFont_wght"),
-    url("./Fonts/Nunito-Italic-VariableFont_wght.ttf") format("truetype");
+ol,
+ul {
+  list-style: none;
 }
-@font-face {
-  font-family: "Nunito-Light";
-  src: local("Nunito-Light"), url("./Fonts/Nunito-Light.ttf") format("truetype");
+blockquote,
+q {
+  quotes: none;
 }
-@font-face {
-  font-family: "Nunito-Medium";
-  src: local("Nunito-Medium"),
-    url("./Fonts/Nunito-Medium.ttf") format("truetype");
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
-@font-face {
-  font-family: "Nunito-SemiBold";
-  src: local("Nunito-SemiBold"),
-    url("./Fonts/Nunito-SemiBold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Nunito-VariableFont_wght";
-  src: local("Nunito-VariableFont_wght"),
-    url("./Fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }

@@ -22,14 +22,14 @@
     height: 5px;
     border-radius: 5px;
   }
-  span:first-child {
-    background-color: #ef787c;
-  }
 }
 .startPage {
   background-color: #4c548c;
   font-family: "NN-Bold";
   color: white;
+  img {
+    width: 60%;
+  }
   h1 {
     font-size: 40px;
     text-align: center;
@@ -63,8 +63,23 @@
     font-family: "NN-Bold";
     font-size: 20px;
     color: #4c548c;
-    padding: 5px 0;
+    padding: 10px 0;
     border-radius: 5px;
     border: none;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    background-color: none;
+    width: 100%;
+    font-family: "NN-Bold";
+    font-size: 20px;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+  a:hover {
+    background-color: #ef787c;
   }
 }
