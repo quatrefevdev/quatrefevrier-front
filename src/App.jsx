@@ -44,16 +44,17 @@ function App() {
 
         <Route
           path="/login"
-          element={<Login handleToken={handleToken} setId={setId} />} />
+          element={<Login handleToken={handleToken} setId={setId} />}
+        />
         <Route
           path="/signup"
-          element={<Signup handleToken={handleToken} setId={setId} />} />
+          element={<Signup handleToken={handleToken} setId={setId} />}
+        />
         <Route path="/forum" element={<Forum />} />
         <Route path="/carnetHome" element={<CarnetHome />}></Route>
         <Route path="/mesRdv" element={<MesRdv />}></Route>
-        <Route path="/forgetpassword" element={<FortgetPassword />} />
-        <Route path="/onboarding/" element={<OnBoarding token={token} />} />
-
+        <Route path="/forgetPassword" element={<FortgetPassword />} />
+        <Route path="/onboarding/" element={<OnBoarding id={id} />} />
       </Routes>
     </Router>
   );

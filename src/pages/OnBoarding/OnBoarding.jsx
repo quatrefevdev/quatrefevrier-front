@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./OnBoarding.scss";
+import "../../css/fonts.css";
 import axios from "axios";
 import React, { useCallback } from "react";
 import Dropzone from "react-dropzone";
@@ -22,7 +23,7 @@ import cancerstepfile from "../../Json/cancerstep.json";
 
 registerLocale("fr", fr);
 
-const OnBoarding = ({ token }) => {
+const OnBoarding = ({ id, token }) => {
   const [username, setUserName] = useState("");
   const [lastname, setLastName] = useState("");
   const [firstname, setFirstName] = useState("");
@@ -50,7 +51,7 @@ const OnBoarding = ({ token }) => {
       return false;
     }
   }
-
+  console.log("ID avant route", id);
   // Fonction qui est déclenchée lors de la soumission du formulaire
   const handleSubmit = (event) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
@@ -63,6 +64,7 @@ const OnBoarding = ({ token }) => {
           setError("Désolé, peux tu choisir une catégorie");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 2 /* UserName (Input) */:
@@ -70,6 +72,7 @@ const OnBoarding = ({ token }) => {
           setError("Il te faut un pseudo ! ");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 3 /* Name (Input) */:
@@ -77,6 +80,7 @@ const OnBoarding = ({ token }) => {
           setError("Allez ! T'as bien un petit nom ");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 4 /* Firstname (Input) */:
@@ -84,6 +88,7 @@ const OnBoarding = ({ token }) => {
           setError("Renseigne ton prénom s'il te plait");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 5 /* Sex choice (Image+Onclick) */:
@@ -91,6 +96,7 @@ const OnBoarding = ({ token }) => {
           setError("Clic sur un des deux genres s'il te plait");
         } else {
           setStep(step + 1);
+          setError("");
         }
 
         break;
@@ -99,6 +105,7 @@ const OnBoarding = ({ token }) => {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -106,6 +113,7 @@ const OnBoarding = ({ token }) => {
           setError("Sélectionne ton type de cancer s'il te plait");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 8 /* Cancer step (listbox)*/:
@@ -113,6 +121,7 @@ const OnBoarding = ({ token }) => {
           setError("Sélectionne la phase de ton cancer s'il te plait");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
 
@@ -123,6 +132,7 @@ const OnBoarding = ({ token }) => {
           setError("T'as bien un 06 !");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
       case 10 /*Avatar */:
@@ -134,7 +144,7 @@ const OnBoarding = ({ token }) => {
       try {
         const fetchData = async () => {
           const response = await axios.put(
-            "http://localhost:3000/user/updateuser/" + token,
+            "http://localhost:3000/user/updateuser/" + id,
             {
               username: username,
               lastname: lastname,
@@ -145,12 +155,11 @@ const OnBoarding = ({ token }) => {
               cancerstep: cancerstepsel,
               phonenumber: phonenumber,
               accountype: usertype,
+              avatar: avatar,
             }
           );
           setData(response.data);
-          console.log(response.data.token);
-          handleToken(response.data.token);
-          navigate("/Welcome");
+          navigate("/Accueil");
         };
 
         fetchData();
@@ -173,17 +182,16 @@ const OnBoarding = ({ token }) => {
     event.preventDefault();
     if (step > 1) {
       setStep(step - 1);
+      setError("");
     }
   };
   const UserTypePatient = (event) => {
     event.preventDefault();
     setUserType("Patient");
-    console.log("Patient");
   };
   const UserTypeAidant = (event) => {
     event.preventDefault();
     setUserType("Aidant");
-    console.log("Aidant");
   };
 
   function displayInput() {
@@ -195,15 +203,13 @@ const OnBoarding = ({ token }) => {
             <h2 className="titleUserTypeOnBoard"> Vous êtes ? </h2>
             <div className="buttonpatientaidantdiv">
               <ButtonComponent
-                className="buttonpatientonboard"
-                id="Patient"
                 pressFct={UserTypePatient}
+                value={usertype === "Patient" ? 1 : 0}
                 txt="Patient"
               />
               <ButtonComponent
-                className="buttonaidantonboard"
-                id="Aidant"
                 pressFct={UserTypeAidant}
+                value={usertype === "Aidant" ? 1 : 0}
                 txt="Aidant"
               />
             </div>
@@ -380,7 +386,7 @@ const OnBoarding = ({ token }) => {
                           setCancerStep("");
                         }}
                       >
-                        <p>{cancer.cancerstep}</p>
+                        {cancer.cancerstep}
                       </p>
                     </div>
                   )}
@@ -429,49 +435,61 @@ const OnBoarding = ({ token }) => {
   }
 
   return (
-    <div className="containeronboarding">
-      <form
-        style={{ display: "flex", flexDirection: "column", marginTop: "50px" }}
-      >
-        <div className="progressbardiv">
-          <div className="progressbar">
-            <div
-              className="progressbarfill"
-              style={{ width: `${step * 10}%`, backgroundColor: "#4c548c" }}
-            ></div>
-          </div>
-        </div>
-        {displayInput()}
+    <>
+      {/* Si je ne suis pas logué ==> envoi vers l'accueil */}
+      {!token ? (
+        navigate("/Accueil")
+      ) : (
+        <div className="containeronboarding">
+          <form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "50px",
+            }}
+          >
+            <div className="progressbardiv">
+              <div className="progressbar">
+                <div
+                  className="progressbarfill"
+                  style={{ width: `${step * 10}%`, backgroundColor: "#4c548c" }}
+                ></div>
+              </div>
+            </div>
+            {displayInput()}
 
-        <div className="buttondivonboarding">
-          {step !== 1 && (
-            <ButtonComponent
-              className="buttonpreviousonboarding"
-              id="Previous"
-              pressFct={PreviousClick}
-              txt="< Précédent"
-            />
-          )}
-          <ButtonComponent
-            className="buttonnextonboarding"
-            id="Next"
-            pressFct={handleSubmit}
-            txt="Suivant >"
-          />
+            <div className="buttondivonboarding">
+              {step !== 1 && (
+                <ButtonComponent
+                  id="Previous"
+                  value={0}
+                  pressFct={PreviousClick}
+                  txt="< Précédent"
+                />
+              )}
+              <ButtonComponent
+                id="Next"
+                value={0}
+                pressFct={handleSubmit}
+                txt="Suivant >"
+              />
+            </div>
+            {error ? (
+              <p className="errortxtonboarding">{error}</p>
+            ) : (
+              <p className="errortxtonboardinghidden">{error}</p>
+            )}
+            <div className="divaccount">
+              <Link to={`/Login`}>
+                <p className="alreadyaccountonboarding">
+                  Déjà un compte? Connectez-vous !
+                </p>
+              </Link>
+            </div>
+          </form>
         </div>
-
-        {error ? (
-          <p className="errortxtonboarding">{error}</p>
-        ) : (
-          <p className="errortxtonboardinghidden">{error}</p>
-        )}
-        <div className="divaccount">
-          <Link to={`/Login`}>
-            <p className="alreadyaccount">Déjà un compte? Connectez-vous !</p>
-          </Link>
-        </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
