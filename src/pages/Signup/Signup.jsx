@@ -91,7 +91,6 @@ const Signup = ({ handleToken, setId }) => {
               password: password,
             }
           );
-          console.log("VOici l'erreur", error.response.data.message);
           setData(response.data);
           handleToken(response.data.token);
           setId(response.data._id);
