@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../components/FormInput/FormInput";
 import ButtonComponent from "../../components/Button/ButtonComponent";
 
-const Login = ({ handleToken }) => {
+const Login = ({ handleToken, setId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -32,6 +32,7 @@ const Login = ({ handleToken }) => {
           setData(response.data);
           console.log("Data", response.data.token);
           handleToken(response.data.token);
+          setId(response.data._id);
           setError("");
           navigate("/");
         } catch (error) {

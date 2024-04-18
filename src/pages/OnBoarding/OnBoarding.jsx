@@ -133,8 +133,8 @@ const OnBoarding = ({ token }) => {
     if (step >= 10) {
       try {
         const fetchData = async () => {
-          const response = await axios.post(
-            "http://localhost:3000/user/onboarding/" + token,
+          const response = await axios.put(
+            "http://localhost:3000/user/updateuser/" + token,
             {
               username: username,
               lastname: lastname,
