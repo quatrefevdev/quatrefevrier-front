@@ -1,11 +1,21 @@
 import "./ButtonComponent.scss";
 
-const ButtonComponent = ({ pressFct, txt, id }) => {
+const ButtonComponent = ({ value, pressFct, txt, id }) => {
+  console.log(value);
   return (
-    <button className="buttonclass" id={id} onClick={pressFct}>
-      {" "}
-      {txt}
-    </button>
+    <div>
+      {value === 0 ? (
+        <button className="buttonclass" id={id} onClick={pressFct}>
+          {" "}
+          {txt}
+        </button>
+      ) : (
+        <button className="buttonclassselected" id={id} onClick={pressFct}>
+          {" "}
+          {txt}
+        </button>
+      )}
+    </div>
   );
 };
 
