@@ -4,7 +4,7 @@ import "./Signup.scss";
 import "../../css/fonts.css";
 import axios from "axios";
 import React from "react";
-//Component
+//Components
 import FormInput from "../../components/FormInput/FormInput";
 import ButtonComponent from "../../components/Button/ButtonComponent";
 
@@ -91,11 +91,12 @@ const Signup = ({ handleToken, setId }) => {
               password: password,
             }
           );
+          console.log("VOici l'erreur", error.response.data.message);
           setData(response.data);
-          console.log(response.data.token);
           handleToken(response.data.token);
           setId(response.data._id);
-          navigate("/OnBoarding");
+          console.log(response.data._id);
+          navigate("/onboarding");
         };
 
         fetchData();
@@ -159,7 +160,7 @@ const Signup = ({ handleToken, setId }) => {
                   />
                 ) : (
                   <FontAwesomeIcon
-                    icon="fa-regular fa-eye fa-xl"
+                    icon="fa-regular fa-eye"
                     size="xl"
                     onClick={() => setShowPassword1(!showpassword1)}
                   />
