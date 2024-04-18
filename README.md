@@ -1,12 +1,48 @@
-# React + Vite
+# quatrefevrier-frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Presentation
 
-Currently, two official plugins are available:
+**quatrefevrier-Frontend** made in context of MVP project at [@Le Reacteur](https://github.com/lereacteur) bootcamp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-<<<<<<< HEAD
-=======
-# Marvel-Front
->>>>>>> dd49024538311d8ada5ee10525c333868018b465
+- [x] **React**
+- [x] **Responsive**
+- [x] Backend **Node JS** [Github](https://github.com/quatrefevrier/quatrefevrier-back)
+
+Front Hosted on [Netlify]() \
+Backend hosted on [NorthFlank]()
+
+## Content
+
+- Pages
+  - Welcome : path=`/`
+  - Login : path=`/login`
+  - SignUp : path=`/signup`
+  - Forum : path=`/forum`
+  - ForgetPassword : path=`/ForgetPassword`
+  - OnBoarding : path=`/onboarding`
+
+## Tech Stack
+
+- React 18
+
+## Installation
+
+1. Clone the repository :
+
+```bash
+git clone https://github.com/quatrefevrier/quatrefevrier-front
+```
+
+2. Install dependencies and run (on localhost):
+
+```bash
+yarn
+yarn dev
+```
+
+## Thanks
+
+Thanks to :
+
+- [@Le Reacteur](https://github.com/lereacteur)
+- [@Quatre Fevrier](https://www.quatrefevrier.com/)
