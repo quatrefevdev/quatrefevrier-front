@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "./Forum.scss";
 
 const Forum = () => {
@@ -18,7 +19,7 @@ const Forum = () => {
   // function to add / remove  selected item in screen step 1.
   const handleSuggest = (suggest) => {
     const newTab = [...suggestion];
-    if (!newTab.includes(suggest)) {
+    if (!newTab.includes(suggest) && newTab.length < 5) {
       newTab.push(suggest);
       setSuggestion(newTab);
     } else {
@@ -26,79 +27,75 @@ const Forum = () => {
       newTab.splice(index, 1);
       setSuggestion(newTab);
     }
-    //console.log(suggestion);
+    console.log(suggestion);
   };
-  // Display screen step 1 & 2 only the first time with user.isNew
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (step === 1) {
+          const response = await axios.get(` http://localhost:3000/groups`);
+          setData(response.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [step]);
+
+  // Display screen step 1 only the first time with user.isNew
   const displayForum = () => {
     switch (step) {
       case 1:
-        return (
-          <>
-            <div>
-              <h1>Prersonnalisez vos recommandations</h1>
-            </div>
-            <div className="div-select">
-              {/* Mapping of recommandations  => use a components for render */}
-              <div
-                className="select"
-                style={
-                  suggestion.includes("Gérer effets secondaire")
-                    ? { backgroundColor: "#c3c3e9" }
-                    : null
-                }
-                onClick={() => handleSuggest("Gérer effets secondaire")}
-              >
-                <p>Gérer effets secondaire</p>
+        if (isLoading === true) {
+          return (
+            <>
+              <div>
+                <h1>EN CHARGEMENT</h1>
               </div>
-              <div
-                className="select"
-                onClick={() => handleSuggest("Eloignement de l'entourage")}
-              >
-                <p>Eloignement de l'entourage</p>
+            </>
+          );
+        } else {
+          //console.log(data[1].groups);
+          const array = data[1].groups;
+          return (
+            <>
+              <div>
+                <h1>Découvrez nos suggestions de forums</h1>
+                <p>Accédez à d'autres groupes par la suite.</p>
               </div>
-              <div className="select">
-                <p>fatigue</p>
+              <div className="div-select">
+                {/* Mapping of suggestions  => use a components for render */}
+                {array.map((group) => {
+                  return (
+                    <div
+                      key={group._id}
+                      className="select"
+                      style={
+                        suggestion.includes(group._id)
+                          ? { backgroundColor: "#c3c3e9" }
+                          : null
+                      }
+                      onClick={() => handleSuggest(group._id)}
+                    >
+                      <p>{group.group_name}</p>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="select">
-                <p>Perte de cheuveux</p>
+
+              <div className="handleDisplay">
+                <button className="buttonStep" onClick={handleNextStep}>
+                  Suivant
+                </button>
               </div>
-            </div>
-            <div className="handleDisplay">
-              <button className="buttonStep" onClick={handleNextStep}>
-                Suivant
-              </button>
-            </div>
-          </>
-        );
+            </>
+          );
+        }
       case 2:
-        return (
-          <>
-            <div>
-              <h1>Découvrez nos suggestions de forums</h1>
-              <p>Accédez à d'autres groupes par la suite.</p>
-            </div>
-
-            {/* Mapping of suggestions  => use a components for render */}
-            <div className="div-select">
-              <div className="select">
-                <p>Gérer effets secondaire</p>
-              </div>
-              <div className="select">
-                <p>Eloignement de l'entourage</p>
-              </div>
-            </div>
-
-            <div className="handleDisplay">
-              <button className="buttonStep" onClick={handlePreviousStep}>
-                Précédent
-              </button>
-              <button className="buttonStep" onClick={handleNextStep}>
-                Suivant
-              </button>
-            </div>
-          </>
-        );
-      case 3:
         return (
           <>
             <div className="handleDisplay">
