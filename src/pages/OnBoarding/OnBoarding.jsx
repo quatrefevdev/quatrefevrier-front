@@ -141,6 +141,7 @@ const OnBoarding = ({ id, token }) => {
     }
     if (step >= 10) {
       try {
+        console.log(id);
         const fetchData = async () => {
           const response = await axios.put(
             "http://localhost:3000/user/updateuser/" + id,
@@ -217,38 +218,44 @@ const OnBoarding = ({ id, token }) => {
         break;
       case 2 /* UserName (Input) */:
         arr.push(
-          <FormInput
-            title="Votre pseudo : "
-            name="inputonboarding"
-            placeholder=""
-            state={username}
-            setState={setUserName}
-            type="text"
-          />
+          <div className="usernamediv">
+            <FormInput
+              title="Votre pseudo : "
+              name="inputonboarding"
+              placeholder=""
+              state={username}
+              setState={setUserName}
+              type="text"
+            />
+          </div>
         );
         break;
       case 3 /* Name (Input) */:
         arr.push(
-          <FormInput
-            name="inputonboarding"
-            title="Votre nom : "
-            placeholder=""
-            state={lastname}
-            setState={setLastName}
-            type="text"
-          />
+          <div className="namediv">
+            <FormInput
+              name="inputonboarding"
+              title="Votre nom : "
+              placeholder=""
+              state={lastname}
+              setState={setLastName}
+              type="text"
+            />
+          </div>
         );
         break;
       case 4 /* Firstname (Input) */:
         arr.push(
-          <FormInput
-            name="inputonboarding"
-            title="Votre prénom : "
-            placeholder=""
-            state={firstname}
-            setState={setFirstName}
-            type="text"
-          />
+          <div className="firstnamediv">
+            <FormInput
+              name="inputonboarding"
+              title="Votre prénom : "
+              placeholder=""
+              state={firstname}
+              setState={setFirstName}
+              type="text"
+            />
+          </div>
         );
         break;
       case 5 /* Sex choice (Image+Onclick) */:
@@ -305,7 +312,7 @@ const OnBoarding = ({ id, token }) => {
             Quelle est votre date de naissance?
             <DatePicker
               locale="fr"
-              dateFormat="dd/MM/YYYY"
+              dateFormat="P"
               className="datepickeronboarding"
               calendarAriaLabel="Toggle calendar"
               dayAriaLabel="Day"
@@ -404,14 +411,16 @@ const OnBoarding = ({ id, token }) => {
         break;
       case 9 /* Phone number (Input+regex) */:
         arr.push(
-          <FormInput
-            name="inputonboarding"
-            title="Quel est votre numéro de téléphone?"
-            placeholder=""
-            state={phonenumber}
-            setState={setPhoneNumber}
-            type="tel"
-          />
+          <div className="phonediv">
+            <FormInput
+              name="inputonboarding"
+              title="Quel est votre numéro de téléphone?"
+              placeholder=""
+              state={phonenumber}
+              setState={setPhoneNumber}
+              type="tel"
+            />
+          </div>
         );
         break;
       case 10 /*Avatar */:

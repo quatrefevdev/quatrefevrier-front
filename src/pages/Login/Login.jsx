@@ -56,9 +56,9 @@ const Login = ({ handleToken, setId }) => {
               password: password,
             }
           );
-          console.log("log", response);
+          console.log("log", response.data);
           setData(response.data);
-          console.log("Data", response.data.token);
+          console.log("ID", response.data._id);
           handleToken(response.data.token);
           setId(response.data._id);
           setError("");

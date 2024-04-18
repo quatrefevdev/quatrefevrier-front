@@ -27,8 +27,6 @@ import FortgetPassword from "./pages/Login/FortgetPassword";
 // Components
 import Header from "./components/Header/Header";
 
-const id = "661fed5fcb8a76b9e4a116ec";
-
 function App() {
   // State dans lequel je stocke le token. Sa valeur de base sera :
   // - Si je trouve un cookie token, ce cookie
