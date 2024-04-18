@@ -1,29 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Signup.css";
+import "./Signup.scss";
 import "../../css/fonts.css";
 import axios from "axios";
 import React from "react";
-//Component
+//Components
 import FormInput from "../../components/FormInput/FormInput";
 import ButtonComponent from "../../components/Button/ButtonComponent";
 
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { fr } from "date-fns/locale/fr";
 
+//Fontawesome
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(faEye, faEyeSlash, faCheck);
+
 registerLocale("fr", fr);
 
-const Signup = ({ handleToken }) => {
+const Signup = ({ handleToken, setId }) => {
   const [email, setEmail] = useState("");
-
-  const [phonenumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-
+  const [showpassword1, setShowPassword1] = useState(false);
+  const [showpassword2, setShowPassword2] = useState(false);
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [data, setData] = useState();
+  const lowerCase = /[a-z]/g;
+  const upperCase = /[A-Z]/g;
+  const numbers = /[0-9]/g;
 
   //regex to check the email format
   function validateEmail(email) {
@@ -51,10 +60,6 @@ const Signup = ({ handleToken }) => {
         }
         break;
       case 2 /*Password */:
-        const lowerCase = /[a-z]/g;
-        const upperCase = /[A-Z]/g;
-        const numbers = /[0-9]/g;
-
         if (!password) {
           setError("Il te faut choisir un mot de passe !");
         } else if (password !== password2) {
@@ -71,6 +76,7 @@ const Signup = ({ handleToken }) => {
           setError("Le mot de passe doit contenir au moins un chiffre");
         } else {
           setStep(step + 1);
+          setError("");
         }
         break;
     }
@@ -85,10 +91,12 @@ const Signup = ({ handleToken }) => {
               password: password,
             }
           );
+          console.log("VOici l'erreur", error.response.data.message);
           setData(response.data);
-          console.log(response.data.token);
           handleToken(response.data.token);
-          navigate("/OnBoarding");
+          setId(response.data._id);
+          console.log(response.data._id);
+          navigate("/onboarding");
         };
 
         fetchData();
@@ -111,6 +119,7 @@ const Signup = ({ handleToken }) => {
     event.preventDefault();
     if (step > 1) {
       setStep(step - 1);
+      setError("");
     }
   };
 
@@ -129,41 +138,94 @@ const Signup = ({ handleToken }) => {
           />
         );
         break;
-        arr.push(
-          <FormInput
-            name="inputsignup"
-            title="Quel est votre numéro de téléphone?"
-            placeholder=""
-            state={phonenumber}
-            setState={setPhoneNumber}
-            type="tel"
-          />
-        );
-        break;
       case 2 /*Password (Input) */:
         arr.push(
           <div>
-            <FormInput
-              title="Votre mot de passe : "
-              name="inputsignup"
-              placeholder="Choisi un mot de passe"
-              state={password}
-              setState={setPassword}
-              type="password"
-            />
-            <FormInput
-              name="inputsignup"
-              placeholder="Retape ton mot de passe"
-              state={password2}
-              setState={setPassword2}
-              type="password"
-            />
-            <p className="helptxtsignup">
-              <p>
+            <div className="posrelinputsignupdiv1">
+              <FormInput
+                title="Votre mot de passe : "
+                name="inputsignup"
+                placeholder="Choisi un mot de passe"
+                state={password}
+                setState={setPassword}
+                type={showpassword1 === false ? "password" : "text"}
+              />
+
+              <div className="inputsignupdiv1">
+                {showpassword1 === false ? (
+                  <FontAwesomeIcon
+                    icon="fa-regular fa-eye-slash"
+                    size="xl"
+                    onClick={() => setShowPassword1(!showpassword1)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon="fa-regular fa-eye"
+                    size="xl"
+                    onClick={() => setShowPassword1(!showpassword1)}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="posrelinputsignupdiv2">
+              <FormInput
+                name="inputsignup"
+                placeholder="Retape ton mot de passe"
+                state={password2}
+                setState={setPassword2}
+                type={showpassword2 === false ? "password" : "text"}
+              />
+
+              <div className="inputsignupdiv2">
+                {showpassword2 === false ? (
+                  <FontAwesomeIcon
+                    icon="fa-regular fa-eye-slash"
+                    size="xl"
+                    onClick={() => setShowPassword2(!showpassword2)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon="fa-regular fa-eye"
+                    size="xl"
+                    onClick={() => setShowPassword2(!showpassword2)}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="divparentcheck">
+              <p className="helptxtsignup">
                 Le mot de passe doit contenir au moins : <br></br> 1 majuscule -
                 1 minuscule - 1 chiffre
               </p>
-            </p>
+
+              <div className="divcheck1">
+                {password && password.match(lowerCase) && (
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-check"
+                    size="xl"
+                    color="#ef787c"
+                  />
+                )}
+              </div>
+              <div className="divcheck2">
+                {password && password.match(upperCase) && (
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-check"
+                    size="xl"
+                    color="#ef787c"
+                  />
+                )}
+              </div>
+              <div className="divcheck3">
+                {password && password.match(numbers) && (
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-check"
+                    size="xl"
+                    color="#ef787c"
+                  />
+                )}
+              </div>
+            </div>
           </div>
         );
         break;
@@ -186,10 +248,8 @@ const Signup = ({ handleToken }) => {
               type="password"
             />
             <p className="helptxtsignup">
-              <p>
-                Le mot de passe doit contenir au moins : <br></br> 1 majuscule -
-                1 minuscule - 1 chiffre
-              </p>
+              Le mot de passe doit contenir au moins : <br></br> 1 majuscule - 1
+              minuscule - 1 chiffre
             </p>
             {error ? (
               <p className="errortxtsignup">{error}</p>
@@ -211,13 +271,17 @@ const Signup = ({ handleToken }) => {
         {displayInput()}
 
         <div className="buttondivsignup">
-          <ButtonComponent
-            className="buttonprevioussignup"
-            pressFct={PreviousClick}
-            txt="< Précédent"
-          />
+          {step !== 1 && (
+            <ButtonComponent
+              className="buttonprevioussignup"
+              value={0}
+              pressFct={PreviousClick}
+              txt="< Précédent"
+            />
+          )}
           <ButtonComponent
             className="buttonnextsignup"
+            value={0}
             pressFct={handleSubmit}
             txt="Suivant >"
           />

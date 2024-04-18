@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./ForgetPassword.css";
+import "./ForgetPassword.scss";
+import "../../css/fonts.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
