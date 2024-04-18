@@ -40,8 +40,8 @@ function App() {
         <Route path="/login" element={<Login handleToken={handleToken} />} />
         <Route path="/signup" element={<Signup handleToken={handleToken} />} />
         <Route path="/forum" element={<Forum />} />
-        <Route path="/ForgetPassword" element={<FortgetPassword />} />
-        <Route path="/onboarding" element={<OnBoarding token={token} />} />
+        <Route path="/forgetpassword" element={<FortgetPassword />} />
+        <Route path="/onboarding/:id" element={<OnBoarding token={token} />} />
       </Routes>
     </Router>
   );

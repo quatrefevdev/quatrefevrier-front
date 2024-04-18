@@ -1,9 +1,9 @@
-import "./FormInput.css";
+import "./FormInput.scss";
 
 const FormInput = ({ title, name, placeholder, state, setState, type }) => {
   return (
     <div>
-      <h1 className="titleinput">{title}</h1>
+      <h2 className="titleinput">{title}</h2>
       <div className="divforminput">
         <input
           className="forminput"

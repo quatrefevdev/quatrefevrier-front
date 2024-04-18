@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./OnBoarding.css";
-import "../../css/fonts.css";
+import "./OnBoarding.scss";
 import axios from "axios";
 import React, { useCallback } from "react";
 import Dropzone from "react-dropzone";
@@ -187,10 +186,6 @@ const OnBoarding = ({ token }) => {
     console.log("Aidant");
   };
 
-  const setAvatarFile = (event) => {
-    event.preventDefault();
-    setAvatar(event.target.files[0]);
-  };
   function displayInput() {
     let arr = [];
     switch (step) {
@@ -201,11 +196,13 @@ const OnBoarding = ({ token }) => {
             <div className="buttonpatientaidantdiv">
               <ButtonComponent
                 className="buttonpatientonboard"
+                id="Patient"
                 pressFct={UserTypePatient}
                 txt="Patient"
               />
               <ButtonComponent
                 className="buttonaidantonboard"
+                id="Aidant"
                 pressFct={UserTypeAidant}
                 txt="Aidant"
               />
@@ -417,7 +414,7 @@ const OnBoarding = ({ token }) => {
                 setAvatar(URL.createObjectURL(event.target.files[0]));
               }}
             />
-            <label className="labelavatar" for="file">
+            <label className="labelavatar" htmlFor="file">
               Sélectionne un avatar
             </label>
             <div className="imagepreviewonboarding">
@@ -445,20 +442,24 @@ const OnBoarding = ({ token }) => {
           </div>
         </div>
         {displayInput()}
+
         <div className="buttondivonboarding">
           {step !== 1 && (
             <ButtonComponent
               className="buttonpreviousonboarding"
+              id="Previous"
               pressFct={PreviousClick}
               txt="< Précédent"
             />
           )}
           <ButtonComponent
             className="buttonnextonboarding"
+            id="Next"
             pressFct={handleSubmit}
             txt="Suivant >"
           />
         </div>
+
         {error ? (
           <p className="errortxtonboarding">{error}</p>
         ) : (
