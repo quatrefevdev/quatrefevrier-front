@@ -9,8 +9,11 @@ import Welcome from "./pages/Welcome/Welcome";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Forum from "./pages/Forum/Forum";
+import CarnetHome from "./pages/Carnet/CarnetHome";
+import MesRdv from "./pages/Carnet/MesRdv/MesRdv";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
+
 // Components
 import Header from "./components/Header/Header";
 
@@ -38,17 +41,19 @@ function App() {
       <Header token={token} handleToken={handleToken} />
       <Routes>
         <Route path="/" element={<Welcome />} />
+
         <Route
           path="/login"
-          element={<Login handleToken={handleToken} setId={setId} />}
-        />
+          element={<Login handleToken={handleToken} setId={setId} />} />
         <Route
           path="/signup"
-          element={<Signup handleToken={handleToken} setId={setId} />}
-        />
+          element={<Signup handleToken={handleToken} setId={setId} />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/carnetHome" element={<CarnetHome />}></Route>
+        <Route path="/mesRdv" element={<MesRdv />}></Route>
         <Route path="/forgetpassword" element={<FortgetPassword />} />
         <Route path="/onboarding/" element={<OnBoarding token={token} />} />
+
       </Routes>
     </Router>
   );

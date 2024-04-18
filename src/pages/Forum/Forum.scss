@@ -2,14 +2,17 @@
   // Règles générales de la page forum d'un user
   background-color: #ffff;
   color: #4c548c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .container-forum {
-    width: 500px;
-    height: 100vh;
-    margin: 0 auto;
+    margin: 3vh 1vw;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 500px;
     padding: 30px;
   }
   h1 {
@@ -34,6 +37,7 @@
   .div-select {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     gap: 8px;
   }
   .select {
@@ -90,3 +94,14 @@
     padding: 8px 16px 8px 16px;
   }
 }
+
+// @media (max-width: 425px) {
+//   .container-forum {
+//     margin: 3vh 1vw;
+//     height: 90vh;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     padding: 30px;
+//   }
+//}

@@ -1,0 +1,25 @@
+.container-rdv {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  button {
+    align-self: start;
+  }
+  .title,
+  .rdv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .rdv {
+    border-bottom: 1px solid #f3f3fa;
+  }
+  h4 {
+    margin-bottom: 5px;
+  }
+  p {
+    line-height: 14px;
+  }
+}

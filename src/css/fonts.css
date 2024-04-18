@@ -1,34 +1,34 @@
 @font-face {
   font-family: "NN-Black"; /* <== On donne un nom unique */
-  src: url("../Fonts/Nunito-Black.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
+  src: url("../fonts/Nunito-Black.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
   font-weight: normal; /* <== On définit le poids de la police */
   font-style: normal; /* <== On définit le style de la police */
   font-display: swap; /* <== On spécifie le comportement d'affichage de la police. Ca indique que le navigateur doit afficher une police de secours immédiatement, puis charger la police personnalisée en arrière-plan. */
 }
 @font-face {
   font-family: "NN-Bold"; /* <== On donne un nom unique */
-  src: url("../Fonts/Nunito-Bold.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
+  src: url("../fonts/Nunito-Bold.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
   font-weight: 500; /* <== On définit le poids de la police */
   font-style: normal; /* <== On définit le style de la police */
   font-display: swap; /* <== On spécifie le comportement d'affichage de la police. Ca indique que le navigateur doit afficher une police de secours immédiatement, puis charger la police personnalisée en arrière-plan. */
 }
 @font-face {
   font-family: "NN-ExtraLight"; /* <== On donne un nom unique */
-  src: url("../Fonts/Nunito-ExtraLight.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
+  src: url("../fonts/Nunito-ExtraLight.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
   font-weight: normal; /* <== On définit le poids de la police */
   font-style: normal; /* <== On définit le style de la police */
   font-display: swap; /* <== On spécifie le comportement d'affichage de la police. Ca indique que le navigateur doit afficher une police de secours immédiatement, puis charger la police personnalisée en arrière-plan. */
 }
 @font-face {
   font-family: "NN-Light"; /* <== On donne un nom unique */
-  src: url("../Fonts/Nunito-Light.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
+  src: url("../fonts/Nunito-Light.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
   font-weight: normal; /* <== On définit le poids de la police */
   font-style: normal; /* <== On définit le style de la police */
   font-display: swap; /* <== On spécifie le comportement d'affichage de la police. Ca indique que le navigateur doit afficher une police de secours immédiatement, puis charger la police personnalisée en arrière-plan. */
 }
 @font-face {
   font-family: "NN-Medium"; /* <== On donne un nom unique */
-  src: url("../Fonts/Nunito-Medium.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
+  src: url("../fonts/Nunito-Medium.ttf") format("truetype"); /* <== On donne l'emplacement du fichier de police et on précise le format pour être sûr que le navigateur ne se trompe pas en le devinant à partir de l'extension du fichier */
   font-weight: normal; /* <== On définit le poids de la police */
   font-style: normal; /* <== On définit le style de la police */
   font-display: swap; /* <== On spécifie le comportement d'affichage de la police. Ca indique que le navigateur doit afficher une police de secours immédiatement, puis charger la police personnalisée en arrière-plan. */

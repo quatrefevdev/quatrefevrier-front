@@ -3,7 +3,7 @@
 }
 
 .container {
-  width: 500px;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -14,72 +14,21 @@
   font-size: 20px;
 }
 
-.top {
-  flex-direction: row !important;
-  span {
-    background-color: #f3f3fa;
-    width: 70px;
-    height: 5px;
-    border-radius: 5px;
-  }
+h2 {
+  font-family: "NN-bold";
+  line-height: 25px;
 }
-.startPage {
-  background-color: #4c548c;
-  font-family: "NN-Bold";
-  color: white;
-  img {
-    width: 60%;
-  }
-  h1 {
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-  div:nth-child(2) {
-    padding: 60px;
-  }
-  p {
-    text-align: center;
-    font-family: "NN-Light";
-    line-height: 25px;
-  }
+
+h3 {
+  font-family: "NN-bold";
+  color: #32365a;
 }
-.bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  p {
-    margin-bottom: 10px;
-  }
-  button {
-    width: 100%;
-    font-family: "NN-Bold";
-    font-size: 20px;
-    color: #4c548c;
-    padding: 10px 0;
-    border-radius: 5px;
-    border: none;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-    background-color: none;
-    width: 100%;
-    font-family: "NN-Bold";
-    font-size: 20px;
-    padding: 15px 0;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid white;
-  }
-  a:hover {
-    background-color: #ef787c;
-  }
+h4 {
+  font-family: "NN-medium";
+  color: #32365a;
+  font-size: 14px;
+}
+p {
+  font-family: "NN-medium";
+  font-size: 12px;
 }
