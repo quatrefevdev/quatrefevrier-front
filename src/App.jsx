@@ -54,7 +54,10 @@ function App() {
         <Route path="/carnetHome" element={<CarnetHome />}></Route>
         <Route path="/mesRdv" element={<MesRdv />}></Route>
         <Route path="/forgetPassword" element={<FortgetPassword />} />
-        <Route path="/onboarding/" element={<OnBoarding id={id} />} />
+        <Route
+          path="/onboarding"
+          element={<OnBoarding id={id} token={token} />}
+        />
       </Routes>
     </Router>
   );

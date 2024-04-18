@@ -1,7 +1,6 @@
 import "./ButtonComponent.scss";
 
 const ButtonComponent = ({ value, pressFct, txt, id }) => {
-  console.log(value);
   return (
     <div>
       {value === 0 ? (

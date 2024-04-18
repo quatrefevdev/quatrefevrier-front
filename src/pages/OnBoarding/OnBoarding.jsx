@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./OnBoarding.scss";
 import "../../css/fonts.css";
@@ -51,7 +51,6 @@ const OnBoarding = ({ id, token }) => {
       return false;
     }
   }
-  console.log("ID avant route", id);
   // Fonction qui est déclenchée lors de la soumission du formulaire
   const handleSubmit = (event) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
@@ -306,10 +305,16 @@ const OnBoarding = ({ id, token }) => {
             Quelle est votre date de naissance?
             <DatePicker
               locale="fr"
+              dateFormat="dd/MM/YYYY"
               className="datepickeronboarding"
+              calendarAriaLabel="Toggle calendar"
+              dayAriaLabel="Day"
+              monthAriaLabel="Month"
+              nativeInputAriaLabel="Date"
               selected={dateofbirth}
               onChange={(dateofbirth) => setDateofBirth(dateofbirth)}
-              dateFormat="dd/MM/YYYY"
+              value={dateofbirth}
+              yearAriaLabel="Year"
             />
           </div>
         );
@@ -375,7 +380,7 @@ const OnBoarding = ({ id, token }) => {
                           setCancerStep(cancer.cancerstep);
                         }}
                       >
-                        <p>{cancer.cancerstep}</p>
+                        {cancer.cancerstep}
                       </p>
                     </div>
                   ) : (
@@ -436,9 +441,10 @@ const OnBoarding = ({ id, token }) => {
 
   return (
     <>
-      {/* Si je ne suis pas logué ==> envoi vers l'accueil */}
       {!token ? (
-        navigate("/Accueil")
+        <div>
+          <Navigate to="/accueil" />
+        </div>
       ) : (
         <div className="containeronboarding">
           <form
