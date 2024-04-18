@@ -8,8 +8,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    button {
+    a {
       width: calc(50% - 5px);
+    }
+    button {
+      width: 100%;
       aspect-ratio: 1/1;
       border-radius: 5px;
       border: none;
@@ -17,6 +20,8 @@
       font-family: "NN-Bold";
       background-color: #f3f3fa;
       color: #4c548c;
+      text-align: center;
+      vertical-align: middle;
     }
   }
 }

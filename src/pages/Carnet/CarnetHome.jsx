@@ -1,6 +1,7 @@
 import "./carnetHome.scss";
+import { Link } from "react-router-dom";
 
-const CarnetHome = () => {
+const CarnetHome = ({ id }) => {
   return (
     <main
       className="container startCarnet"
@@ -8,10 +9,18 @@ const CarnetHome = () => {
     >
       <h2>Bienvenue sur votre espace de suivi médical</h2>
       <div className="carnet-buttons">
-        <button>Mes rendez-vous médicaux</button>
-        <button>Mes effets secondaires</button>
-        <button>Mon poids</button>
-        <button>Mes notes</button>
+        <Link to={"/MyAppointments/" + id}>
+          <button>Mes rendez-vous médicaux</button>
+        </Link>
+        <Link>
+          <button>Mes effets secondaires</button>
+        </Link>
+        <Link>
+          <button>Mon poids</button>
+        </Link>
+        <Link>
+          <button>Mes notes</button>
+        </Link>
       </div>
     </main>
   );
