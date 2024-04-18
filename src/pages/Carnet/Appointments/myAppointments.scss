@@ -1,0 +1,98 @@
+.container-rdv {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  button {
+    align-self: start;
+  }
+  .title,
+  .rdv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    .rdv-right {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .rdv {
+    border-bottom: 1px solid #f3f3fa;
+  }
+  h4 {
+    margin-bottom: 5px;
+  }
+  p {
+    line-height: 14px;
+  }
+  .eventList {
+    margin-bottom: 20px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .inline-inputs {
+    display: flex;
+    justify-content: space-between;
+    .input-div {
+      width: calc(45%);
+    }
+  }
+
+  input {
+    margin-top: 5px;
+    background-color: #f3f3fa;
+    border: none;
+    margin-bottom: 15px;
+    height: 35px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  textarea {
+    margin-top: 5px;
+    background-color: #f3f3fa;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 5px;
+  }
+  span {
+    font-style: italic;
+    font-size: 12px;
+    color: #4c548c;
+    font-family: "NN-Light";
+  }
+}
+
+#upload {
+  background-color: white;
+  font-family: "NN-Bold";
+  color: #32365a;
+  padding: 10px;
+  border: 1px solid #32365a;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+.checkbox-div {
+  margin-top: 15px;
+  > div {
+    display: flex;
+    height: 20px;
+    p {
+      height: 100%;
+      line-height: 20px;
+    }
+  }
+  input[type="checkbox"] {
+    display: flex;
+    align-items: center;
+    vertical-align: bottom;
+    height: 10px;
+    width: 10px;
+    // align-self: start;
+  }
+}
