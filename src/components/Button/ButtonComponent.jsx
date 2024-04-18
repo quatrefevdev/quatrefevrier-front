@@ -1,4 +1,5 @@
 import "./ButtonComponent.css";
+import "../../css/fonts.css";
 
 const ButtonComponent = ({ pressFct, txt }) => {
   return (

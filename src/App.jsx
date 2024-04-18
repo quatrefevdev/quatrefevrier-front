@@ -11,18 +11,16 @@ import Signup from "./pages/Signup/Signup";
 import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MesRdv from "./pages/Carnet/MesRdv/MesRdv";
+import OnBoarding from "./pages/OnBoarding/OnBoarding";
+import FortgetPassword from "./pages/Login/FortgetPassword";
 // Components
 import Header from "./components/Header/Header";
-// Fonts
-import "./index.css";
 
 function App() {
   // State dans lequel je stocke le token. Sa valeur de base sera :
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [search, setSearch] = useState("");
-  const [completion, setCompletion] = useState([]);
 
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
   const handleToken = (token) => {
@@ -46,6 +44,8 @@ function App() {
         <Route path="/forum" element={<Forum />}></Route>
         <Route path="/carnetHome" element={<CarnetHome />}></Route>
         <Route path="/mesRdv" element={<MesRdv />}></Route>
+        <Route path="/forgetPassword" element={<FortgetPassword />} />
+        <Route path="/onboarding" element={<OnBoarding token={token} />} />
       </Routes>
     </Router>
   );

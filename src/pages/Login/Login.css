@@ -2,7 +2,7 @@
   margin: 0 auto;
   max-width: 320px;
   height: 700px;
-  background-color: #4c548c;
+  background-color: white;
   border: none;
 }
 
@@ -16,7 +16,7 @@
   margin-top: 50px;
   border-width: 0px;
   border: none;
-  font-family: "Nunito-Bold";
+  font-family: "NN-Bold";
   border-bottom: solid 1px white;
   margin-bottom: 30px;
   font-size: 20px;
@@ -35,30 +35,39 @@
   background-color: #4c548c;
   border-width: 0px;
   border: none;
-  font-family: "Nunito-Bold";
-  border-bottom: solid 1px white;
+  font-family: "NN-Bold";
   margin-bottom: 30px;
   font-size: 20px;
   margin-left: 10px;
   margin-right: 10px;
   font-weight: bold;
-  color: white;
 }
 
 .noaccountlogin {
-  font-family: "Nunito-Bold";
+  font-family: "NN-Bold";
   font-size: 12px;
   line-height: 10px;
-  color: 4d548b;
+  color: #4d548b;
   width: 300px;
-  text-decoration: none;
+
   cursor: pointer;
   margin-top: 30px;
   text-align: center;
-  color: white;
   font-weight: bold;
 }
+.forgetpasswordlogin {
+  font-family: "NN-Bold";
+  font-size: 12px;
+  line-height: 10px;
+  color: #4d548b;
+  width: 300px;
 
+  cursor: pointer;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 .buttonsubmitlogin {
   width: 105px;
   height: 45px;
@@ -69,13 +78,30 @@
   cursor: pointer;
   margin: 0 auto;
   text-align: center;
-  font-family: "Nunito-Bold";
+  font-family: "NN-Bold";
   font-weight: bold;
   font-size: 16px;
 }
 
 .errorreportlogin {
   text-align: center;
-  color: white;
+  color: red;
   font-weight: bold;
+}
+.titlelogin {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.h1login {
+  margin-bottom: 50px;
+  font-family: "NN-Bold";
+  font-weight: bold;
+  color: #4c548c;
+  font-size: 20px;
+  text-align: center;
+}
+
+.buttondivlogin {
+  justify-content: center;
+  display: flex;
 }
