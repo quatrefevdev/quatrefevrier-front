@@ -1,9 +1,9 @@
-import "./ButtonComponent.css";
-import "../../css/fonts.css";
+import "./ButtonComponent.scss";
 
-const ButtonComponent = ({ pressFct, txt }) => {
+const ButtonComponent = ({ pressFct, txt, id }) => {
   return (
-    <button className="buttonclass" onClick={pressFct}>
+    <button className="buttonclass" id={id} onClick={pressFct}>
+      {" "}
       {txt}
     </button>
   );

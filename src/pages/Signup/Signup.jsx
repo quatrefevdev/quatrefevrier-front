@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Signup.css";
-import "../../css/fonts.css";
+import "./Signup.scss";
 import axios from "axios";
 import React from "react";
 //Component
@@ -13,10 +12,8 @@ import { fr } from "date-fns/locale/fr";
 
 registerLocale("fr", fr);
 
-const Signup = ({ handleToken }) => {
+const Signup = ({ handleToken, setId }) => {
   const [email, setEmail] = useState("");
-
-  const [phonenumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
@@ -88,6 +85,7 @@ const Signup = ({ handleToken }) => {
           setData(response.data);
           console.log(response.data.token);
           handleToken(response.data.token);
+          setId(response.data._id);
           navigate("/OnBoarding");
         };
 
@@ -129,17 +127,6 @@ const Signup = ({ handleToken }) => {
           />
         );
         break;
-        arr.push(
-          <FormInput
-            name="inputsignup"
-            title="Quel est votre numéro de téléphone?"
-            placeholder=""
-            state={phonenumber}
-            setState={setPhoneNumber}
-            type="tel"
-          />
-        );
-        break;
       case 2 /*Password (Input) */:
         arr.push(
           <div>
@@ -159,10 +146,8 @@ const Signup = ({ handleToken }) => {
               type="password"
             />
             <p className="helptxtsignup">
-              <p>
-                Le mot de passe doit contenir au moins : <br></br> 1 majuscule -
-                1 minuscule - 1 chiffre
-              </p>
+              Le mot de passe doit contenir au moins : <br></br> 1 majuscule - 1
+              minuscule - 1 chiffre
             </p>
           </div>
         );
@@ -186,10 +171,8 @@ const Signup = ({ handleToken }) => {
               type="password"
             />
             <p className="helptxtsignup">
-              <p>
-                Le mot de passe doit contenir au moins : <br></br> 1 majuscule -
-                1 minuscule - 1 chiffre
-              </p>
+              Le mot de passe doit contenir au moins : <br></br> 1 majuscule - 1
+              minuscule - 1 chiffre
             </p>
             {error ? (
               <p className="errortxtsignup">{error}</p>
@@ -211,11 +194,13 @@ const Signup = ({ handleToken }) => {
         {displayInput()}
 
         <div className="buttondivsignup">
-          <ButtonComponent
-            className="buttonprevioussignup"
-            pressFct={PreviousClick}
-            txt="< Précédent"
-          />
+          {step !== 1 && (
+            <ButtonComponent
+              className="buttonprevioussignup"
+              pressFct={PreviousClick}
+              txt="< Précédent"
+            />
+          )}
           <ButtonComponent
             className="buttonnextsignup"
             pressFct={handleSubmit}

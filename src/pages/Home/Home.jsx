@@ -1,5 +1,5 @@
-import "./Home.css";
+import "./Home.scss";
 const Home = ({ search }) => {
-  return <div className="marvel_pres">Je suis le home</div>;
+  return <div>Je suis le home</div>;
 };
 export default Home;

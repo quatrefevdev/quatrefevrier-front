@@ -22,6 +22,7 @@ function App() {
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
+  const [id, setId] = useState();
 
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
   const handleToken = (token) => {
@@ -33,20 +34,26 @@ function App() {
       setToken(null);
     }
   };
-
+  console.log("ID", id);
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
       <Header token={token} handleToken={handleToken} />
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/login" element={<Login handleToken={handleToken} />} />
-        <Route path="/signup" element={<Signup handleToken={handleToken} />} />
-        <Route path="/forum" element={<Forum />}></Route>
+
+        <Route
+          path="/login"
+          element={<Login handleToken={handleToken} setId={setId} />} />
+        <Route
+          path="/signup"
+          element={<Signup handleToken={handleToken} setId={setId} />} />
+        <Route path="/forum" element={<Forum />} />
         <Route path="/carnetHome" element={<CarnetHome />}></Route>
         <Route path="/mesRdv" element={<MesRdv />}></Route>
-        <Route path="/forgetPassword" element={<FortgetPassword />} />
-        <Route path="/onboarding" element={<OnBoarding token={token} />} />
+        <Route path="/forgetpassword" element={<FortgetPassword />} />
+        <Route path="/onboarding/" element={<OnBoarding token={token} />} />
+
       </Routes>
     </Router>
   );
