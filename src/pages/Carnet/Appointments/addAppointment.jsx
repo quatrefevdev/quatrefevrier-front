@@ -10,6 +10,7 @@ import TimePicker from "../../../components/BasicTimePicker";
 // import TimePicker from "../../../components/LocalizedTimePicker";
 
 const AddAppointment = () => {
+  const { id } = useParams();
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [doctorName, setDoctorName] = useState("");
@@ -21,7 +22,7 @@ const AddAppointment = () => {
 
   return (
     <main className="container-rdv">
-      <Link to="/carnetHome">
+      <Link to={"/myAppointments/" + id}>
         <FontAwesomeIcon
           style={{ alignSelf: "start", color: "#4C548C" }}
           icon="fa-solid fa-arrow-left"
@@ -121,6 +122,18 @@ const AddAppointment = () => {
             onChange={(event) => setNotes(event.target.value)}
           />
         </div>
+        {/* {picture ? (
+          <div className="picture-container">
+            <img src={URL.createObjectURL(picture)} alt="picture" />
+            <button
+              onClick={() => {
+                setPicture("");
+              }}
+            >
+              Changer d'image
+            </button>
+          </div>
+        ) : (   */}
         <div id="upload">
           <label htmlFor="picture" style={{ marginRight: "10px" }}>
             Téléchargez un document
@@ -136,7 +149,7 @@ const AddAppointment = () => {
           />
           <FontAwesomeIcon icon="fa-solid fa-upload" color="#32365a" />
         </div>
-        <span>Ordonnance, compte-rendu, etc</span>
+        )<span>Ordonnance, compte-rendu, etc</span>
         <div className="checkbox-div">
           <div>
             <input type="checkbox" />
