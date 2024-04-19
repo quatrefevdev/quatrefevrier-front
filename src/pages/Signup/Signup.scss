@@ -23,7 +23,7 @@ a:link {
   font-family: "NN-Bold";
   text-align: center;
   font-size: 12px;
-  margin-top: 10px;
+
   margin-bottom: 10px;
 }
 .sexsignupdiv {
@@ -210,20 +210,22 @@ a:link {
 }
 .divparentcheck {
   position: relative;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
 }
 
 .divcheck1 {
   position: absolute;
   left: 85px;
-  top: 25px;
+  top: 22px;
 }
 .divcheck2 {
   position: absolute;
   left: 160px;
-  top: 25px;
+  top: 22px;
 }
 .divcheck3 {
   position: absolute;
   left: 230px;
-  top: 25px;
+  top: 22px;
 }

@@ -93,8 +93,8 @@ const Signup = ({ handleToken, setId }) => {
           );
           setData(response.data);
           handleToken(response.data.token);
-          setId(response.data._id);
-          console.log(response.data._id);
+          setId(response.data.id);
+          console.log("Signup ID : ", response.data.id);
           navigate("/onboarding");
         };
 
