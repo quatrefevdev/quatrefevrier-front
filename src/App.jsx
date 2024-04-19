@@ -43,7 +43,7 @@ function App() {
       setToken(null);
     }
   };
-  console.log("ID", id);
+  console.log("App ID", id);
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
