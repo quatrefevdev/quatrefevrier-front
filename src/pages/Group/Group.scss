@@ -1,0 +1,28 @@
+.group-page-wrapper {
+    .group-header {
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .group-posts {
+        height: calc(100vh - 95px); // Hauteur du header déduite
+        padding: 0 30px;
+    }
+    .group-page-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        padding: 30px 0;
+        justify-content: center;
+    }
+}
+.modal-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
