@@ -58,16 +58,15 @@ const Login = ({ handleToken, setId }) => {
           );
           console.log("log", response.data);
           setData(response.data);
-          console.log("ID", response.data._id);
           handleToken(response.data.token);
-          setId(response.data._id);
+          setId(response.data.id);
           setError("");
           if (saveemail === true) {
             handleEmail(email, 1);
           } else {
             handleEmail(email, 2);
           }
-          console.log("ID login : ", response.data.id);
+          console.log("Login ID : ", response.data.id);
           if (response.data.isnew === false) {
             navigate("/");
           } else navigate("/onboarding");
