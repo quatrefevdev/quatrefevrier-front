@@ -9,8 +9,9 @@ import {
   faBell,
   faArrowLeft,
   faUpload,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faShareNodes, faBell, faArrowLeft, faUpload);
+library.add(faShareNodes, faBell, faArrowLeft, faUpload, faTrash);
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
@@ -20,6 +21,7 @@ import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
+import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 
@@ -61,7 +63,14 @@ function App() {
         />
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
-        <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
+        <Route
+          path="/addAppointment/:id"
+          element={<AddAppointment token={token} />}
+        ></Route>
+        <Route
+          path="/showAppointment/:appointment_id"
+          element={<ShowAppointment token={token} user_id={id} />}
+        ></Route>
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route

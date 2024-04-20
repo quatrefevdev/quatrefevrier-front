@@ -1,25 +1,57 @@
-// import "./addAppointment.scss";
+import "./addAppointment.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
-//Datepicker
-import DatePicker from "react-datepicker";
-// import TimePicker from "react-time-picker";
-import TimePicker from "../../../components/BasicTimePicker";
-// import TimePicker from "../../../components/LocalizedTimePicker";
 
-const AddAppointment = () => {
+// Date and Time pickers
+import DatePicker from "react-datepicker";
+import TimePicker from "../../../components/BasicTimePicker";
+
+const AddAppointment = ({ token }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [doctorName, setDoctorName] = useState("");
   const [spec, setSpec] = useState("");
   const [address, setAddress] = useState("");
+  const [institution, setInstitution] = useState("");
   const [notes, setNotes] = useState("");
   const [picture, setPicture] = useState("");
   const [alarm, setAlarm] = useState(false);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("date", date);
+    formData.append("time", time);
+    formData.append("doctorName", doctorName);
+    formData.append("speciality", spec);
+    formData.append("address", address);
+    formData.append("institution", institution);
+    formData.append("notes", notes);
+    formData.append("alarm", alarm);
+    formData.append("author", id);
+    formData.append("picture", picture);
 
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/appointments/" + id,
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
+      alert("Nouveau rendez-vous enregistré!");
+      navigate("/myAppointments/" + id);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
   return (
     <main className="container-rdv">
       <Link to={"/myAppointments/" + id}>
@@ -35,6 +67,7 @@ const AddAppointment = () => {
         action=""
         onSubmit={(e) => {
           e.preventDefault();
+          handleSubmit();
         }}
       >
         <div className="inline-inputs">
@@ -52,18 +85,7 @@ const AddAppointment = () => {
               nativeInputAriaLabel="Date"
               selected={date}
               onChange={(date) => {
-                const day = date.getDate();
-                const month = date.getMonth() + 1; // Note: getMonth() returns zero-based month, so we add 1
-                const year = date.getFullYear();
-
-                // Format the date as "dd/mm/yyyy"
-                const formattedDate = `${day
-                  .toString()
-                  .padStart(2, "0")}/${month
-                  .toString()
-                  .padStart(2, "0")}/${year}`;
-                console.log(formattedDate); // Output: "dd/mm/yyyy"
-                setDate(formattedDate);
+                setDate(new Date(date));
               }}
               value={date}
               yearAriaLabel="Year"
@@ -110,6 +132,16 @@ const AddAppointment = () => {
           />
         </div>
         <div>
+          <label htmlFor="institut">
+            <h4>Institution</h4>
+          </label>
+          <input
+            type="text"
+            name="institut"
+            onChange={(event) => setInstitution(event.target.value)}
+          />
+        </div>
+        <div>
           <label htmlFor="notes">
             <h4>Notes</h4>
           </label>
@@ -122,7 +154,7 @@ const AddAppointment = () => {
             onChange={(event) => setNotes(event.target.value)}
           />
         </div>
-        {/* {picture ? (
+        {picture ? (
           <div className="picture-container">
             <img src={URL.createObjectURL(picture)} alt="picture" />
             <button
@@ -130,29 +162,30 @@ const AddAppointment = () => {
                 setPicture("");
               }}
             >
-              Changer d'image
+              Changer de document
             </button>
           </div>
-        ) : (   */}
-        <div id="upload">
-          <label htmlFor="picture" style={{ marginRight: "10px" }}>
-            Téléchargez un document
-          </label>
-          <input
-            id="picture"
-            style={{ display: "none" }}
-            type="file"
-            onChange={(e) => {
-              console.log(e.target.files[0]);
-              setPicture(e);
-            }}
-          />
-          <FontAwesomeIcon icon="fa-solid fa-upload" color="#32365a" />
-        </div>
-        )<span>Ordonnance, compte-rendu, etc</span>
+        ) : (
+          <div id="upload">
+            <label htmlFor="picture" style={{ marginRight: "10px" }}>
+              Téléchargez un document
+            </label>
+            <input
+              id="picture"
+              style={{ display: "none" }}
+              type="file"
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                setPicture(e.target.files[0]);
+              }}
+            />
+            <FontAwesomeIcon icon="fa-solid fa-upload" color="#32365a" />
+          </div>
+        )}
+        <span>Ordonnance, compte-rendu, etc</span>
         <div className="checkbox-div">
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={() => setAlarm(!alarm)} />
             <p>Recevoir une alerte 24h avant</p>
           </div>
           <div>
