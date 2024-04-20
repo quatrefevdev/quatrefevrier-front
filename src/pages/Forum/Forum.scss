@@ -33,7 +33,7 @@
     font-weight: 400;
   }
 
-  // Step 1 et 2 avec personnalisation des recommandations et selection des suggestions
+  // Step 1 selection des suggestions
   .div-select {
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +78,11 @@
     gap: 8px;
   }
 
-  // Step 3 => Affichage des forums favoris / vos forums / nos suggestions
+  // Step 2 => Affichage des forums favoris / vos forums / nos suggestions
+  .forum-list {
+    height: 20vh;
+    overflow-y: scroll;
+  }
   .forum-content {
     display: flex;
     flex-direction: row;
