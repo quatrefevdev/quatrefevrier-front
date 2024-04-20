@@ -23,7 +23,7 @@ const Login = ({ handleToken, setId }) => {
   const [error, setError] = useState(false);
   const [data, setData] = useState("");
   const [showpassword1, setShowPassword1] = useState(false);
-  const [saveemail, setSaveEmail] = useState(""); //checkbox
+  const [saveemail, setSaveEmail] = useState(); //checkbox
 
   const handleEmail = (email, param) => {
     if (email && param == 1) {
@@ -103,8 +103,9 @@ const Login = ({ handleToken, setId }) => {
               placeholder="Mot de passe"
               state={password}
               setState={setPassword}
-              type={showpassword1 ? "password" : "text"}
+              type={showpassword1 ? "text" : "password"}
             />
+
             <div className="inputlogindiv1">
               {showpassword1 === false ? (
                 <FontAwesomeIcon

@@ -9,19 +9,26 @@ import {
   faBell,
   faArrowLeft,
   faUpload,
+
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faShareNodes, faBell, faArrowLeft, faUpload, faTrash);
+library.add(faShareNodes, faBell, faArrowLeft, faUpload, faTrash, faCircleXmark,
+  faHeart);
+
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
+import Reception from "./pages/Welcome/Reception";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
+
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
+import Group from "./pages/Group";
+
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 
@@ -45,7 +52,7 @@ function App() {
       setToken(null);
     }
   };
-  console.log("App ID", id);
+
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
@@ -61,8 +68,10 @@ function App() {
           path="/signup"
           element={<Signup handleToken={handleToken} setId={setId} />}
         />
+        <Route path="/forum" element={<Forum token={token} />}></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
+
         <Route
           path="/addAppointment/:id"
           element={<AddAppointment token={token} />}
@@ -71,12 +80,15 @@ function App() {
           path="/showAppointment/:appointment_id"
           element={<ShowAppointment token={token} user_id={id} />}
         ></Route>
+        <Route path="/group/:groupId" element={<Group />} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
-          path="/onboarding"
-          element={<OnBoarding id={id} token={token} />}
-        />
+          path="/reception"
+          element={<Reception id={id} token={token} />}
+        ></Route>
+        <Route path="/forgetPassword" element={<FortgetPassword />} />
+        <Route path="/onboarding" element={<OnBoarding token={token} />} />
       </Routes>
     </Router>
   );
