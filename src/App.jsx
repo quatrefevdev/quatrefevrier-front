@@ -21,6 +21,9 @@ import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
+
+import Group from "./pages/Group";
+
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 
@@ -63,6 +66,8 @@ function App() {
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
         <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
+        <Route path="/group/:groupId" element={<Group/>} />
+        <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
           path="/reception"
           element={<Reception id={id} token={token} />}
