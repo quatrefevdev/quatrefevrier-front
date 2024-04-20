@@ -10,33 +10,29 @@ import ButtonComponent from "../../components/Button/ButtonComponent";
 
 const FortgetPassword = ({ handleToken }) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [data, setData] = useState("");
   const navigate = useNavigate(); // rappel
   const handleSubmit = (event) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
-    if (!email || !password) {
+    if (!email) {
       setError("Merci de saisir une adresse email");
     } else {
       const fetchData = async () => {
         try {
           const response = await axios.post(
-            "http://localhost:3000/user/login",
+            "http://localhost:3000/user/send_verification_email",
             {
               email: email,
-              password: password,
             }
           );
-          console.log("log", response);
           setData(response.data);
-          console.log("Data", response.data.token);
-          handleToken(response.data.token);
+          console.log("Email envoyé", response.data);
           setError("");
-          navigate("/");
+          navigate("/login");
         } catch (error) {
-          setError("email inexistant, désolé");
+          setError("Erreur dans l'envoi du mail, désolé");
         }
       };
       fetchData();
