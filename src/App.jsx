@@ -14,13 +14,13 @@ library.add(faShareNodes, faBell, faArrowLeft, faUpload);
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
+import Reception from "./pages/Welcome/Reception";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
-
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 
@@ -44,7 +44,7 @@ function App() {
       setToken(null);
     }
   };
-  console.log("App ID", id);
+
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
@@ -63,12 +63,12 @@ function App() {
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
         <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
-
-        <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
-          path="/onboarding"
-          element={<OnBoarding id={id} token={token} />}
-        />
+          path="/reception"
+          element={<Reception id={id} token={token} />}
+        ></Route>
+        <Route path="/forgetPassword" element={<FortgetPassword />} />
+        <Route path="/onboarding" element={<OnBoarding token={token} />} />
       </Routes>
     </Router>
   );

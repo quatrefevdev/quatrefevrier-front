@@ -95,12 +95,12 @@ const Signup = ({ handleToken, setId }) => {
           handleToken(response.data.token);
           setId(response.data.id);
           console.log("Signup ID : ", response.data.id);
+
           navigate("/onboarding");
         };
 
         fetchData();
       } catch (error) {
-        console.log("Erreur message : ", error.response.data.message);
         if (
           error.response.data.message ===
           "There is already an account with this email"
