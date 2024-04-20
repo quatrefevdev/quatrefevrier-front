@@ -1,0 +1,25 @@
+@import "../../../css/variables.scss";
+
+.new-post-modal-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, .75);
+    padding: 80px 30px;
+    .form-container {
+        background-color: $white;
+        border: 1px solid $darkblue;
+        border-radius: 4px;
+        padding: 30px;
+        textarea {
+            height: 220px;
+            font-size: 16px;
+            width: 100%;
+            font-family: "NN-Medium";
+        }
+        .button-wrapper div {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
