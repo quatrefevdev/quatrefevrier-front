@@ -9,17 +9,12 @@ import {
   faBell,
   faArrowLeft,
   faUpload,
-  faCircleXmark,
-  faHeart,
+
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(
-  faShareNodes,
-  faBell,
-  faArrowLeft,
-  faUpload,
-  faCircleXmark,
-  faHeart
-);
+library.add(faShareNodes, faBell, faArrowLeft, faUpload, faTrash, faCircleXmark,
+  faHeart);
+
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
@@ -31,6 +26,7 @@ import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 
+import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import Group from "./pages/Group";
 
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -44,7 +40,7 @@ function App() {
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [id, setId] = useState();
+  const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
 
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
   const handleToken = (token) => {
@@ -75,8 +71,17 @@ function App() {
         <Route path="/forum" element={<Forum token={token} />}></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
-        <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
+
+        <Route
+          path="/addAppointment/:id"
+          element={<AddAppointment token={token} />}
+        ></Route>
+        <Route
+          path="/showAppointment/:appointment_id"
+          element={<ShowAppointment token={token} user_id={id} />}
+        ></Route>
         <Route path="/group/:groupId" element={<Group />} />
+
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
           path="/reception"
