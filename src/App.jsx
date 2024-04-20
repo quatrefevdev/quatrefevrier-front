@@ -9,8 +9,17 @@ import {
   faBell,
   faArrowLeft,
   faUpload,
+  faCircleXmark,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faShareNodes, faBell, faArrowLeft, faUpload);
+library.add(
+  faShareNodes,
+  faBell,
+  faArrowLeft,
+  faUpload,
+  faCircleXmark,
+  faHeart
+);
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
@@ -61,10 +70,11 @@ function App() {
           path="/signup"
           element={<Signup handleToken={handleToken} setId={setId} />}
         />
+        <Route path="/forum" element={<Forum token={token} />}></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
         <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
-        <Route path="/group/:groupId" element={<Group/>} />
+        <Route path="/group/:groupId" element={<Group />} />
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
           path="/onboarding"
