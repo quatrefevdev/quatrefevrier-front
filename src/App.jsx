@@ -74,7 +74,7 @@ function App() {
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
-      <Header token={token} handleToken={handleToken} />
+      {/* <Header token={token} handleToken={handleToken} /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
 
@@ -90,7 +90,6 @@ function App() {
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
 
-
         <Route
           path="/addAppointment/:id"
           element={<AddAppointment token={token} />}
@@ -102,14 +101,17 @@ function App() {
         <Route path="/group/:groupId" element={<Group />} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
-        <Route path="/onboarding"
-          element={<OnBoarding id={id} token={token} />}/>
-      <Route path="/message" element={<Message />}></Route>
+        <Route
+          path="/onboarding"
+          element={<OnBoarding id={id} token={token} />}
+        />
+        <Route path="/message" element={<Message />}></Route>
         <Route path="/parrain" element={<Mentoring />}></Route>
 
-        <Route path="/reception"
-          element={<Reception id={id} token={token} />}></Route>
-  
+        <Route
+          path="/reception"
+          element={<Reception id={id} token={token} />}
+        ></Route>
       </Routes>
     </Router>
   );

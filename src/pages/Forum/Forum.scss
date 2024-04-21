@@ -8,13 +8,14 @@
 
   .container-forum {
     margin: 3vh 1vw;
-    height: 90vh;
+    height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     max-width: 600px;
     padding: 0 30px;
+    // margin-bottom: 80px;
   }
   h1 {
     font-weight: 900;
@@ -114,13 +115,6 @@
 @media (max-width: 425px) {
   .forum-section {
     .container-forum {
-      margin: 3vh 1vw;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 600px;
       padding: 0 15px;
     }
 

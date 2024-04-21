@@ -115,7 +115,7 @@ const Forum = ({ token }) => {
           setStep(2);
           return;
         }
-        // if he's new , he stay screen one and choose group of forum
+        // if user is new , he stays at screen one and choose group of forum
         const responseGroups = await axios.get(` http://localhost:3000/groups`);
         setData(responseGroups.data);
         //console.log(responseGroups.data[1].groups);
