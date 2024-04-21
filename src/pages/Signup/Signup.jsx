@@ -44,13 +44,35 @@ const Signup = ({ handleToken, setId }) => {
     }
   }
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/user/signup/", {
+        email: email,
+        password: password,
+      });
+      console.log("hello");
+      setData(response.data);
+      handleToken(response.data.token);
+      setId(response.data.id);
+      console.log("Signup ID : ", response.data.id);
+      navigate("/onboarding");
+    } catch (error) {
+      console.log(error);
+      if (
+        error.response.data.message ===
+        "There is already an account with this email"
+      ) {
+        setError("Il existe déjà un compte avec cet email.");
+      }
+    }
+  };
   // Fonction qui est déclenchée lors de la soumission du formulaire
   const handleSubmit = (event) => {
+    setError("");
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
-    setError("");
     switch (step) {
-      // Gestion de tout les cas de mauvaises saisies utilisateurs, contrôles, regex ...
+      // Gestion de tous les cas de mauvaises saisies utilisateurs, contrôles, regex ...
       case 1 /* Email (Input+regex) */:
         const checkemail = validateEmail(email);
         if (!email || checkemail === false) {
@@ -75,41 +97,9 @@ const Signup = ({ handleToken, setId }) => {
         } else if (!password.match(numbers)) {
           setError("Le mot de passe doit contenir au moins un chiffre");
         } else {
-          setStep(step + 1);
-          setError("");
+          fetchData();
         }
         break;
-    }
-    if (step >= 2) {
-      try {
-        const fetchData = async () => {
-          console.log(email, password);
-          const response = await axios.post(
-            "http://localhost:3000/user/signup/",
-            {
-              email: email,
-              password: password,
-            }
-          );
-          setData(response.data);
-          handleToken(response.data.token);
-          setId(response.data.id);
-          console.log("Signup ID : ", response.data.id);
-
-          navigate("/onboarding");
-        };
-
-        fetchData();
-      } catch (error) {
-        if (
-          error.response.data.message ===
-          "There is already an account with this email"
-        ) {
-          setError(
-            "Cet Email existe déjà, merci de vous connecter à votre compte"
-          );
-        }
-      }
     }
   };
 
@@ -122,11 +112,12 @@ const Signup = ({ handleToken, setId }) => {
     }
   };
 
-  function displayInput() {
-    let arr = [];
-    switch (step) {
-      case 1 /* Email (Input) */:
-        arr.push(
+  return (
+    <div className="containersignup">
+      <form
+        style={{ display: "flex", flexDirection: "column", marginTop: "50px" }}
+      >
+        {step === 1 ? (
           <FormInput
             title="Votre email : "
             name="inputsignup"
@@ -135,16 +126,13 @@ const Signup = ({ handleToken, setId }) => {
             setState={setEmail}
             type="email"
           />
-        );
-        break;
-      case 2 /*Password (Input) */:
-        arr.push(
+        ) : (
           <div>
             <div className="posrelinputsignupdiv1">
               <FormInput
                 title="Votre mot de passe : "
                 name="inputsignup"
-                placeholder="Choisi un mot de passe"
+                placeholder="Choisissez un mot de passe"
                 state={password}
                 setState={setPassword}
                 type={showpassword1 === false ? "password" : "text"}
@@ -169,7 +157,7 @@ const Signup = ({ handleToken, setId }) => {
             <div className="posrelinputsignupdiv2">
               <FormInput
                 name="inputsignup"
-                placeholder="Retape ton mot de passe"
+                placeholder="Réécrivez votre mot de passe"
                 state={password2}
                 setState={setPassword2}
                 type={showpassword2 === false ? "password" : "text"}
@@ -226,49 +214,7 @@ const Signup = ({ handleToken, setId }) => {
               </div>
             </div>
           </div>
-        );
-        break;
-      case 3 /*Account already existe */:
-        arr.push(
-          <div>
-            <FormInput
-              title="Votre mot de passe : "
-              name="inputsignup"
-              placeholder="Choisi un mot de passe"
-              state={password}
-              setState={setPassword}
-              type="password"
-            />
-            <FormInput
-              name="inputsignup"
-              placeholder="Retape ton mot de passe"
-              state={password2}
-              setState={setPassword2}
-              type="password"
-            />
-            <p className="helptxtsignup">
-              Le mot de passe doit contenir au moins : <br></br> 1 majuscule - 1
-              minuscule - 1 chiffre
-            </p>
-            {error ? (
-              <p className="errortxtsignup">{error}</p>
-            ) : (
-              <p className="errortxtsignuphidden">{error}</p>
-            )}
-          </div>
-        );
-        break;
-    }
-    return arr;
-  }
-
-  return (
-    <div className="containersignup">
-      <form
-        style={{ display: "flex", flexDirection: "column", marginTop: "50px" }}
-      >
-        {displayInput()}
-
+        )}
         <div className="buttondivsignup">
           {step !== 1 && (
             <ButtonComponent
