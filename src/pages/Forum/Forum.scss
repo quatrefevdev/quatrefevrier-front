@@ -12,8 +12,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 500px;
-    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 30px;
   }
   h1 {
     font-weight: 900;
@@ -22,13 +23,13 @@
   h2 {
     font-size: 20px;
     font-weight: 900;
-    margin: 20px 0;
+    margin: 10px 0;
   }
   p {
     font-size: 15px;
     font-weight: 600;
   }
-  span {
+  .forum-member {
     font-size: 12px;
     font-weight: 400;
   }
@@ -41,12 +42,16 @@
     gap: 8px;
   }
   .select {
+    display: flex;
     border: 1px solid black;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
     padding: 8px 16px 8px 16px;
+    flex-grow: 1;
   }
 
   // Bouton de la page forum pour les pages (step)
@@ -80,7 +85,7 @@
 
   // Step 2 => Affichage des forums favoris / vos forums / nos suggestions
   .forum-list {
-    height: 20vh;
+    height: 16vh;
     overflow-y: scroll;
   }
   .forum-content {
@@ -90,22 +95,51 @@
     margin-bottom: 20px;
   }
 
+  .forum-text {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+  }
   .forum-button {
     display: flex;
     align-items: center;
+    justify-content: center;
     border: #4c548c 1px solid;
     border-radius: 5px;
     padding: 8px 16px 8px 16px;
+    width: 45%;
   }
 }
 
-// @media (max-width: 425px) {
-//   .container-forum {
-//     margin: 3vh 1vw;
-//     height: 90vh;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     padding: 30px;
-//   }
-//}
+@media (max-width: 425px) {
+  .forum-section {
+    .container-forum {
+      margin: 3vh 1vw;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      padding: 0 15px;
+    }
+
+    // bouton pour chercher / créer un forum
+    .buttonCreateSearch {
+      padding: 4px 8px;
+    }
+
+    .forum-name {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .forum-member {
+      font-size: 10px;
+      font-weight: 400;
+    }
+
+    .forum-button > p {
+      font-size: 10px;
+    }
+  }
+}

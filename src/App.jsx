@@ -11,6 +11,11 @@ import {
   faUpload,
   faCircleXmark,
   faHeart,
+  faMugHot,
+  faUserGear,
+  faComment,
+  faBookOpen,
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faShareNodes,
@@ -18,7 +23,12 @@ library.add(
   faArrowLeft,
   faUpload,
   faCircleXmark,
-  faHeart
+  faHeart,
+  faMugHot,
+  faUserGear,
+  faComment,
+  faBookOpen,
+  faGear
 );
 
 // Pages
@@ -33,6 +43,8 @@ import Group from "./pages/Group";
 
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
+import Message from "./pages/Message/Message";
+import Mentoring from "./pages/Mentoring/Mentoring";
 
 // Components
 import Header from "./components/Header/Header";
@@ -80,6 +92,8 @@ function App() {
           path="/onboarding"
           element={<OnBoarding id={id} token={token} />}
         />
+        <Route path="/message" element={<Message />}></Route>
+        <Route path="/parrain" element={<Mentoring />}></Route>
       </Routes>
     </Router>
   );
