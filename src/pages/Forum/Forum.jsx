@@ -4,6 +4,7 @@ import "./Forum.scss";
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../../components/Footer/Footer";
 
 const Forum = ({ token }) => {
   const [data, setData] = useState({});
@@ -56,9 +57,9 @@ const Forum = ({ token }) => {
       console.log("Erreur message : ", error);
     }
   };
-  const handlePreviousStep = () => {
-    setStep(step - 1);
-  };
+  // const handlePreviousStep = () => {
+  //   setStep(step - 1);
+  // };
 
   // function to add / remove  selected item in screen step 1.
   const handleSuggest = (suggest) => {
@@ -253,15 +254,17 @@ const Forum = ({ token }) => {
                     favGroupData.map((group, index) => (
                       <div className="forum-content" key={index}>
                         <div>
-                          <p>{group.groupName}</p>
-                          <span>{group.numberOfUsers} membres</span>
+                          <p className="forum-name">{group.groupName}</p>
+                          <p className="forum-member">
+                            {group.numberOfUsers} membres
+                          </p>
                         </div>
                         <div
                           className="forum-button"
                           onClick={() => handleFav(group.groupId)}
                         >
                           <p>
-                            Retirer le favori{" "}
+                            Retirer favori{" "}
                             <FontAwesomeIcon icon="circle-xmark" size="lg" />
                           </p>
                         </div>
@@ -282,15 +285,17 @@ const Forum = ({ token }) => {
                     nonFavGroups.map((group, index) => (
                       <div className="forum-content" key={index}>
                         <div>
-                          <p>{group.groupName}</p>
-                          <span>{group.numberOfUsers} membres</span>
+                          <p className="forum-name">{group.groupName}</p>
+                          <p className="forum-member">
+                            {group.numberOfUsers} membres
+                          </p>
                         </div>
                         <div
                           className="forum-button"
                           onClick={() => handleFav(group.groupId)}
                         >
                           <p>
-                            Ajouter aux favoris{" "}
+                            Ajouter favoris{" "}
                             <FontAwesomeIcon
                               icon="fa-solid fa-heart"
                               size="lg"
@@ -316,14 +321,14 @@ const Forum = ({ token }) => {
                       .slice(0, 2)
                       .map((group, index) => (
                         <div className="forum-content" key={index}>
-                          <div>
-                            <p>{group.group_name}</p>
-                            <span>
+                          <div className="forum-text">
+                            <p className="forum-name">{group.group_name}</p>
+                            <p className="forum-member">
                               {group.group_members
                                 ? group.group_members.length
                                 : 0}{" "}
                               membres
-                            </span>
+                            </p>
                           </div>
                           <div className="forum-button">
                             <p>
@@ -343,12 +348,6 @@ const Forum = ({ token }) => {
                   </div>
                 )}
               </div>
-              {/* Just for test need to be remove later */}
-              <div className="handleDisplay">
-                <button className="buttonStep" onClick={handlePreviousStep}>
-                  Précédent
-                </button>
-              </div>
             </>
           );
         }
@@ -360,6 +359,7 @@ const Forum = ({ token }) => {
       <section className="forum-section">
         <div className="container-forum">{displayForum()}</div>
       </section>
+      <Footer selected="forum"></Footer>
     </>
   );
 };
