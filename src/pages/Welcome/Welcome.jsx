@@ -6,7 +6,7 @@ import logo from "../../assets/logo.jpg";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
-  const [type, setType] = useState("");
+  const [swip, setSwip] = useState(false);
   const [launching, setLaunching] = useState(true);
   useEffect(() => {
     setTimeout(() => setLaunching(false), 2000);
@@ -15,7 +15,7 @@ const Welcome = () => {
     <main className="container startPage" style={{ justifyContent: "center" }}>
       <img src={logo} alt="logo" />
     </main>
-  ) : !type ? (
+  ) : !swip ? (
     <main className="container startPage">
       <div className="top">
         <span style={{ backgroundColor: "#ef787c" }}></span>
@@ -29,11 +29,11 @@ const Welcome = () => {
         </p>
       </div>
       <div className="bottom">
-        <p>Faisons connaissance. Vous êtes:</p>
-        <button onClick={() => setType("patient")}>
+        <p>Continuons ensemble:</p>
+        {/* <button onClick={() => setType("patient")}>
           Je suis un.e patient.e
-        </button>
-        <button onClick={() => setType("aidant")}>Je suis un.e aidant.e</button>
+        </button> */}
+        <button onClick={() => setSwip(true)}>Suivant</button>
       </div>
     </main>
   ) : (

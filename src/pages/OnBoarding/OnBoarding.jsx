@@ -23,7 +23,7 @@ import cancerstepfile from "../../Json/cancerstep.json";
 
 registerLocale("fr", fr);
 
-const OnBoarding = ({ id, token }) => {
+const OnBoarding = ({ token }) => {
   const [username, setUserName] = useState("");
   const [lastname, setLastName] = useState("");
   const [firstname, setFirstName] = useState("");
@@ -33,7 +33,7 @@ const OnBoarding = ({ id, token }) => {
   const [cancerstepsel, setCancerStep] = useState("");
   const [phonenumber, setPhoneNumber] = useState();
   const [data, setData] = useState({});
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState({});
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
   const [usertype, setUserType] = useState("");
@@ -136,15 +136,25 @@ const OnBoarding = ({ id, token }) => {
         break;
       case 10 /*Avatar */:
         setStep(step + 1);
-        console.log(step);
         break;
     }
     if (step >= 10) {
       try {
-        console.log(id);
         const fetchData = async () => {
+          // Je crée une nouvelle instance du constructeur FormData
+          const formData = new FormData();
+          // Rajouter 2 paires clef/valeur à mon formdata
+          formData.append("avatar", avatar);
+          console.log("Avatar", avatar);
           const response = await axios.put(
-            "http://localhost:3000/user/updateuser/" + id,
+            "http://localhost:3000/user/updateuser/",
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            },
             {
               username: username,
               lastname: lastname,
@@ -155,13 +165,11 @@ const OnBoarding = ({ id, token }) => {
               cancerstep: cancerstepsel,
               phonenumber: phonenumber,
               accountype: usertype,
-              avatar: avatar,
             }
           );
-          setData(response.data);
-          navigate("/Accueil");
         };
 
+        navigate("/reception");
         fetchData();
       } catch (error) {
         console.log("Erreur message : ", error.response.data.message);
@@ -423,7 +431,7 @@ const OnBoarding = ({ id, token }) => {
           </div>
         );
         break;
-      case 10 /*Avatar */:
+      case 10 /*Avatar URL.createObjectURL((**/:
         arr.push(
           <div className="avatarbuttononboardingdiv">
             <input
@@ -431,16 +439,12 @@ const OnBoarding = ({ id, token }) => {
               id="file"
               className="avatarpicker"
               onChange={(event) => {
-                setAvatar(URL.createObjectURL(event.target.files[0]));
+                setAvatar(event.target.files[0]);
               }}
             />
             <label className="labelavatar" htmlFor="file">
               Sélectionne un avatar
             </label>
-            <div className="imagepreviewonboarding">
-              {" "}
-              {avatar && <img alt="preview image" src={avatar} />}
-            </div>
           </div>
         );
         break;
