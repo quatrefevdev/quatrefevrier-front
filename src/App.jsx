@@ -32,14 +32,8 @@ import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
-<<<<<<< HEAD
 import Group from "./pages/Group";
-=======
-
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
-import Group from "./pages/Group";
-
->>>>>>> main
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 
@@ -82,11 +76,8 @@ function App() {
         <Route path="/forum" element={<Forum token={token} />}></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
-<<<<<<< HEAD
         <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
         <Route path="/group/:groupId" element={<Group />} />
-=======
-
         <Route
           path="/addAppointment/:id"
           element={<AddAppointment token={token} />}
@@ -96,8 +87,6 @@ function App() {
           element={<ShowAppointment token={token} user_id={id} />}
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
-
->>>>>>> main
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
           path="/reception"
