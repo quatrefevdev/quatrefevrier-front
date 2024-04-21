@@ -9,12 +9,19 @@ import {
   faBell,
   faArrowLeft,
   faUpload,
-
+  faCircleXmark,
   faTrash,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faShareNodes, faBell, faArrowLeft, faUpload, faTrash, faCircleXmark,
-  faHeart);
-
+library.add(
+  faShareNodes,
+  faBell,
+  faArrowLeft,
+  faUpload,
+  faTrash,
+  faCircleXmark,
+  faHeart
+);
 
 // Pages
 import Welcome from "./pages/Welcome/Welcome";
