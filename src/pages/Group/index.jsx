@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
+import "./Group.scss";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+=======
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 // Import CSS
 import "./Group.scss";
 
+>>>>>>> main
 // Import des composants
 import ButtonComponent from "../../components/Button/ButtonComponent";
 import PostCard from "../../components/Posts/PostCard";
