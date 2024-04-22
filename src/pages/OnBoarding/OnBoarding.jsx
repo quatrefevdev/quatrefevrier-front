@@ -39,8 +39,32 @@ const OnBoarding = ({ token }) => {
   const [error, setError] = useState("");
   const [usertype, setUserType] = useState("");
   const newCancerKindArr = [...cancerkindsel];
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`http://localhost:3000/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Mes datas : ", response.data);
+        setData(response.data);
+        setIsLoading(false);
+        console.log(data.account.needToDoOnboarding);
+        if (!data.account.needToDoOnboarding) {
+          navigate("/reception");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [isLoading]);
 
   //regex to check the phone number format
   function validatePhoneNumber(phoneNumber) {
@@ -472,10 +496,8 @@ const OnBoarding = ({ token }) => {
 
   return (
     <>
-      {!token ? (
-        <div>
-          <Navigate to="/accueil" />
-        </div>
+      {isLoading ? (
+        <h2>Chargement de la page...</h2>
       ) : (
         <div className="containeronboarding">
           <form

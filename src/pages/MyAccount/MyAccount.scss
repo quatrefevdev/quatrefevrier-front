@@ -1,9 +1,9 @@
 .containermyaccount {
   max-width: 320px;
+  margin: 0 auto;
   border: none;
   height: 700px;
   background-color: white;
-  margin-left: 10px;
 }
 .titlemyaccount {
   text-align: center;
@@ -43,17 +43,30 @@
 .cancersteptext,
 .phonenumbertext {
   margin-right: 10px;
+  font-family: "NN-Bold";
 }
 .avatartitle,
 .cancersteptitle {
   margin-bottom: 10px;
+  flex: 1;
 }
-.avatarclass > img {
+.avatarimg {
   height: 100px;
   width: 100px;
   border-radius: 50px;
 }
-.cancerstepoption {
-  font-size: 20px;
-  height: 30px;
+.avatarimg {
+  justify-content: center;
+}
+.avatarimgdiv {
+  display: flex;
+}
+.plusicon {
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+}
+.inputpseudo {
+  width: 50px;
 }
