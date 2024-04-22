@@ -90,6 +90,8 @@ function App() {
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
 
+
+
         <Route
           path="/addAppointment/:id"
           element={<AddAppointment token={token} />}

@@ -68,6 +68,7 @@ const Reception = ({ token, id }) => {
                       icon="fa-solid fa-share-nodes"
                     />
                   </div>
+                  <Footer selected="Accueil" />
                 </div>
               );
             })}
