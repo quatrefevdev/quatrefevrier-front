@@ -86,11 +86,12 @@ function App() {
           path="/signup"
           element={<Signup handleToken={handleToken} setId={setId} />}
         />
-        <Route path="/forum" element={<Forum token={token} />}></Route>
+        <Route
+          path="/forum"
+          element={<Forum token={token} handleToken={handleToken} />}
+        ></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
-
-
 
         <Route
           path="/addAppointment/:id"
