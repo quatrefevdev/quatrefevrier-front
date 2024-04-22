@@ -42,6 +42,15 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
 
     return (
         <div className="new-post-modal-wrapper">
+            <div className="modal-close">
+                <ButtonComponent
+                    value={0}
+                    txt="Fermer"
+                    pressFct={() => {
+                        setVisibleState(false);
+                    }}
+                />
+            </div>
             <form className="form-container">
                 <FormInput
                     title="Titre du post"
@@ -68,6 +77,7 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
                         pressFct={(e) => {
                             e.preventDefault(); 
                             submitPost();
+                            updatePageData();
                         }}
                     />
                 </div>

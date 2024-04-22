@@ -35,6 +35,8 @@ const Group = () => {
 
   console.log(data);
 
+  console.log("New post modal >>> ", showPostModal);
+
   return isLoading ? (
     <div className="container">
       <p>Chargement en cours...</p>
