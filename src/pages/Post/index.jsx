@@ -7,6 +7,7 @@ import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ButtonComponent from "../../components/Button/ButtonComponent";
+import NewCommentModal from "../../components/Comments/NewCommentModal";
 
 // Import des styles
 import "./single-post.scss";
@@ -17,19 +18,22 @@ const PostSinglePage = () => {
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [showPostModal, setShowPostModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
 
   // Récupération de la data suivant l'id passé en params
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/post/${postId}`);
-        setData(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
+  const fetchData = async () => {
+    try {
+      const {data} = await axios.get(
+        `${import.meta.env.VITE_API_URL}/post/${postId}`
+      );
+      setData(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -65,10 +69,19 @@ const PostSinglePage = () => {
           <ButtonComponent
             value={1}
             txt="Poster un commentaire"
-            pressFct=""
+            pressFct={() => setShowCommentModal(true)}
           />
         </div>
     </div>
+    {showCommentModal &&    
+      <div className="modal-container">
+        <NewCommentModal 
+          postId={postId}
+          updatePageData={fetchData}
+          setVisibleState={setShowCommentModal}
+        />
+      </div>
+    }
     <Footer selected="forum" />
     </>
   )
