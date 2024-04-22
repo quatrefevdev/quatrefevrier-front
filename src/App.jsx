@@ -44,7 +44,7 @@ import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import Group from "./pages/Group";
-
+import PostSinglePage from "./pages/Post";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
@@ -110,6 +110,7 @@ function App() {
           }
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
+        <Route path="/post/:postId" element={<PostSinglePage />} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route

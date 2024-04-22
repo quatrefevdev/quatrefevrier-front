@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "NN-Black";
+  font-family: "NN-Light";
   color: $darkblue;
 }
 
@@ -20,6 +20,10 @@ body {
   align-items: center;
   padding: 30px;
   font-size: 20px;
+}
+
+h1 {
+  font-family: "NN-Black";
 }
 
 h2 {

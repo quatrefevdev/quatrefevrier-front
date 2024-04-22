@@ -3,27 +3,26 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-// Import CSS
-import "./new-post-modal.scss";
+// Import css
+import "./new-comment.scss";
 
 // Import des composants
 import ButtonComponent from "../../Button/ButtonComponent";
 
-const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
+const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
+
     const [body, setBody] = useState("");
     const token = Cookies.get("token");
 
-    const submitPost = async () => {
-        try {           
-            const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/group/${groupId}/post/create`, {
-                    post_body: body,
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+    const submitComment = async () => {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/post/${postId}/comment/create`, {
+                comment_body: body,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            );
+            });
             setBody("");
             setVisibleState(false);
             updatePageData();
@@ -33,18 +32,9 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
     }
 
     return (
-        <div className="new-post-modal-wrapper">
-            <div className="modal-close">
-                <ButtonComponent
-                    value={0}
-                    txt="Fermer"
-                    pressFct={() => {
-                        setVisibleState(false);
-                    }}
-                />
-            </div>
+        <div className="comment-modal-container">
             <form className="form-container">
-                <h2 className="titleinput">Contenu de votre post</h2>
+                <h2 className="titleinput">Publier un nouveau commentaire</h2>
                 <div className="divforminput">
                     <textarea 
                         className="forminput"
@@ -61,7 +51,7 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
                         txt="Publier le post"
                         pressFct={(e) => {
                             e.preventDefault(); 
-                            submitPost();
+                            submitComment();
                             updatePageData();
                         }}
                     />
@@ -71,4 +61,4 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
     )
 }
 
-export default NewPostModal;
+export default NewCommentModal;
