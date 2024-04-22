@@ -8,10 +8,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
+
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   const [appointmentsdata, setAppointments] = useState([]);
+  const [favorisData, setFavorisData] = useState([]);
   const [appLimit, setAppLimit] = useState(3);
   const navigate = useNavigate();
   useEffect(() => {
@@ -37,6 +39,16 @@ const Reception = ({ token, id }) => {
         );
         setAppointments(appointments.data);
         console.log("Appointments : ", appointmentsdata);
+
+        const favoris = await axios.get(
+          `${import.meta.env.VITE_API_URL}/forum/group/favoris`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setFavorisData(favoris.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -44,7 +56,6 @@ const Reception = ({ token, id }) => {
     };
     fetchData();
   }, []);
-
 
   return (
     <>
@@ -82,13 +93,41 @@ const Reception = ({ token, id }) => {
                           icon="fa-solid fa-share-nodes"
                         />
                       </div>
-                      <Footer selected="Accueil" />
                     </div>
                   );
                 })}
               </div>
             )}
-            <p> Les dernières actus de vos forums favoris</p>
+            <p> Vos forums favoris</p>
+            <div className="favoris-list">
+              {/* Mapping favoris */}
+              {favorisData.length > 0 ? (
+                favorisData.map((group, index) => (
+                  <div className="favoris-content" key={index}>
+                    <Link to={`/group/${group.groupId}`}>
+                      <div>
+                        <p className="favoris-name">{group.groupName}</p>
+                        <p className="favoris-member">
+                          {group.numberOfUsers} membres
+                        </p>
+                      </div>
+
+                      <div className="favoris-button">
+                        <p>
+                          Allez voir{" "}
+                          <FontAwesomeIcon icon="fa-regular fa-eye" size="lg" />
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                ))
+              ) : (
+                <div>
+                  <p>Vous n'avez pas de forum favoris !</p>
+                </div>
+              )}
+            </div>
+            <Footer selected=""></Footer>
           </main>
         </div>
       ) : (
@@ -97,7 +136,6 @@ const Reception = ({ token, id }) => {
         </div>
       )}
     </>
-
   );
 };
 export default Reception;

@@ -25,6 +25,14 @@ useEffect(() => {
 });
 
 const MyAccount = ({ token }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    console.log(token);
+    handleToken();
+    navigate("/login");
+  };
+
   return (
     <>
       {!token ? (
@@ -35,6 +43,11 @@ const MyAccount = ({ token }) => {
         <div className="containermyaccount">
           <h2> Mon Compte</h2>
           <p>Mon avatar</p>
+          <div className="handleLogout">
+            <button className="buttonLogout" onClick={() => handleLogout()}>
+              Déconnexion
+            </button>
+          </div>
         </div>
       )}
     </>
