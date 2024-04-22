@@ -1,0 +1,50 @@
+@import "../../css/variables.scss";
+
+.single-post-page-wrapper {
+    padding: 40px 30px 52px;
+    .post-page-header {
+        margin-bottom: 10px;
+    }
+    .post-body {
+        margin-bottom: 10px;
+    }
+    .comments-container {
+        .comment {
+            padding: 10px;
+            background-color: $purple;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            .author {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                .author-avatar {
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 10px;
+                    border: 1px solid $blue;
+                    object-fit: cover;
+                }
+                .comment-author {
+                    font-size: 12px;
+                    font-family: "NN-Bold";
+                }
+            }
+            .comment-body {
+                margin-left: 25px;
+            }
+        }
+    }
+    .post-page-footer {
+        position: fixed;
+        bottom: 52px; // Hauteur de la navigation
+        padding-bottom: 20px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -30,6 +30,11 @@
     font-size: 15px;
     font-weight: 600;
   }
+  a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
   .forum-member {
     font-size: 12px;
     font-weight: 400;
@@ -110,6 +115,19 @@
     padding: 8px 16px 8px 16px;
     width: 45%;
   }
+
+  .forum-button > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  .forum-button-eye {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -133,6 +151,9 @@
     }
 
     .forum-button > p {
+      font-size: 10px;
+    }
+    .forum-button-eye {
       font-size: 10px;
     }
   }

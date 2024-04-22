@@ -156,6 +156,7 @@ const Signup = ({ handleToken, setId }) => {
             placeholder=""
             state={email}
             setState={setEmail}
+            autoCapitalize="none"
             type="email"
           />
         ) : (

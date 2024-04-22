@@ -6,6 +6,8 @@ import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../../components/Footer/Footer";
+import formatDate from "../../assets/utils";
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -42,6 +44,7 @@ const Reception = ({ token, id }) => {
     };
     fetchData();
   }, []);
+
 
   return (
     <>
@@ -94,6 +97,7 @@ const Reception = ({ token, id }) => {
         </div>
       )}
     </>
+
   );
 };
 export default Reception;
