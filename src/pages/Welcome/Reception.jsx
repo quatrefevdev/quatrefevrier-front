@@ -5,6 +5,8 @@ import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../../components/Footer/Footer";
+import formatDate from "../../assets/utils";
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -56,7 +58,9 @@ const Reception = ({ token, id }) => {
               return (
                 <div key={appointment._id} className="rdv">
                   <div className="rdv-left">
-                    <p>{`${appointment.date} - ${appointment.time}`}</p>
+                    <p>{`${formatDate(appointment.date)} - ${
+                      appointment.time
+                    }`}</p>
                     {appointment.speciality && <p>appointment.speciality</p>}
                     {appointment.institution && <p>appointment.institution</p>}
                     {appointment.address && <p>appointment.address</p>}

@@ -51,7 +51,7 @@ import Message from "./pages/Message/Message";
 import Mentoring from "./pages/Mentoring/Mentoring";
 
 // Components
-import Header from "./components/Header/Header";
+import BinWarning from "./components/Modals/BinWarning";
 
 function App() {
   // State dans lequel je stocke le token. Sa valeur de base sera :
@@ -59,7 +59,8 @@ function App() {
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
-
+  const [visibility, setVisibility] = useState(false);
+  const [del, setDel] = useState(false);
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
   const handleToken = (token) => {
     if (token) {
@@ -76,8 +77,7 @@ function App() {
       {/* Je peux passer des props à mes composants */}
       {/* <Header token={token} handleToken={handleToken} /> */}
       <Routes>
-        <Route path="/" element={<Welcome />} />
-
+        <Route path="/" element={<Welcome token={token} />} />
         <Route
           path="/login"
           element={<Login handleToken={handleToken} setId={setId} />}
@@ -99,7 +99,15 @@ function App() {
         ></Route>
         <Route
           path="/showAppointment/:appointment_id"
-          element={<ShowAppointment token={token} user_id={id} />}
+          element={
+            <ShowAppointment
+              token={token}
+              user_id={id}
+              del={del}
+              setDel={setDel}
+              setVisibility={setVisibility}
+            />
+          }
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
 
@@ -116,6 +124,9 @@ function App() {
           element={<Reception id={id} token={token} />}
         ></Route>
       </Routes>
+      {visibility && (
+        <BinWarning setVisibility={setVisibility} setDel={setDel} />
+      )}
     </Router>
   );
 }

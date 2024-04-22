@@ -464,9 +464,9 @@ const OnBoarding = ({ token }) => {
 
   return (
     <>
-      {!token ? (
+      {token ? (
         <div>
-          <Navigate to="/accueil" />
+          <Navigate to="/reception" />
         </div>
       ) : (
         <div className="containeronboarding">

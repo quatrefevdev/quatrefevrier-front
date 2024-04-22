@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
+import formatDate from "../../../assets/utils";
 
 const MyAppointments = () => {
   const { id } = useParams();
@@ -14,16 +15,6 @@ const MyAppointments = () => {
   const [pastAppointments, setPastAppointments] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [noRdv, setNoRdv] = useState(false);
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    const day = dateObject.getDate();
-    const month = dateObject.getMonth() + 1; // Note: getMonth() returns zero-based month, so we add 1
-    const year = dateObject.getFullYear();
-    const formattedDate = `${day.toString().padStart(2, "0")}/${month
-      .toString()
-      .padStart(2, "0")}/${year}`;
-    return formattedDate;
-  };
   const fetchData = async () => {
     const url = "http://localhost:3000/appointments/" + id;
     try {
