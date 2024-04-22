@@ -26,6 +26,7 @@ registerLocale("fr", fr);
 const OnBoarding = ({ token }) => {
   const [username, setUserName] = useState("");
   const [lastname, setLastName] = useState("");
+  const [val, setVal] = useState(0);
   const [firstname, setFirstName] = useState("");
   const [sex, setSex] = useState("");
   const [dateofbirth, setDateofBirth] = useState(new Date());
@@ -53,6 +54,7 @@ const OnBoarding = ({ token }) => {
   }
   // Fonction qui est déclenchée lors de la soumission du formulaire
   const handleSubmit = (event) => {
+    setVal(0);
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     setError("");
@@ -63,6 +65,7 @@ const OnBoarding = ({ token }) => {
           setError("Désolé, peux tu choisir une catégorie");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
@@ -71,6 +74,7 @@ const OnBoarding = ({ token }) => {
           setError("Il te faut un pseudo ! ");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
@@ -80,6 +84,7 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 4 /* Firstname (Input) */:
@@ -88,6 +93,7 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 5 /* Sex choice (Image+Onclick) */:
@@ -96,6 +102,7 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
 
         break;
@@ -105,6 +112,7 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -113,6 +121,7 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 8 /* Cancer step (listbox)*/:
@@ -121,9 +130,8 @@ const OnBoarding = ({ token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
-        break;
-
         break;
       case 9 /* Phone number (Input+regex) */:
         const checknumber = validatePhoneNumber(phonenumber);
@@ -131,6 +139,7 @@ const OnBoarding = ({ token }) => {
           setError("T'as bien un 06 !");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
@@ -186,6 +195,7 @@ const OnBoarding = ({ token }) => {
   };
 
   const PreviousClick = (event) => {
+    setVal(0);
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
@@ -481,14 +491,14 @@ const OnBoarding = ({ token }) => {
               {step !== 1 && (
                 <ButtonComponent
                   id="Previous"
-                  value={0}
+                  value={val}
                   pressFct={PreviousClick}
                   txt="< Précédent"
                 />
               )}
               <ButtonComponent
                 id="Next"
-                value={0}
+                value={val}
                 pressFct={handleSubmit}
                 txt="Suivant >"
               />

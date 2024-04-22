@@ -12,6 +12,11 @@ import {
   faCircleXmark,
   faTrash,
   faHeart,
+  faMugHot,
+  faUserGear,
+  faComment,
+  faBookOpen,
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faShareNodes,
@@ -20,7 +25,12 @@ library.add(
   faUpload,
   faTrash,
   faCircleXmark,
-  faHeart
+  faHeart,
+  faMugHot,
+  faUserGear,
+  faComment,
+  faBookOpen,
+  faGear
 );
 
 // Pages
@@ -32,10 +42,13 @@ import Forum from "./pages/Forum/Forum";
 import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
-import Group from "./pages/Group";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
+import Group from "./pages/Group";
+
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
+import Message from "./pages/Message/Message";
+import Mentoring from "./pages/Mentoring/Mentoring";
 
 // Components
 import Header from "./components/Header/Header";
@@ -61,7 +74,7 @@ function App() {
   return (
     <Router>
       {/* Je peux passer des props à mes composants */}
-      <Header token={token} handleToken={handleToken} />
+      {/* <Header token={token} handleToken={handleToken} /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
 
@@ -76,8 +89,9 @@ function App() {
         <Route path="/forum" element={<Forum token={token} />}></Route>
         <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
         <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
-        <Route path="/addAppointment/:id" element={<AddAppointment />}></Route>
-        <Route path="/group/:groupId" element={<Group />} />
+
+
+
         <Route
           path="/addAppointment/:id"
           element={<AddAppointment token={token} />}
@@ -87,13 +101,19 @@ function App() {
           element={<ShowAppointment token={token} user_id={id} />}
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
+
         <Route path="/forgetPassword" element={<FortgetPassword />} />
+        <Route
+          path="/onboarding"
+          element={<OnBoarding id={id} token={token} />}
+        />
+        <Route path="/message" element={<Message />}></Route>
+        <Route path="/parrain" element={<Mentoring />}></Route>
+
         <Route
           path="/reception"
           element={<Reception id={id} token={token} />}
         ></Route>
-        <Route path="/forgetPassword" element={<FortgetPassword />} />
-        <Route path="/onboarding" element={<OnBoarding token={token} />} />
       </Routes>
     </Router>
   );
