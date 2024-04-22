@@ -26,29 +26,7 @@ a:link {
 
   margin-bottom: 10px;
 }
-.sexsignupdiv {
-  margin: 0 auto;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-.titlesexsignup {
-  margin-bottom: 10px;
-}
 
-.datepickersignup {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.titledatepickersignup {
-  margin-top: 30px;
-  text-align: center;
-  color: #4c548c;
-  font-family: "NN-Bold";
-}
 .errortxtsignup {
   text-align: center;
   color: red;
@@ -92,113 +70,14 @@ a:link {
   justify-content: center;
   margin-bottom: 30px;
 }
-.rectanglefemmediv > img {
-  height: 80px;
-  width: 40px;
-}
-.rectanglefemmediv {
-  border: 1px solid #4c548c;
-  margin-right: 10px;
-  padding: 10px;
-}
-.rectanglehommediv > img {
-  height: 80px;
-  width: 40px;
-}
-.rectanglehommediv {
-  border: 1px solid #4c548c;
-  margin-right: 10px;
-  padding: 10px;
-}
-.choicesexsignup {
-  display: flex;
-  width: "100%";
-}
-.rectanglefemmedivbold {
-  border: 5px solid #4c548c;
-  border-image: linear-gradient(#4c548c, #ef787c) 27;
-  margin-right: 10px;
-  padding: 10px;
-}
-.rectanglehommedivbold {
-  border: 5px solid #4c548c;
-  border-image: linear-gradient(#4c548c, #ef787c) 27;
-  margin-right: 10px;
-  padding: 10px;
-}
-.cancernotselected {
-  text-align: center;
-  height: 30px;
-  width: 300px;
-  font-size: 13px;
-  color: #4c548c;
-  font-family: "NN-Bold";
-}
 
-.cancerselected {
-  border: 1px solid #4c548c;
-  height: 30px;
-  width: 300px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  font-size: 13px;
-  border-radius: 8px;
-}
-.cancerselecteddiv {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
-}
-.titlecancerkindsignup {
-  margin-top: 30px;
-  text-align: center;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  margin-bottom: 30px;
-}
-.titlecancerstepignup {
-  margin-top: 30px;
-  text-align: center;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  margin-bottom: 30px;
-}
-.cancerstepnotselected {
-  text-align: center;
-  height: 30px;
-  width: 300px;
-  font-size: 13px;
-  color: #4c548c;
-  font-family: "NN-Bold";
-}
-
-.cancerstepselected {
-  border: 1px solid #4c548c;
-  height: 30px;
-  width: 300px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  font-size: 13px;
-  border-radius: 8px;
-}
-.cancerstepselecteddiv {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
-}
 .posrelinputsignupdiv1 {
   position: relative;
 }
 .inputsignupdiv1 {
   position: absolute;
   left: 300px;
-  top: 65px;
+  top: 50px;
 }
 .posrelinputsignupdiv2 {
   position: relative;
@@ -206,7 +85,7 @@ a:link {
 .inputsignupdiv2 {
   position: absolute;
   left: 300px;
-  top: 39px;
+  top: 27px;
 }
 .divparentcheck {
   position: relative;

@@ -110,9 +110,13 @@ const OnBoarding = ({ token }) => {
         if (!dateofbirth) {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
-          setStep(step + 1);
           setError("");
           setVal(0);
+          if (usertype !== "Aidant") {
+            setStep(step + 1);
+          } else {
+            setStep(step + 3);
+          }
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -154,6 +158,7 @@ const OnBoarding = ({ token }) => {
           const formData = new FormData();
           // Rajouter 2 paires clef/valeur à mon formdata
           formData.append("avatar", avatar);
+
           //console.log("Avatar", avatar);
 
           // Création des autres clef/valeur au formData;
@@ -167,9 +172,8 @@ const OnBoarding = ({ token }) => {
           formData.append("phonenumber", phonenumber);
           formData.append("accountype", usertype);
 
-          const response = await axios.put(
+          const response = await axios.post(
             "http://localhost:3000/user/updateuser/",
-            formData,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -199,7 +203,11 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      setStep(step - 1);
+      if (step != 9 || usertype != "Aidant") {
+        setStep(step - 1);
+      } else {
+        setStep(step - 3);
+      }
       setError("");
     }
   };
@@ -350,6 +358,7 @@ const OnBoarding = ({ token }) => {
           <div>
             <div className="titlecancerkindonboarding">Type(s) de cancer :</div>
             {/* Affichage du contenu de la listbox */}
+
             {cancerkindfile.results.map((cancer, idx) => {
               return (
                 <div key={idx} className="cancerselecteddiv">
@@ -359,33 +368,30 @@ const OnBoarding = ({ token }) => {
                       onClick={() => {
                         newCancerKindArr.push(cancer.cancerkind);
                         setCancerKind(newCancerKindArr);
-                        console.log(cancerkindsel);
                       }}
                     >
                       {cancer.cancerkind}
                     </p>
                   ) : (
-                    <div key={idx}>
-                      <p
-                        className="cancerselected"
-                        onClick={() => {
-                          {
-                            newCancerKindArr.splice(
-                              cancerkindsel.indexOf(cancer.cancerkind),
-                              1
-                            );
-                            setCancerKind(newCancerKindArr);
-                          }
-                          console.log(cancerkindsel);
-                        }}
-                      >
-                        {cancer.cancerkind}
-                      </p>
-                    </div>
+                    <p
+                      className="cancerselected"
+                      onClick={() => {
+                        {
+                          newCancerKindArr.splice(
+                            cancerkindsel.indexOf(cancer.cancerkind),
+                            1
+                          );
+                          setCancerKind(newCancerKindArr);
+                        }
+                      }}
+                    >
+                      {cancer.cancerkind}
+                    </p>
                   )}
                 </div>
               );
             })}
+            <div className="cancerkindlistboxdiv"></div>
           </div>
         );
         break;
@@ -423,6 +429,7 @@ const OnBoarding = ({ token }) => {
                 </div>
               );
             })}
+            <div className="cancersteplistboxdiv"></div>
           </div>
         );
 
@@ -441,7 +448,7 @@ const OnBoarding = ({ token }) => {
           </div>
         );
         break;
-      case 10 /*Avatar URL.createObjectURL((**/:
+      case 10 /*Avatar */:
         arr.push(
           <div className="avatarbuttononboardingdiv">
             <input
@@ -466,6 +473,7 @@ const OnBoarding = ({ token }) => {
     <>
       {token ? (
         <div>
+
           <Navigate to="/reception" />
         </div>
       ) : (
