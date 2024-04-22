@@ -15,6 +15,7 @@ const MyAppointments = () => {
   const [pastAppointments, setPastAppointments] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [noRdv, setNoRdv] = useState(false);
+
   const fetchData = async () => {
     const url = "http://localhost:3000/appointments/" + id;
     try {
