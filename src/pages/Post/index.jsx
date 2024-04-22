@@ -45,7 +45,9 @@ const PostSinglePage = () => {
     </div>
   ) : (
     <>    
-    <Header/>
+    <Header
+      pageToGoBack={`/group/${data.post_group._id}`}
+    />
     <div className="single-post-page-wrapper">
         <div className="post-page-header">
           <h1>Publication de {data.post_author.account.username} dans le groupe {data.post_group.group_name}</h1>
@@ -77,8 +79,8 @@ const PostSinglePage = () => {
       <div className="modal-container">
         <NewCommentModal 
           postId={postId}
-          updatePageData={fetchData}
           setVisibleState={setShowCommentModal}
+          updatePageData={fetchData}
         />
       </div>
     }

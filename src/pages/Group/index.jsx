@@ -47,7 +47,9 @@ const Group = () => {
     </div>
   ) : (
     <>
-      <Header/>
+      <Header
+        pageToGoBack={`/forum`}
+      />
       <div className={!showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"}>
         <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
