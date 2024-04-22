@@ -6,7 +6,11 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  display: none;
+  //display: none;
+  a {
+    text-decoration: none;
+    color: white;
+  }
 
   .div-footer {
     display: flex;
@@ -29,5 +33,9 @@
     line-height: 12px;
     // border-top: red 1px solid;
     // color: red;
+  }
+  .select {
+    border-top: #ef787c 3px solid;
+    color: #ef787c;
   }
 }

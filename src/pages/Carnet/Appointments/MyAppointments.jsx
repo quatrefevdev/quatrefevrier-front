@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import ButtonComponent from "../../../components/Button/ButtonComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
+import Footer from "../../../components/Footer/Footer";
+import Header from "../../../components/Header/Header";
 
 const MyAppointments = () => {
   const { id } = useParams();
@@ -20,12 +22,10 @@ const MyAppointments = () => {
     const formattedDate = `${day.toString().padStart(2, "0")}/${month
       .toString()
       .padStart(2, "0")}/${year}`;
-    // console.log(formattedDate); // Output: "dd/mm/yyyy"
     return formattedDate;
   };
   const fetchData = async () => {
     const url = "http://localhost:3000/appointments/" + id;
-    // console.log(url);
     try {
       const { data, status } = await axios.get(url);
       if (status === 204) {
@@ -47,7 +47,6 @@ const MyAppointments = () => {
         setPastAppointments(pastApp);
         setIsLoading(false);
       }
-      // console.log(status);
     } catch (error) {
       console.log(error.response);
     }
@@ -58,77 +57,81 @@ const MyAppointments = () => {
   return isLoading ? (
     <h2>Chargement de la page...</h2>
   ) : (
-    <main className="container-rdv">
-      <Link to="/carnetHome">
-        <FontAwesomeIcon
-          style={{ alignSelf: "start", color: "#4C548C" }}
-          icon="fa-solid fa-arrow-left"
-        />
-      </Link>
-      <div className="title">
-        <h3>Mes rendez-vous</h3>
-        <Link to={"/addAppointment/" + id}>
-          <ButtonComponent txt="Ajouter +" />
-        </Link>
-      </div>
-      {noRdv ? (
-        <h2>Pas de rendez-vous enregistré</h2>
-      ) : (
-        <>
-          <div className="eventList">
-            <h4>A venir</h4>
+    <>
+      <Header pageToGoBack="/carnetHome" />
+      <main className="container-rdv">
+        {/* <Link to=>
+          <FontAwesomeIcon
+            style={{ alignSelf: "start", color: "#4C548C" }}
+            icon="fa-solid fa-arrow-left"
+          />
+        </Link> */}
+        <div className="title">
+          <h3>Mes rendez-vous</h3>
+          <Link to={"/addAppointment/" + id}>
+            <ButtonComponent txt="Ajouter +" />
+          </Link>
+        </div>
+        {noRdv ? (
+          <h2>Pas de rendez-vous enregistré</h2>
+        ) : (
+          <>
+            <div className="eventList">
+              <h4>A venir</h4>
 
-            {comingAppointments.map((rdv) => {
-              return (
-                <Link key={rdv._id} to={"/showAppointment/" + rdv._id}>
-                  <div className="rdv">
-                    <div className="rdv-left">
-                      <p>{`${formatDate(rdv.date)} - ${rdv.time}`}</p>
-                      <p>{`${rdv.speciality} - ${rdv.institution}`}</p>
+              {comingAppointments.map((rdv) => {
+                return (
+                  <Link key={rdv._id} to={"/showAppointment/" + rdv._id}>
+                    <div className="rdv">
+                      <div className="rdv-left">
+                        <p>{`${formatDate(rdv.date)} - ${rdv.time}`}</p>
+                        <p>{`${rdv.speciality} - ${rdv.institution}`}</p>
+                      </div>
+                      <div className="rdv-right">
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-bell"
+                        />
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-share-nodes"
+                        />
+                      </div>
                     </div>
-                    <div className="rdv-right">
-                      <FontAwesomeIcon
-                        color="#4C548C"
-                        icon="fa-solid fa-bell"
-                      />
-                      <FontAwesomeIcon
-                        color="#4C548C"
-                        icon="fa-solid fa-share-nodes"
-                      />
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="eventList">
+              <h4>Historique</h4>
+              {pastAppointments.map((rdv) => {
+                return (
+                  <Link key={rdv._id} to={"/showAppointment/" + rdv._id}>
+                    <div className="rdv">
+                      <div className="rdv-left">
+                        <p>{`${formatDate(rdv.date)} - ${rdv.time}`}</p>
+                        <p>{`${rdv.speciality} - ${rdv.institution}`}</p>
+                      </div>
+                      <div className="rdv-right">
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-bell"
+                        />
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-share-nodes"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="eventList">
-            <h4>Historique</h4>
-            {pastAppointments.map((rdv) => {
-              return (
-                <Link key={rdv._id} to={"/showAppointment/" + rdv._id}>
-                  <div className="rdv">
-                    <div className="rdv-left">
-                      <p>{`${formatDate(rdv.date)} - ${rdv.time}`}</p>
-                      <p>{`${rdv.speciality} - ${rdv.institution}`}</p>
-                    </div>
-                    <div className="rdv-right">
-                      <FontAwesomeIcon
-                        color="#4C548C"
-                        icon="fa-solid fa-bell"
-                      />
-                      <FontAwesomeIcon
-                        color="#4C548C"
-                        icon="fa-solid fa-share-nodes"
-                      />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </>
-      )}
-    </main>
+                  </Link>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </main>
+      <Footer selected="suivi"></Footer>
+    </>
   );
 };
 
