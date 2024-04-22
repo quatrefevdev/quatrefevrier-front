@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Forum.scss";
 
 // Import component
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
+
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
@@ -25,7 +26,7 @@ const Forum = ({ token, handleToken }) => {
     try {
       //Request to modify the user model to switch the isNew and add array of id of group
       const response = await axios.put(
-        "http://localhost:3000/user/updateuser/",
+        `${import.meta.env.VITE_API_URL}/user/updateuser/`,
         {
           needToChooseForum: false,
         },
@@ -37,7 +38,7 @@ const Forum = ({ token, handleToken }) => {
       );
       //Need another Request to modify the group model to add the id user in each group.
       const request = await axios.post(
-        `http://localhost:3000/forum/join`,
+        `${import.meta.env.VITE_API_URL}/forum/join`,
         {
           suggestion: suggestion,
         },
@@ -89,7 +90,7 @@ const Forum = ({ token, handleToken }) => {
   const handleFav = async (id) => {
     try {
       await axios.post(
-        `http://localhost:3000/forum/favoris`,
+        `${import.meta.env.VITE_API_URL}/forum/favoris`,
         {
           id: id,
         },
@@ -114,11 +115,14 @@ const Forum = ({ token, handleToken }) => {
       setIsLoading(true);
       if (step === 1) {
         // Get the info about the user to know if he is new
-        const response = await axios.get(`http://localhost:3000/user/forum`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user/forum`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUserData(response.data);
         const isNew = response.data.userRef.account.needToChooseForum;
         console.log(isNew);
@@ -131,24 +135,26 @@ const Forum = ({ token, handleToken }) => {
           return;
         }
         // if user is new , he stays at screen one and choose group of forum
-        const responseGroups = await axios.get(` http://localhost:3000/groups`);
+        const responseGroups = await axios.get(
+          ` ${import.meta.env.VITE_API_URL}/groups`
+        );
         setData(responseGroups.data);
         //console.log(responseGroups.data[1].groups);
         setIsLoading(false);
       } else {
         const [responseGroupData, responsefav, responseNotMember] =
           await Promise.all([
-            axios.get(`http://localhost:3000/forum/group`, {
+            axios.get(`${import.meta.env.VITE_API_URL}/forum/group`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }),
-            axios.get("http://localhost:3000/forum/group/favoris", {
+            axios.get(`${import.meta.env.VITE_API_URL}/forum/group/favoris`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }),
-            axios.get(`http://localhost:3000/forum/group/notin`, {
+            axios.get(`${import.meta.env.VITE_API_URL}/forum/group/notin`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -276,12 +282,14 @@ const Forum = ({ token, handleToken }) => {
                   {favGroupData.length > 0 ? (
                     favGroupData.map((group, index) => (
                       <div className="forum-content" key={index}>
-                        <div>
-                          <p className="forum-name">{group.groupName}</p>
-                          <p className="forum-member">
-                            {group.numberOfUsers} membres
-                          </p>
-                        </div>
+                        <Link to={`/group/${group.groupId}`}>
+                          <div>
+                            <p className="forum-name">{group.groupName}</p>
+                            <p className="forum-member">
+                              {group.numberOfUsers} membres
+                            </p>
+                          </div>
+                        </Link>
                         <div
                           className="forum-button"
                           onClick={() => handleFav(group.groupId)}
@@ -307,12 +315,14 @@ const Forum = ({ token, handleToken }) => {
                   {nonFavGroups.length > 0 ? (
                     nonFavGroups.map((group, index) => (
                       <div className="forum-content" key={index}>
-                        <div>
-                          <p className="forum-name">{group.groupName}</p>
-                          <p className="forum-member">
-                            {group.numberOfUsers} membres
-                          </p>
-                        </div>
+                        <Link to={`/group/${group.groupId}`}>
+                          <div>
+                            <p className="forum-name">{group.groupName}</p>
+                            <p className="forum-member">
+                              {group.numberOfUsers} membres
+                            </p>
+                          </div>
+                        </Link>
                         <div
                           className="forum-button"
                           onClick={() => handleFav(group.groupId)}
@@ -344,23 +354,27 @@ const Forum = ({ token, handleToken }) => {
                       .slice(0, 2)
                       .map((group, index) => (
                         <div className="forum-content" key={index}>
-                          <div className="forum-text">
-                            <p className="forum-name">{group.group_name}</p>
-                            <p className="forum-member">
-                              {group.group_members
-                                ? group.group_members.length
-                                : 0}{" "}
-                              membres
-                            </p>
-                          </div>
+                          <Link to={`/group/${group.groupId}`}>
+                            <div className="forum-text">
+                              <p className="forum-name">{group.group_name}</p>
+                              <p className="forum-member">
+                                {group.group_members
+                                  ? group.group_members.length
+                                  : 0}{" "}
+                                membres
+                              </p>
+                            </div>
+                          </Link>
                           <div className="forum-button">
-                            <p>
-                              Voir{" "}
-                              <FontAwesomeIcon
-                                icon="fa-regular fa-eye"
-                                size="lg"
-                              />
-                            </p>
+                            <Link to={`/group/${group.groupId}`}>
+                              <p className="forum-button-eye">
+                                Voir{" "}
+                                <FontAwesomeIcon
+                                  icon="fa-regular fa-eye"
+                                  size="lg"
+                                />
+                              </p>
+                            </Link>
                           </div>
                         </div>
                       ))}
