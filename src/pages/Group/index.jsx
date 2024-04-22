@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 // Import CSS
 import "./Group.scss";
@@ -39,7 +40,21 @@ const Group = () => {
 
   console.log("groupId >>> ", groupId);
   console.log("data >>> ", data);
-  console.log("loading >>> ", isLoading);
+
+  // TODO 😋 R : ne permettre de rejoindre le groupe que si on est pas dans la liste
+  const token = Cookies.get("token");
+  const joinGroup = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/group/${groupId}/join`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return isLoading ? (
     <div className="container">
@@ -53,7 +68,11 @@ const Group = () => {
       <div className={!showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"}>
         <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
-          <ButtonComponent value={0} txt="Rejoindre le groupe" />
+          <ButtonComponent 
+            value={0} 
+            txt="Rejoindre le groupe"
+            pressFct={() => joinGroup()}
+          />
         </div>
         <div className="group-search"></div>
         <div className="group-posts">
