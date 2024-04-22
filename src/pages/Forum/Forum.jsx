@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Forum.scss";
 
+// Import component
+import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 
-const Forum = ({ token }) => {
+const Forum = ({ token, handleToken }) => {
   const [data, setData] = useState({});
   const [userData, setUserData] = useState({});
   const [groupData, setGroupData] = useState([]);
@@ -15,6 +18,7 @@ const Forum = ({ token }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [step, setStep] = useState(1);
   const [suggestion, setSuggestion] = useState([]);
+  const navigate = useNavigate();
 
   // function to switch between screen
   const handleNextStep = async (suggestion) => {
@@ -23,7 +27,7 @@ const Forum = ({ token }) => {
       const response = await axios.put(
         "http://localhost:3000/user/updateuser/",
         {
-          isNew: false,
+          needToChooseForum: false,
         },
         {
           headers: {
@@ -75,6 +79,12 @@ const Forum = ({ token }) => {
     //console.log(suggestion);
   };
 
+  // const handleLogout = () => {
+  //   console.log(token);
+  //   handleToken();
+  //   navigate("/login");
+  // };
+
   // function to add / remove favoris
   const handleFav = async (id) => {
     try {
@@ -94,6 +104,11 @@ const Forum = ({ token }) => {
       console.log("Error message : ", error.response.data.message);
     }
   };
+  // const redirectIfNoToken = async () => {
+  //   if (!token) {
+  //     navigate("/login");
+  //   }
+  // };
   const fetchData = async () => {
     try {
       setIsLoading(true);
@@ -105,8 +120,8 @@ const Forum = ({ token }) => {
           },
         });
         setUserData(response.data);
-        const isNew = response.data.userRef.account.isNew;
-        // console.log(isNew);
+        const isNew = response.data.userRef.account.needToChooseForum;
+        console.log(isNew);
         const allGroups = response.data.userRef.account.forumlist;
         // console.log(allGroups);
         //console.log(step);
@@ -163,6 +178,7 @@ const Forum = ({ token }) => {
   };
 
   useEffect(() => {
+    redirectIfNoToken(token, navigate);
     fetchData();
   }, [step]);
 
@@ -244,7 +260,14 @@ const Forum = ({ token }) => {
                 <button className="buttonCreateSearch">
                   Chercher un forum
                 </button>
-                <button className="buttonCreateSearch">Créer un forum +</button>
+                <button
+                  className="buttonCreateSearch"
+                  // onClick={() => {
+                  //   handleLogout();
+                  // }}
+                >
+                  Créer un forum +
+                </button>
               </div>
               <div>
                 <h2>Vos forums favoris</h2>

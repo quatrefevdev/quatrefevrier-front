@@ -154,7 +154,19 @@ const OnBoarding = ({ token }) => {
           const formData = new FormData();
           // Rajouter 2 paires clef/valeur à mon formdata
           formData.append("avatar", avatar);
-          console.log("Avatar", avatar);
+          //console.log("Avatar", avatar);
+
+          // Création des autres clef/valeur au formData;
+          formData.append("username", username);
+          formData.append("lastname", lastname);
+          formData.append("firstname", firstname);
+          formData.append("sex", sex);
+          formData.append("dateofbirth", dateofbirth);
+          formData.append("cancerkind", JSON.stringify(cancerkindsel));
+          formData.append("cancerstep", cancerstepsel);
+          formData.append("phonenumber", phonenumber);
+          formData.append("accountype", usertype);
+
           const response = await axios.put(
             "http://localhost:3000/user/updateuser/",
             formData,
@@ -163,23 +175,11 @@ const OnBoarding = ({ token }) => {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "multipart/form-data",
               },
-            },
-            {
-              username: username,
-              lastname: lastname,
-              firstname: firstname,
-              sex: sex,
-              dateofbirth: dateofbirth,
-              cancerkind: cancerkindsel,
-              cancerstep: cancerstepsel,
-              phonenumber: phonenumber,
-              accountype: usertype,
             }
           );
         };
-
-        navigate("/reception");
         fetchData();
+        navigate("/reception");
       } catch (error) {
         console.log("Erreur message : ", error.response.data.message);
         if (
