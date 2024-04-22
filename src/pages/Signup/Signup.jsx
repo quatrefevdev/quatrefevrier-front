@@ -27,6 +27,7 @@ const Signup = ({ handleToken, setId }) => {
   const [showpassword1, setShowPassword1] = useState(false);
   const [showpassword2, setShowPassword2] = useState(false);
   const [step, setStep] = useState(1);
+  const [emailindb, setEmailInDb] = useState();
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [data, setData] = useState();
@@ -44,17 +45,44 @@ const Signup = ({ handleToken, setId }) => {
     }
   }
 
+  const checkemailindb = async () => {
+    // is there already this email in DB?
+    try {
+      setError("");
+      setEmailInDb(false);
+      const response = await axios.post(
+        "http://localhost:3000/user/checkemailindb",
+        {
+          email: email,
+        }
+      );
+      setData(response.data);
+      console.log("REPONSE :", response.data);
+      if (response.data) {
+        setEmailInDb(true);
+      }
+    } catch (error) {
+      console.log(error);
+      if (
+        error.response.data.message ===
+        "There is already an account with this email"
+      ) {
+        setError("L'adresse email existe déjà ");
+      } else if (error.response.data.message === "Missing parameter") {
+        setError("Désolé, il nous faudrait ton email ");
+      }
+    }
+  };
   const fetchData = async () => {
     try {
+      setError("");
       const response = await axios.post("http://localhost:3000/user/signup/", {
         email: email,
         password: password,
       });
-      console.log("hello");
       setData(response.data);
       handleToken(response.data.token);
       setId(response.data.id);
-      console.log("Signup ID : ", response.data.id);
       navigate("/onboarding");
     } catch (error) {
       console.log(error);
@@ -75,8 +103,12 @@ const Signup = ({ handleToken, setId }) => {
       // Gestion de tous les cas de mauvaises saisies utilisateurs, contrôles, regex ...
       case 1 /* Email (Input+regex) */:
         const checkemail = validateEmail(email);
-        if (!email || checkemail === false) {
-          setError("Désolé, il nous faudrait ton email ");
+        checkemailindb();
+        console.log("EMAIL IN DB ?", data);
+        if (checkemail === false || error !== "") {
+          if (!checkemail) {
+            setError("Désolé, ce mail n'est pas valide ");
+          }
         } else {
           setStep(step + 1);
         }
@@ -124,6 +156,7 @@ const Signup = ({ handleToken, setId }) => {
             placeholder=""
             state={email}
             setState={setEmail}
+            autoCapitalize="none"
             type="email"
           />
         ) : (

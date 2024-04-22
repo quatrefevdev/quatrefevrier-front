@@ -67,8 +67,8 @@ const Login = ({ handleToken, setId }) => {
             handleEmail(email, 2);
           }
           console.log("Login ID : ", response.data.id);
-          if (response.data.isnew === false) {
-            navigate("/");
+          if (response.data.config.needToDoOnboarding === false) {
+            navigate("/reception");
           } else navigate("/onboarding");
         } catch (error) {
           setError("Mauvais mot de passe ou adresse email");

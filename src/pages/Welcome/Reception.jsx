@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 //Css style
 import "../../App.scss";
@@ -12,6 +13,7 @@ const Reception = ({ token, id }) => {
   const [data, setData] = useState();
   const [appointmentsdata, setAppointments] = useState([]);
   const [appLimit, setAppLimit] = useState(3);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,44 +45,59 @@ const Reception = ({ token, id }) => {
     fetchData();
   }, []);
 
-  return isLoading ? (
-    <h2>Chargement de la page...</h2>
-  ) : (
-    <div>
-      <main className="container-rdv">
-        <h2> Bonjour {data.firstname}</h2>
-        <p> Vos prochains rendez-vous</p>
-        {appointmentsdata.length === 0 ? (
-          <div> Pas de rendez vous à venir </div>
-        ) : (
-          <div>
-            {appointmentsdata.map((appointment, idx) => {
-              return (
-                <div key={appointment._id} className="rdv">
-                  <div className="rdv-left">
-                    <p>{`${formatDate(appointment.date)} - ${
-                      appointment.time
-                    }`}</p>
-                    {appointment.speciality && <p>appointment.speciality</p>}
-                    {appointment.institution && <p>appointment.institution</p>}
-                    {appointment.address && <p>appointment.address</p>}
-                  </div>
-                  <div className="rdv-right">
-                    <FontAwesomeIcon color="#4C548C" icon="fa-solid fa-bell" />
-                    <FontAwesomeIcon
-                      color="#4C548C"
-                      icon="fa-solid fa-share-nodes"
-                    />
-                  </div>
-                  <Footer selected="Accueil" />
-                </div>
-              );
-            })}
-          </div>
-        )}
-        <p> Les dernières actus de vos forums favoris</p>
-      </main>
-    </div>
+
+  return (
+    <>
+      {isLoading ? (
+        <h2>Chargement de la page...</h2>
+      ) : token ? (
+        <div>
+          <main className="container-rdv">
+            <h2> Bonjour {data.firstname}</h2>
+            <p> Vos prochains rendez-vous</p>
+            {appointmentsdata.length === 0 ? (
+              <div> Pas de rendez vous à venir </div>
+            ) : (
+              <div>
+                {appointmentsdata.map((appointment, idx) => {
+                  return (
+                    <div key={appointment._id} className="rdv">
+                      <div className="rdv-left">
+                        <p>{`${appointment.date} - ${appointment.time}`}</p>
+                        {appointment.speciality && (
+                          <p>appointment.speciality</p>
+                        )}
+                        {appointment.institution && (
+                          <p>appointment.institution</p>
+                        )}
+                        {appointment.address && <p>appointment.address</p>}
+                      </div>
+                      <div className="rdv-right">
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-bell"
+                        />
+                        <FontAwesomeIcon
+                          color="#4C548C"
+                          icon="fa-solid fa-share-nodes"
+                        />
+                      </div>
+                      <Footer selected="Accueil" />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <p> Les dernières actus de vos forums favoris</p>
+          </main>
+        </div>
+      ) : (
+        <div>
+          <Navigate to="/login" />
+        </div>
+      )}
+    </>
+
   );
 };
 export default Reception;
