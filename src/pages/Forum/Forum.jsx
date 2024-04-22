@@ -80,12 +80,6 @@ const Forum = ({ token, handleToken }) => {
     //console.log(suggestion);
   };
 
-  // const handleLogout = () => {
-  //   console.log(token);
-  //   handleToken();
-  //   navigate("/login");
-  // };
-
   // function to add / remove favoris
   const handleFav = async (id) => {
     try {
@@ -105,11 +99,7 @@ const Forum = ({ token, handleToken }) => {
       console.log("Error message : ", error.response.data.message);
     }
   };
-  // const redirectIfNoToken = async () => {
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // };
+
   const fetchData = async () => {
     try {
       setIsLoading(true);
@@ -354,7 +344,7 @@ const Forum = ({ token, handleToken }) => {
                       .slice(0, 2)
                       .map((group, index) => (
                         <div className="forum-content" key={index}>
-                          <Link to={`/group/${group.groupId}`}>
+                          <Link to={`/group/${group._id}`}>
                             <div className="forum-text">
                               <p className="forum-name">{group.group_name}</p>
                               <p className="forum-member">
@@ -366,7 +356,7 @@ const Forum = ({ token, handleToken }) => {
                             </div>
                           </Link>
                           <div className="forum-button">
-                            <Link to={`/group/${group.groupId}`}>
+                            <Link to={`/group/${group._id}`}>
                               <p className="forum-button-eye">
                                 Voir{" "}
                                 <FontAwesomeIcon

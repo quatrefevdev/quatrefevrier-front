@@ -69,6 +69,7 @@ const Footer = ({ selected }) => {
             <p>Suivi</p>
           </div>
         </Link>
+
         <div className={compte + " div-footer-menu"}>
           <FontAwesomeIcon icon="gear" size="lg" />
           <p>Compte</p>
