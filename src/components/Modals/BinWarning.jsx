@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./BinWarning.scss";
+import "./binWarning.scss";
 const BinWarning = ({ setVisibility, setDel }) => {
   return (
     <div
@@ -24,7 +24,7 @@ const BinWarning = ({ setVisibility, setDel }) => {
           >
             Oui
           </button>
-          <button onClick={() => setVisibility(false)}>non</button>
+          <button onClick={() => setVisibility(false)}>Non</button>
         </div>
       </div>
     </div>
