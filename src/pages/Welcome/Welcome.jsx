@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../App.scss";
 import "./welcome.scss";
 import logo from "../../assets/logo.svg";
 
 import { Link } from "react-router-dom";
 
-const Welcome = () => {
+const Welcome = ({ token }) => {
+  const navigate = useNavigate();
   const [swip, setSwip] = useState(false);
   const [launching, setLaunching] = useState(true);
   useEffect(() => {
@@ -15,6 +17,8 @@ const Welcome = () => {
     <main className="container startPage" style={{ justifyContent: "center" }}>
       <img src={logo} alt="logo" />
     </main>
+  ) : token ? (
+    navigate("/reception")
   ) : !swip ? (
     <main className="container startPage">
       <div className="top">
