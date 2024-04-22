@@ -69,11 +69,20 @@ const Footer = ({ selected }) => {
             <p>Suivi</p>
           </div>
         </Link>
+<<<<<<< HEAD
+        <Link to="/MyAccount">
+          <div className={compte + " div-footer-menu"}>
+            <FontAwesomeIcon icon="gear" size="lg" />
+            <p>Compte</p>
+          </div>
+        </Link>
+=======
 
         <div className={compte + " div-footer-menu"}>
           <FontAwesomeIcon icon="gear" size="lg" />
           <p>Compte</p>
         </div>
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
       </div>
     </footer>
   );

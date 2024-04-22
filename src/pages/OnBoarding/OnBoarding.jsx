@@ -39,8 +39,32 @@ const OnBoarding = ({ token }) => {
   const [error, setError] = useState("");
   const [usertype, setUserType] = useState("");
   const newCancerKindArr = [...cancerkindsel];
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`http://localhost:3000/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Mes datas : ", response.data);
+        setData(response.data);
+        setIsLoading(false);
+        console.log(data.account.needToDoOnboarding);
+        if (!data.account.needToDoOnboarding) {
+          navigate("/reception");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [isLoading]);
 
   //regex to check the phone number format
   function validatePhoneNumber(phoneNumber) {
@@ -110,6 +134,11 @@ const OnBoarding = ({ token }) => {
         if (!dateofbirth) {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
+          if (usertype === "Aidant") {
+            setStep(step + 3);
+          } else {
+            setStep(step + 1);
+          }
           setError("");
           setVal(0);
           if (usertype !== "Aidant") {
@@ -171,6 +200,7 @@ const OnBoarding = ({ token }) => {
           formData.append("cancerstep", cancerstepsel);
           formData.append("phonenumber", phonenumber);
           formData.append("accountype", usertype);
+          formData.append("needToDoOnboarding", false);
 
           const response = await axios.post(
             "http://localhost:3000/user/updateuser/",
@@ -203,10 +233,10 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      if (step != 9 || usertype != "Aidant") {
-        setStep(step - 1);
-      } else {
+      if (step === 9 || usertype !== "Aidant") {
         setStep(step - 3);
+      } else {
+        setStep(step - 1);
       }
       setError("");
     }
@@ -471,11 +501,8 @@ const OnBoarding = ({ token }) => {
 
   return (
     <>
-      {token ? (
-        <div>
-
-          <Navigate to="/reception" />
-        </div>
+      {isLoading ? (
+        <h2>Chargement de la page...</h2>
       ) : (
         <div className="containeronboarding">
           <form
