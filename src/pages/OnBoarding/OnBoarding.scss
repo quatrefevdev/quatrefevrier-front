@@ -124,21 +124,19 @@ a:link {
   padding: 10px;
 }
 .cancernotselected {
-  text-align: center;
+  border: 2px solid transparent;
   height: 30px;
   width: 300px;
-  font-size: 13px;
   color: #4c548c;
   font-family: "NN-Bold";
+  font-size: 13px;
+  border-radius: 8px;
 }
 
 .cancerselected {
-  border: 1px solid #4c548c;
+  border: 2px solid #4c548c;
   height: 30px;
   width: 300px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
   color: #4c548c;
   font-family: "NN-Bold";
   font-size: 13px;
@@ -146,9 +144,13 @@ a:link {
 }
 .cancerselecteddiv {
   display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
+  line-height: 30px;
 }
+
+.cancerkindlistboxdiv {
+  margin-bottom: 10px;
+}
+
 .titlecancerkindonboarding {
   text-align: center;
   color: #4c548c;
@@ -162,30 +164,30 @@ a:link {
   margin-bottom: 30px;
 }
 .cancerstepnotselected {
-  text-align: center;
+  border: 2px solid transparent;
   height: 30px;
   width: 300px;
-  font-size: 13px;
   color: #4c548c;
   font-family: "NN-Bold";
+  font-size: 13px;
+  border-radius: 8px;
 }
-
+.cancersteplistboxdiv {
+  margin-bottom: 10px;
+}
 .cancerstepselected {
-  border: 1px solid #4c548c;
+  border: 2px solid #4c548c;
   height: 30px;
   width: 300px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
   color: #4c548c;
+
   font-family: "NN-Bold";
   font-size: 13px;
   border-radius: 8px;
 }
 .cancerstepselecteddiv {
   display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
+  line-height: 26px;
 }
 .titleUserTypeOnBoard {
   text-align: center;

@@ -340,6 +340,7 @@ const OnBoarding = ({ token }) => {
           <div>
             <div className="titlecancerkindonboarding">Type(s) de cancer :</div>
             {/* Affichage du contenu de la listbox */}
+
             {cancerkindfile.results.map((cancer, idx) => {
               return (
                 <div key={idx} className="cancerselecteddiv">
@@ -349,33 +350,30 @@ const OnBoarding = ({ token }) => {
                       onClick={() => {
                         newCancerKindArr.push(cancer.cancerkind);
                         setCancerKind(newCancerKindArr);
-                        console.log(cancerkindsel);
                       }}
                     >
                       {cancer.cancerkind}
                     </p>
                   ) : (
-                    <div key={idx}>
-                      <p
-                        className="cancerselected"
-                        onClick={() => {
-                          {
-                            newCancerKindArr.splice(
-                              cancerkindsel.indexOf(cancer.cancerkind),
-                              1
-                            );
-                            setCancerKind(newCancerKindArr);
-                          }
-                          console.log(cancerkindsel);
-                        }}
-                      >
-                        {cancer.cancerkind}
-                      </p>
-                    </div>
+                    <p
+                      className="cancerselected"
+                      onClick={() => {
+                        {
+                          newCancerKindArr.splice(
+                            cancerkindsel.indexOf(cancer.cancerkind),
+                            1
+                          );
+                          setCancerKind(newCancerKindArr);
+                        }
+                      }}
+                    >
+                      {cancer.cancerkind}
+                    </p>
                   )}
                 </div>
               );
             })}
+            <div className="cancerkindlistboxdiv"></div>
           </div>
         );
         break;
@@ -413,6 +411,7 @@ const OnBoarding = ({ token }) => {
                 </div>
               );
             })}
+            <div className="cancersteplistboxdiv"></div>
           </div>
         );
 
@@ -456,7 +455,7 @@ const OnBoarding = ({ token }) => {
     <>
       {!token ? (
         <div>
-          <Navigate to="/accueil" />
+          <Navigate to="/login" />
         </div>
       ) : (
         <div className="containeronboarding">
