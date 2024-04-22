@@ -62,6 +62,7 @@ const Group = () => {
                 post_author={post.post_author?.account}
                 post_body={post.post_body}
                 comments_count={post.post_comments.length}
+                post_url={`/post/${post._id}`}
               />
             );
           })}

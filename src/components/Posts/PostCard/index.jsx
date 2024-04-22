@@ -1,9 +1,13 @@
+// Import des modules
+import { Link } from "react-router-dom";
+
+// CSS import
 import "./post-card.scss";
 
-const PostCard = ({post_body, post_author, comments_count}) => {
+const PostCard = ({post_url, post_body, post_author, comments_count}) => {
     console.log(post_author);
     return (
-        <div className="post-container">
+        <Link className="post-container" to={post_url}>        
             {post_author ? (
                 <h2>
                     {post_author.username} - 
@@ -16,7 +20,7 @@ const PostCard = ({post_body, post_author, comments_count}) => {
             <div className="card-footer">
                 {comments_count > 1 ? <p>{comments_count} commentaires</p> : <p>{comments_count} commentaire</p> }
             </div>
-        </div>
+        </Link>
     )
 }
 
