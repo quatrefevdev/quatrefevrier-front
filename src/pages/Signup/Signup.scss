@@ -26,29 +26,7 @@ a:link {
 
   margin-bottom: 10px;
 }
-.sexsignupdiv {
-  margin: 0 auto;
-  color: #4c548c;
-  font-family: "NN-Bold";
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-.titlesexsignup {
-  margin-bottom: 10px;
-}
 
-.datepickersignup {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.titledatepickersignup {
-  margin-top: 30px;
-  text-align: center;
-  color: #4c548c;
-  font-family: "NN-Bold";
-}
 .errortxtsignup {
   text-align: center;
   color: red;
@@ -71,13 +49,42 @@ a:link {
   margin-top: 20px;
 }
 
+<<<<<<< HEAD
+=======
+.progressbar {
+  width: 50%;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #e6e6e6;
+  margin-bottom: 10px;
+}
+
+.progressbarfill {
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
+  background-color: white;
+  transition: width 0.5s ease-out;
+}
+.progressbardiv {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
 .posrelinputsignupdiv1 {
   position: relative;
 }
 .inputsignupdiv1 {
   position: absolute;
   left: 300px;
+<<<<<<< HEAD
   top: 52px;
+=======
+  top: 50px;
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
 }
 .posrelinputsignupdiv2 {
   position: relative;
@@ -85,7 +92,11 @@ a:link {
 .inputsignupdiv2 {
   position: absolute;
   left: 300px;
+<<<<<<< HEAD
   top: 28px;
+=======
+  top: 27px;
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
 }
 .divparentcheck {
   position: relative;

@@ -44,7 +44,7 @@ import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import Group from "./pages/Group";
-
+import PostSinglePage from "./pages/Post";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
@@ -52,7 +52,7 @@ import Mentoring from "./pages/Mentoring/Mentoring";
 import MyAccount from "./pages/MyAccount/MyAccount";
 
 // Components
-import Header from "./components/Header/Header";
+import BinWarning from "./components/Modals/BinWarning";
 
 function App() {
   // State dans lequel je stocke le token. Sa valeur de base sera :
@@ -60,7 +60,8 @@ function App() {
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
-
+  const [visibility, setVisibility] = useState(false);
+  const [del, setDel] = useState(false);
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
   const handleToken = (token) => {
     if (token) {
@@ -77,8 +78,7 @@ function App() {
       {/* Je peux passer des props à mes composants */}
       {/* <Header token={token} handleToken={handleToken} /> */}
       <Routes>
-        <Route path="/" element={<Welcome />} />
-
+        <Route path="/" element={<Welcome token={token} />} />
         <Route
           path="/login"
           element={<Login handleToken={handleToken} setId={setId} />}
@@ -100,9 +100,18 @@ function App() {
         ></Route>
         <Route
           path="/showAppointment/:appointment_id"
-          element={<ShowAppointment token={token} user_id={id} />}
+          element={
+            <ShowAppointment
+              token={token}
+              user_id={id}
+              del={del}
+              setDel={setDel}
+              setVisibility={setVisibility}
+            />
+          }
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
+        <Route path="/post/:postId" element={<PostSinglePage />} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
@@ -121,6 +130,9 @@ function App() {
           element={<MyAccount id={id} token={token} />}
         ></Route>
       </Routes>
+      {visibility && (
+        <BinWarning setVisibility={setVisibility} setDel={setDel} />
+      )}
     </Router>
   );
 }

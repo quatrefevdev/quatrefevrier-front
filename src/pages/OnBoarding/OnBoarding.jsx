@@ -134,13 +134,21 @@ const OnBoarding = ({ token }) => {
         if (!dateofbirth) {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
+<<<<<<< HEAD
           if (usertype === "Aidant") {
             setStep(step + 3);
           } else {
             setStep(step + 1);
           }
+=======
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
           setError("");
           setVal(0);
+          if (usertype !== "Aidant") {
+            setStep(step + 1);
+          } else {
+            setStep(step + 3);
+          }
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -182,6 +190,12 @@ const OnBoarding = ({ token }) => {
           const formData = new FormData();
           // Rajouter 2 paires clef/valeur à mon formdata
           formData.append("avatar", avatar);
+<<<<<<< HEAD
+=======
+
+          //console.log("Avatar", avatar);
+
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
           // Création des autres clef/valeur au formData;
           formData.append("username", username);
           formData.append("lastname", lastname);
@@ -196,7 +210,6 @@ const OnBoarding = ({ token }) => {
 
           const response = await axios.post(
             "http://localhost:3000/user/updateuser/",
-            formData,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -226,11 +239,18 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
+<<<<<<< HEAD
       if (step === 9 || usertype !== "Aidant") {
         setStep(step - 3);
       } else {
         console.log("txf");
         setStep(step - 1);
+=======
+      if (step != 9 || usertype != "Aidant") {
+        setStep(step - 1);
+      } else {
+        setStep(step - 3);
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
       }
       setError("");
     }
@@ -382,6 +402,7 @@ const OnBoarding = ({ token }) => {
           <div>
             <div className="titlecancerkindonboarding">Type(s) de cancer :</div>
             {/* Affichage du contenu de la listbox */}
+
             {cancerkindfile.results.map((cancer, idx) => {
               return (
                 <div key={idx} className="cancerselecteddiv">
@@ -391,33 +412,30 @@ const OnBoarding = ({ token }) => {
                       onClick={() => {
                         newCancerKindArr.push(cancer.cancerkind);
                         setCancerKind(newCancerKindArr);
-                        console.log(cancerkindsel);
                       }}
                     >
                       {cancer.cancerkind}
                     </p>
                   ) : (
-                    <div key={idx}>
-                      <p
-                        className="cancerselected"
-                        onClick={() => {
-                          {
-                            newCancerKindArr.splice(
-                              cancerkindsel.indexOf(cancer.cancerkind),
-                              1
-                            );
-                            setCancerKind(newCancerKindArr);
-                          }
-                          console.log(cancerkindsel);
-                        }}
-                      >
-                        {cancer.cancerkind}
-                      </p>
-                    </div>
+                    <p
+                      className="cancerselected"
+                      onClick={() => {
+                        {
+                          newCancerKindArr.splice(
+                            cancerkindsel.indexOf(cancer.cancerkind),
+                            1
+                          );
+                          setCancerKind(newCancerKindArr);
+                        }
+                      }}
+                    >
+                      {cancer.cancerkind}
+                    </p>
                   )}
                 </div>
               );
             })}
+            <div className="cancerkindlistboxdiv"></div>
           </div>
         );
         break;
@@ -455,6 +473,7 @@ const OnBoarding = ({ token }) => {
                 </div>
               );
             })}
+            <div className="cancersteplistboxdiv"></div>
           </div>
         );
 
@@ -473,7 +492,7 @@ const OnBoarding = ({ token }) => {
           </div>
         );
         break;
-      case 10 /*Avatar URL.createObjectURL((**/:
+      case 10 /*Avatar */:
         arr.push(
           <div className="avatarbuttononboardingdiv">
             <input
@@ -496,8 +515,16 @@ const OnBoarding = ({ token }) => {
 
   return (
     <>
+<<<<<<< HEAD
       {isLoading ? (
         <h2>Chargement de la page...</h2>
+=======
+      {token ? (
+        <div>
+
+          <Navigate to="/reception" />
+        </div>
+>>>>>>> b9409338726638e8636870f44e2887bd747445c5
       ) : (
         <div className="containeronboarding">
           <form

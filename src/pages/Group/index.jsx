@@ -9,6 +9,8 @@ import "./Group.scss";
 import ButtonComponent from "../../components/Button/ButtonComponent";
 import PostCard from "../../components/Posts/PostCard";
 import NewPostModal from "../../components/Posts/NewPostModal";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const Group = () => {
   // Réupération de l'id passé en params
@@ -30,13 +32,14 @@ const Group = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(data);
-
-  console.log("New post modal >>> ", showPostModal);
+  console.log("groupId >>> ", groupId);
+  console.log("data >>> ", data);
+  console.log("loading >>> ", isLoading);
 
   return isLoading ? (
     <div className="container">
@@ -44,7 +47,10 @@ const Group = () => {
     </div>
   ) : (
     <>
-      <div className="group-page-wrapper">
+      <Header
+        pageToGoBack={`/forum`}
+      />
+      <div className={!showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"}>
         <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
           <ButtonComponent value={0} txt="Rejoindre le groupe" />
@@ -55,9 +61,10 @@ const Group = () => {
             return (
               <PostCard
                 key={post._id}
-                // post_author={post.post_author.email}
+                post_author={post.post_author?.account}
                 post_body={post.post_body}
                 comments_count={post.post_comments.length}
+                post_url={`/post/${post._id}`}
               />
             );
           })}
@@ -79,6 +86,7 @@ const Group = () => {
           />
         </div>
       )}
+      <Footer selected="forum" />
     </>
   );
 };
