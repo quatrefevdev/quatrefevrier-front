@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 //Css style
 import "../../App.scss";
@@ -10,6 +11,7 @@ const Reception = ({ token, id }) => {
   const [data, setData] = useState();
   const [appointmentsdata, setAppointments] = useState([]);
   const [appLimit, setAppLimit] = useState(3);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,7 +47,7 @@ const Reception = ({ token, id }) => {
     <>
       {isLoading ? (
         <h2>Chargement de la page...</h2>
-      ) : !token ? (
+      ) : token ? (
         <div>
           <main className="container-rdv">
             <h2> Bonjour {data.firstname}</h2>

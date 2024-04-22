@@ -110,9 +110,13 @@ const OnBoarding = ({ token }) => {
         if (!dateofbirth) {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
-          setStep(step + 1);
           setError("");
           setVal(0);
+          if (usertype !== "Aidant") {
+            setStep(step + 1);
+          } else {
+            setStep(step + 3);
+          }
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -154,10 +158,9 @@ const OnBoarding = ({ token }) => {
           const formData = new FormData();
           // Rajouter 2 paires clef/valeur à mon formdata
           formData.append("avatar", avatar);
-          console.log("Avatar", avatar);
-          const response = await axios.put(
+
+          const response = await axios.post(
             "http://localhost:3000/user/updateuser/",
-            formData,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -174,12 +177,16 @@ const OnBoarding = ({ token }) => {
               cancerstep: cancerstepsel,
               phonenumber: phonenumber,
               accountype: usertype,
-            }
+              // config: {
+              //   needToDoOnboarding: false,
+              // },
+            },
+            formData
           );
         };
 
-        navigate("/reception");
         fetchData();
+        navigate("/reception");
       } catch (error) {
         console.log("Erreur message : ", error.response.data.message);
         if (
@@ -199,7 +206,11 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      setStep(step - 1);
+      if (step != 9 || usertype != "Aidant") {
+        setStep(step - 1);
+      } else {
+        setStep(step - 3);
+      }
       setError("");
     }
   };
@@ -440,7 +451,7 @@ const OnBoarding = ({ token }) => {
           </div>
         );
         break;
-      case 10 /*Avatar URL.createObjectURL((**/:
+      case 10 /*Avatar */:
         arr.push(
           <div className="avatarbuttononboardingdiv">
             <input
