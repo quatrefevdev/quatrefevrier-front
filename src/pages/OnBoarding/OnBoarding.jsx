@@ -23,9 +23,10 @@ import cancerstepfile from "../../Json/cancerstep.json";
 
 registerLocale("fr", fr);
 
-const OnBoarding = ({ id, token }) => {
+const OnBoarding = ({ token }) => {
   const [username, setUserName] = useState("");
   const [lastname, setLastName] = useState("");
+  const [val, setVal] = useState(0);
   const [firstname, setFirstName] = useState("");
   const [sex, setSex] = useState("");
   const [dateofbirth, setDateofBirth] = useState(new Date());
@@ -33,7 +34,7 @@ const OnBoarding = ({ id, token }) => {
   const [cancerstepsel, setCancerStep] = useState("");
   const [phonenumber, setPhoneNumber] = useState();
   const [data, setData] = useState({});
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState({});
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
   const [usertype, setUserType] = useState("");
@@ -53,6 +54,7 @@ const OnBoarding = ({ id, token }) => {
   }
   // Fonction qui est déclenchée lors de la soumission du formulaire
   const handleSubmit = (event) => {
+    setVal(0);
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     setError("");
@@ -63,6 +65,7 @@ const OnBoarding = ({ id, token }) => {
           setError("Désolé, peux tu choisir une catégorie");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
@@ -71,6 +74,7 @@ const OnBoarding = ({ id, token }) => {
           setError("Il te faut un pseudo ! ");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
@@ -80,6 +84,7 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 4 /* Firstname (Input) */:
@@ -88,6 +93,7 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 5 /* Sex choice (Image+Onclick) */:
@@ -96,6 +102,7 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
 
         break;
@@ -105,6 +112,7 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
@@ -113,6 +121,7 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
         break;
       case 8 /* Cancer step (listbox)*/:
@@ -121,9 +130,8 @@ const OnBoarding = ({ id, token }) => {
         } else {
           setStep(step + 1);
           setError("");
+          setVal(0);
         }
-        break;
-
         break;
       case 9 /* Phone number (Input+regex) */:
         const checknumber = validatePhoneNumber(phonenumber);
@@ -131,20 +139,31 @@ const OnBoarding = ({ id, token }) => {
           setError("T'as bien un 06 !");
         } else {
           setStep(step + 1);
+          setVal(0);
           setError("");
         }
         break;
       case 10 /*Avatar */:
         setStep(step + 1);
-        console.log(step);
         break;
     }
     if (step >= 10) {
       try {
-        console.log(id);
         const fetchData = async () => {
+          // Je crée une nouvelle instance du constructeur FormData
+          const formData = new FormData();
+          // Rajouter 2 paires clef/valeur à mon formdata
+          formData.append("avatar", avatar);
+          console.log("Avatar", avatar);
           const response = await axios.put(
-            "http://localhost:3000/user/updateuser/" + id,
+            "http://localhost:3000/user/updateuser/",
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            },
             {
               username: username,
               lastname: lastname,
@@ -155,13 +174,11 @@ const OnBoarding = ({ id, token }) => {
               cancerstep: cancerstepsel,
               phonenumber: phonenumber,
               accountype: usertype,
-              avatar: avatar,
             }
           );
-          setData(response.data);
-          navigate("/Accueil");
         };
 
+        navigate("/reception");
         fetchData();
       } catch (error) {
         console.log("Erreur message : ", error.response.data.message);
@@ -178,6 +195,7 @@ const OnBoarding = ({ id, token }) => {
   };
 
   const PreviousClick = (event) => {
+    setVal(0);
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
@@ -423,7 +441,7 @@ const OnBoarding = ({ id, token }) => {
           </div>
         );
         break;
-      case 10 /*Avatar */:
+      case 10 /*Avatar URL.createObjectURL((**/:
         arr.push(
           <div className="avatarbuttononboardingdiv">
             <input
@@ -431,16 +449,12 @@ const OnBoarding = ({ id, token }) => {
               id="file"
               className="avatarpicker"
               onChange={(event) => {
-                setAvatar(URL.createObjectURL(event.target.files[0]));
+                setAvatar(event.target.files[0]);
               }}
             />
             <label className="labelavatar" htmlFor="file">
               Sélectionne un avatar
             </label>
-            <div className="imagepreviewonboarding">
-              {" "}
-              {avatar && <img alt="preview image" src={avatar} />}
-            </div>
           </div>
         );
         break;
@@ -477,14 +491,14 @@ const OnBoarding = ({ id, token }) => {
               {step !== 1 && (
                 <ButtonComponent
                   id="Previous"
-                  value={0}
+                  value={val}
                   pressFct={PreviousClick}
                   txt="< Précédent"
                 />
               )}
               <ButtonComponent
                 id="Next"
-                value={0}
+                value={val}
                 pressFct={handleSubmit}
                 txt="Suivant >"
               />

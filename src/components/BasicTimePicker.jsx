@@ -11,7 +11,9 @@ export default function BasicTimePicker({ time, setTime }) {
         <TimePicker
           label=""
           ampm={false}
-          onChange={(time) => setTime(`${time.$H}:${time.$m}`)}
+          onChange={(time) =>
+            setTime(`${time.$H}:${time.$m.toString().padStart(2, "0")}`)
+          }
           // value={time}
         />
       </DemoContainer>

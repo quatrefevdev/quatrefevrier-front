@@ -1,8 +1,9 @@
 .container-rdv {
+  margin-top: 20px;
   padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   button {
     align-self: start;
   }
@@ -20,6 +21,9 @@
   .rdv {
     border-bottom: 1px solid #f3f3fa;
   }
+  .rdv:hover {
+    background-color: lightgray;
+  }
   h4 {
     margin-bottom: 5px;
   }
@@ -28,11 +32,13 @@
   }
   .eventList {
     margin-bottom: 20px;
+    a {
+      color: black;
+    }
   }
   form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
   }
   fieldset {
     padding: 0;
@@ -51,6 +57,8 @@
   .input-div {
     > div {
       padding: 0;
+      // margin-top: 5px;
+
       // width: 100%;
       > div {
         width: 100%;
@@ -65,11 +73,8 @@
         }
       }
     }
-    // > div
   }
-  #test {
-    background-color: pink;
-  }
+
   input {
     margin-top: 5px;
     background-color: #f3f3fa;
@@ -123,4 +128,19 @@
     width: 10px;
     // align-self: start;
   }
+}
+#info-div {
+  margin-top: 5px;
+  background-color: #f3f3fa;
+  border: none;
+  height: 35px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  font-family: "NN-Light";
+  align-items: center;
+  padding-left: 15px;
+}
+#showImg {
+  height: 200px;
 }

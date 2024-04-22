@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import "./group.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 // Import CSS
-import "./group.scss";
+import "./Group.scss";
 
 // Import des composants
 import ButtonComponent from "../../components/Button/ButtonComponent";
@@ -13,7 +12,7 @@ import NewPostModal from "../../components/Posts/NewPostModal";
 
 const Group = () => {
   // Réupération de l'id passé en params
-  const {groupId} = useParams();
+  const { groupId } = useParams();
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -22,13 +21,15 @@ const Group = () => {
   // Récupération des données du groupe quand le composant render
   const fetchData = async () => {
     try {
-      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/group/${groupId}`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/group/${groupId}`
+      );
       setData(data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -43,18 +44,13 @@ const Group = () => {
     </div>
   ) : (
     <>
-    <div className="group-page-wrapper">
-      <div className="group-header">
+      <div className="group-page-wrapper">
+        <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
-          <ButtonComponent
-            value={0}
-            txt="Rejoindre le groupe"
-            />
-      </div>
-      <div className="group-search">
-
-      </div>
-      <div className="group-posts">
+          <ButtonComponent value={0} txt="Rejoindre le groupe" />
+        </div>
+        <div className="group-search"></div>
+        <div className="group-posts">
           {data.group_posts.map((post) => {
             return (
               <PostCard
@@ -63,26 +59,26 @@ const Group = () => {
                 post_body={post.post_body}
                 comments_count={post.post_comments.length}
               />
-            )
+            );
           })}
+        </div>
+        <div className="group-page-footer">
+          <ButtonComponent
+            value={1}
+            txt="Rédiger un post"
+            pressFct={() => setShowPostModal(true)}
+          />
+        </div>
       </div>
-      <div className="group-page-footer">
-        <ButtonComponent
-          value={1}
-          txt="Rédiger un post"
-          pressFct={() => setShowPostModal(true)}
-        />
-      </div>
-    </div>
-    {showPostModal &&     
-      <div className="modal-container">
-        <NewPostModal
-          groupId={groupId}
-          updatePageData={fetchData}
-          setVisibleState={setShowPostModal}
-        />
-      </div>
-    }
+      {showPostModal && (
+        <div className="modal-container">
+          <NewPostModal
+            groupId={groupId}
+            updatePageData={fetchData}
+            setVisibleState={setShowPostModal}
+          />
+        </div>
+      )}
     </>
   );
 };

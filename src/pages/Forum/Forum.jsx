@@ -2,19 +2,64 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Forum.scss";
 
-const Forum = () => {
+//Fontawesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../../components/Footer/Footer";
+
+const Forum = ({ token }) => {
   const [data, setData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [groupData, setGroupData] = useState([]);
+  const [favGroupData, setFavGroupData] = useState([]);
+  const [otherGroup, setOtherGroup] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [step, setStep] = useState(1);
   const [suggestion, setSuggestion] = useState([]);
 
   // function to switch between screen
-  const handleNextStep = () => {
-    setStep(step + 1);
+  const handleNextStep = async (suggestion) => {
+    try {
+      //Request to modify the user model to switch the isNew and add array of id of group
+      const response = await axios.put(
+        "http://localhost:3000/user/updateuser/",
+        {
+          isNew: false,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      //Need another Request to modify the group model to add the id user in each group.
+      const request = await axios.post(
+        `http://localhost:3000/forum/join`,
+        {
+          suggestion: suggestion,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      //await Promise.all([request, response]);
+
+      // Ensure both requests were successful
+      if (request.status === 200) {
+        console.log("User updated and joined forum successfully.");
+        setIsLoading(true);
+        setStep(step + 1);
+      } else {
+        throw new Error("Failed to update user or join forum.");
+      }
+    } catch (error) {
+      console.log("Erreur message : ", error);
+    }
   };
-  const handlePreviousStep = () => {
-    setStep(step - 1);
-  };
+  // const handlePreviousStep = () => {
+  //   setStep(step - 1);
+  // };
 
   // function to add / remove  selected item in screen step 1.
   const handleSuggest = (suggest) => {
@@ -27,25 +72,101 @@ const Forum = () => {
       newTab.splice(index, 1);
       setSuggestion(newTab);
     }
-    console.log(suggestion);
+    //console.log(suggestion);
+  };
+
+  // function to add / remove favoris
+  const handleFav = async (id) => {
+    try {
+      await axios.post(
+        `http://localhost:3000/forum/favoris`,
+        {
+          id: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchData();
+    } catch (error) {
+      console.log("Error message : ", error.response.data.message);
+    }
+  };
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      if (step === 1) {
+        // Get the info about the user to know if he is new
+        const response = await axios.get(`http://localhost:3000/user/forum`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserData(response.data);
+        const isNew = response.data.userRef.account.isNew;
+        // console.log(isNew);
+        const allGroups = response.data.userRef.account.forumlist;
+        // console.log(allGroups);
+        //console.log(step);
+        // if he isn't new, he go to the next screen.
+        if (!isNew) {
+          setStep(2);
+          return;
+        }
+        // if user is new , he stays at screen one and choose group of forum
+        const responseGroups = await axios.get(` http://localhost:3000/groups`);
+        setData(responseGroups.data);
+        //console.log(responseGroups.data[1].groups);
+        setIsLoading(false);
+      } else {
+        const [responseGroupData, responsefav, responseNotMember] =
+          await Promise.all([
+            axios.get(`http://localhost:3000/forum/group`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }),
+            axios.get("http://localhost:3000/forum/group/favoris", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }),
+            axios.get(`http://localhost:3000/forum/group/notin`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }),
+          ]);
+        const otherGroup = responseNotMember.data || [];
+        if (otherGroup) {
+          setOtherGroup(otherGroup.groups);
+        }
+
+        const groupData = responseGroupData.data || [];
+        //console.log(groupData);
+        if (groupData) {
+          setGroupData(groupData);
+        }
+
+        const favData = responsefav.data || [];
+        //console.log(favData);
+        if (favData) {
+          setFavGroupData(favData);
+        }
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (step === 1) {
-          const response = await axios.get(` http://localhost:3000/groups`);
-          setData(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
   }, [step]);
 
+  //console.log(id);
   // Display screen step 1 only the first time with user.isNew
   const displayForum = () => {
     switch (step) {
@@ -61,6 +182,8 @@ const Forum = () => {
         } else {
           //console.log(data[1].groups);
           const array = data[1].groups;
+          const newArray = array.filter((group) => !group.is_cancer);
+          //console.log("ICI USER DATA ", userData);
           return (
             <>
               <div>
@@ -69,7 +192,7 @@ const Forum = () => {
               </div>
               <div className="div-select">
                 {/* Mapping of suggestions  => use a components for render */}
-                {array.map((group) => {
+                {newArray.map((group) => {
                   return (
                     <div
                       key={group._id}
@@ -88,7 +211,10 @@ const Forum = () => {
               </div>
 
               <div className="handleDisplay">
-                <button className="buttonStep" onClick={handleNextStep}>
+                <button
+                  className="buttonStep"
+                  onClick={() => handleNextStep(suggestion)}
+                >
                   Suivant
                 </button>
               </div>
@@ -96,86 +222,135 @@ const Forum = () => {
           );
         }
       case 2:
-        return (
-          <>
-            <div className="handleDisplay">
-              <button className="buttonCreateSearch"> Chercher un forum</button>
-              <button className="buttonCreateSearch"> Créer un forum +</button>
-            </div>
-            <div>
-              <h2>Vos forums favoris</h2>
-              {/* Mapping favoris with 2 / 3 results */}
-              <div className="forum-content">
-                <div>
-                  <p>Premier symptômes</p>
-                  <span>1800 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Retirer le favori Symbole</p>
+        if (isLoading === true) {
+          return (
+            <>
+              <div>
+                <h1>EN CHARGEMENT</h1>
+              </div>
+            </>
+          );
+        } else {
+          const nonFavGroups = groupData.filter(
+            (group) =>
+              !favGroupData.some(
+                (favGroup) => favGroup.groupId === group.groupId
+              )
+          );
+          //console.log(otherGroup);
+          return (
+            <>
+              <div className="handleDisplay">
+                <button className="buttonCreateSearch">
+                  Chercher un forum
+                </button>
+                <button className="buttonCreateSearch">Créer un forum +</button>
+              </div>
+              <div>
+                <h2>Vos forums favoris</h2>
+                <div className="forum-list">
+                  {/* Mapping favoris */}
+                  {favGroupData.length > 0 ? (
+                    favGroupData.map((group, index) => (
+                      <div className="forum-content" key={index}>
+                        <div>
+                          <p className="forum-name">{group.groupName}</p>
+                          <p className="forum-member">
+                            {group.numberOfUsers} membres
+                          </p>
+                        </div>
+                        <div
+                          className="forum-button"
+                          onClick={() => handleFav(group.groupId)}
+                        >
+                          <p>
+                            Retirer favori{" "}
+                            <FontAwesomeIcon icon="circle-xmark" size="lg" />
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div>
+                      <p>Vous n'avez pas de forum favoris !</p>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="forum-content">
-                <div>
-                  <p>Médecine complémentaire</p>
-                  <span>868 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Retirer le favori Symbole</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Vos forums</h2>
-              {/* Mapping forum with 2 / 3 results */}
-              <div className="forum-content">
-                <div>
-                  <p>Cosméto clean</p>
-                  <span>1541 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Ajouter en favori Symbole</p>
-                </div>
-              </div>
-              <div className="forum-content">
-                <div>
-                  <p>Homéopathie</p>
-                  <span>272 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Ajouter en favori Symbole</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Nos Suggestions</h2>
-              {/* Mapping suggestions with 2 / 3 results */}
-              <div className="forum-content">
-                <div>
-                  <p>Menus batch cooking</p>
-                  <span>626 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Voir Symbole</p>
+              <div>
+                <h2>Vos forums</h2>
+                <div className="forum-list">
+                  {/* Mapping forum with 2 / 3 results */}
+                  {nonFavGroups.length > 0 ? (
+                    nonFavGroups.map((group, index) => (
+                      <div className="forum-content" key={index}>
+                        <div>
+                          <p className="forum-name">{group.groupName}</p>
+                          <p className="forum-member">
+                            {group.numberOfUsers} membres
+                          </p>
+                        </div>
+                        <div
+                          className="forum-button"
+                          onClick={() => handleFav(group.groupId)}
+                        >
+                          <p>
+                            Ajouter favoris{" "}
+                            <FontAwesomeIcon
+                              icon="fa-solid fa-heart"
+                              size="lg"
+                            />
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div>
+                      <p>Vous n'avez pas de forum !</p>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="forum-content">
-                <div>
-                  <p>Dénutrition</p>
-                  <span>168 membres</span>
-                </div>
-                <div className="forum-button">
-                  <p>Voir Symbole</p>
-                </div>
+              <div>
+                <h2>Autres forums</h2>
+                {/* Mapping suggestions with 2 / 3 results */}
+                {otherGroup && otherGroup.length > 0 ? (
+                  <>
+                    {otherGroup
+                      .filter((group) => !group.is_cancer)
+                      .slice(0, 2)
+                      .map((group, index) => (
+                        <div className="forum-content" key={index}>
+                          <div className="forum-text">
+                            <p className="forum-name">{group.group_name}</p>
+                            <p className="forum-member">
+                              {group.group_members
+                                ? group.group_members.length
+                                : 0}{" "}
+                              membres
+                            </p>
+                          </div>
+                          <div className="forum-button">
+                            <p>
+                              Voir{" "}
+                              <FontAwesomeIcon
+                                icon="fa-regular fa-eye"
+                                size="lg"
+                              />
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                  </>
+                ) : (
+                  <div>
+                    <p>Aucun autre forum disponible</p>
+                  </div>
+                )}
               </div>
-            </div>
-            {/* Just for test need to be remove later */}
-            <div className="handleDisplay">
-              <button className="buttonStep" onClick={handlePreviousStep}>
-                Précédent
-              </button>
-            </div>
-          </>
-        );
+            </>
+          );
+        }
     }
   };
 
@@ -184,6 +359,7 @@ const Forum = () => {
       <section className="forum-section">
         <div className="container-forum">{displayForum()}</div>
       </section>
+      <Footer selected="forum"></Footer>
     </>
   );
 };
