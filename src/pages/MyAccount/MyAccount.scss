@@ -1,0 +1,59 @@
+.containermyaccount {
+  max-width: 320px;
+  border: none;
+  height: 700px;
+  background-color: white;
+  margin-left: 10px;
+}
+.titlemyaccount {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #4c548c;
+  font-family: "NN-Bold";
+}
+.coordclass {
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+.pseudoclass,
+.emailclass,
+.phonenumberclass {
+  display: flex;
+  margin-bottom: 10px;
+}
+.avatarclass,
+.cancerstepclass {
+  margin-bottom: 10px;
+}
+
+.pseudotitle,
+.emailtitle,
+.avatartitle,
+.cancersteptitle,
+.phonenumbertitle {
+  margin-right: 10px;
+  color: #4c548c;
+  font-family: "NN-Bold";
+}
+
+.pseudotext,
+.emailtext,
+.avatartext,
+.cancersteptext,
+.phonenumbertext {
+  margin-right: 10px;
+}
+.avatartitle,
+.cancersteptitle {
+  margin-bottom: 10px;
+}
+.avatarclass > img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+.cancerstepoption {
+  font-size: 20px;
+  height: 30px;
+}

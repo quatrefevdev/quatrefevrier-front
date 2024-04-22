@@ -110,7 +110,11 @@ const OnBoarding = ({ token }) => {
         if (!dateofbirth) {
           setError("Sélectionne ta date de naissance s'il te plait");
         } else {
-          setStep(step + 1);
+          if (usertype === "Aidant") {
+            setStep(step + 3);
+          } else {
+            setStep(step + 1);
+          }
           setError("");
           setVal(0);
         }
@@ -154,8 +158,6 @@ const OnBoarding = ({ token }) => {
           const formData = new FormData();
           // Rajouter 2 paires clef/valeur à mon formdata
           formData.append("avatar", avatar);
-          //console.log("Avatar", avatar);
-
           // Création des autres clef/valeur au formData;
           formData.append("username", username);
           formData.append("lastname", lastname);
@@ -166,8 +168,9 @@ const OnBoarding = ({ token }) => {
           formData.append("cancerstep", cancerstepsel);
           formData.append("phonenumber", phonenumber);
           formData.append("accountype", usertype);
+          formData.append("needToDoOnboarding", false);
 
-          const response = await axios.put(
+          const response = await axios.post(
             "http://localhost:3000/user/updateuser/",
             formData,
             {
@@ -199,7 +202,12 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      setStep(step - 1);
+      if (step === 9 || usertype !== "Aidant") {
+        setStep(step - 3);
+      } else {
+        console.log("txf");
+        setStep(step - 1);
+      }
       setError("");
     }
   };

@@ -49,6 +49,7 @@ import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
 import Mentoring from "./pages/Mentoring/Mentoring";
+import MyAccount from "./pages/MyAccount/MyAccount";
 
 // Components
 import Header from "./components/Header/Header";
@@ -114,6 +115,10 @@ function App() {
         <Route
           path="/reception"
           element={<Reception id={id} token={token} />}
+        ></Route>
+        <Route
+          path="/myaccount"
+          element={<MyAccount id={id} token={token} />}
         ></Route>
       </Routes>
     </Router>

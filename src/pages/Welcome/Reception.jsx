@@ -4,6 +4,7 @@ import axios from "axios";
 import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
 import React from "react";
+import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,7 +69,6 @@ const Reception = ({ token, id }) => {
                       icon="fa-solid fa-share-nodes"
                     />
                   </div>
-                  <Footer selected="Accueil" />
                 </div>
               );
             })}
@@ -76,6 +76,7 @@ const Reception = ({ token, id }) => {
         )}
         <p> Les dernières actus de vos forums favoris</p>
       </main>
+      <Footer selected="none"></Footer>
     </div>
   );
 };
