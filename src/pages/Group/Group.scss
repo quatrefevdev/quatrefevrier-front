@@ -1,22 +1,34 @@
 .group-page-wrapper {
+    padding: 40px 0 52px;
+    &.no-scroll {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+    }
     .group-header {
-        padding: 30px;
+        padding: 0 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: fixed;
+        top: 40;
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
     }
     .group-posts {
-        height: calc(100vh - 95px); // Hauteur du header déduite
-        padding: 0 30px;
+        height: calc(100vh - 52px); // Hauteur de la navigation déduite
+        padding: 60px 30px 90px;
+        overflow-y: scroll;
     }
     .group-page-footer {
         position: fixed;
-        bottom: 0;
+        bottom: 52px; // Hauteur de la navigation
+        padding-bottom: 20px;
         left: 0;
         width: 100%;
         display: flex;
-        padding: 30px 0;
         justify-content: center;
     }
 }
