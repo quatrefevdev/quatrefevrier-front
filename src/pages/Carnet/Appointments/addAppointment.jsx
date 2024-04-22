@@ -77,6 +77,7 @@ const AddAppointment = ({ token }) => {
                 dateFormat="dd/MM/YYYY"
                 className="datepickeronboarding"
                 calendarAriaLabel="Toggle calendar"
+                minDate={new Date()}
                 dayAriaLabel="Day"
                 monthAriaLabel="Month"
                 nativeInputAriaLabel="Date"
