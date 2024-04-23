@@ -29,11 +29,9 @@ const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
   };
   const deleteRequest = async () => {
     try {
-      const response = await axios.delete(
-        "http://localhost:3000/appointment/" + appointment_id
-      );
+      const response = await axios.delete("http://localhost:3000/appointment");
       alert("Rendez-vous effacé!");
-      navigate("/myAppointments/" + user_id);
+      navigate("/myAppointments");
     } catch (error) {
       console.log(error.response.data);
     }
@@ -51,7 +49,7 @@ const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
     <h1>En cours de chargement...</h1>
   ) : (
     <>
-      <Header pageToGoBack={"/myAppointments/" + user_id} />
+      <Header pageToGoBack={"/myAppointments"} />
       <main className="container-rdv">
         <div className="title">
           <h3>Mon rendez-vous</h3>
