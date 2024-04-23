@@ -17,7 +17,7 @@ const MyAppointments = ({ token }) => {
   const [noRdv, setNoRdv] = useState(false);
 
   const fetchData = async () => {
-    const url = "http://localhost:3000/appointments";
+    const url = `${import.meta.env.VITE_API_URL}/appointments`;
     try {
       const { data, status } = await axios.get(url, {
         headers: {

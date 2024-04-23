@@ -18,7 +18,7 @@ const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
   const fecthAppointment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/appointment/" + appointment_id
+        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`
       );
       setRdv(response.data);
       setDate(response.data[0].date);
@@ -29,7 +29,9 @@ const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
   };
   const deleteRequest = async () => {
     try {
-      const response = await axios.delete("http://localhost:3000/appointment");
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`
+      );
       alert("Rendez-vous effacé!");
       navigate("/myAppointments");
     } catch (error) {
