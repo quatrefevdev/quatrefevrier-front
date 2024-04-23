@@ -8,7 +8,7 @@ import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import formatDate from "../../../assets/utils";
 
-const MyAppointments = () => {
+const MyAppointments = ({ token }) => {
   const { id } = useParams();
   const [data, setData] = useState("");
   const [comingAppointments, setComingAppointments] = useState("");
@@ -17,9 +17,14 @@ const MyAppointments = () => {
   const [noRdv, setNoRdv] = useState(false);
 
   const fetchData = async () => {
-    const url = "http://localhost:3000/appointments/" + id;
+    const url = "http://localhost:3000/appointments";
     try {
-      const { data, status } = await axios.get(url);
+      const { data, status } = await axios.get(url, {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (status === 204) {
         setNoRdv(true);
         setIsLoading(false);
