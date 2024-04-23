@@ -57,12 +57,6 @@ const MyAppointments = ({ token }) => {
     <>
       <Header pageToGoBack="/carnetHome" />
       <main className="container-rdv">
-        {/* <Link to=>
-          <FontAwesomeIcon
-            style={{ alignSelf: "start", color: "#4C548C" }}
-            icon="fa-solid fa-arrow-left"
-          />
-        </Link> */}
         <div className="title">
           <h3>Mes rendez-vous</h3>
           <Link to={"/addAppointment"}>

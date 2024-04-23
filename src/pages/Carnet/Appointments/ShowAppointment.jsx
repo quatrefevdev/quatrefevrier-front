@@ -1,5 +1,7 @@
 import axios from "axios";
 import "./myAppointments.scss";
+import "./addAppointment.scss";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,12 +10,13 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import formatDate from "../../../assets/utils";
-const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
+const ShowAppointment = ({ del, setDel, setVisibility }) => {
   const navigate = useNavigate();
   const { appointment_id } = useParams();
   const [rdv, setRdv] = useState("");
   const newDate = new Date();
   const [date, setDate] = useState(newDate);
+  const [isBig, setIsBig] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const fecthAppointment = async () => {
     try {
@@ -104,9 +107,24 @@ const ShowAppointment = ({ user_id, del, setDel, setVisibility }) => {
           <div id="info-div">{rdv[0].notes}</div>
         </div>
         {rdv[0].file ? (
-          <div className="picture-container">
-            <img id="showImg" src={rdv[0].file.secure_url} alt="picture" />
-          </div>
+          <>
+            {/* <div className="picture-container"> */}
+            <img
+              id="showImg"
+              src={rdv[0].file.secure_url}
+              alt="picture"
+              style={{ width: isBig ? "100%" : "100px" }}
+            />
+            {/* </div> */}
+            <button
+              style={{ marginBottom: isBig ? "80px" : "0px;" }}
+              onClick={() => {
+                setIsBig(!isBig);
+              }}
+            >
+              {isBig ? "Réduire l'image" : "Agrandir l'image"}
+            </button>
+          </>
         ) : null}
         {/* </form> */}
       </main>

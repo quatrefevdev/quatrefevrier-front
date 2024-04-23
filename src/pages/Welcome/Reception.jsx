@@ -63,51 +63,63 @@ const Reception = ({ token, id }) => {
         <h2>Chargement de la page...</h2>
       ) : token ? (
         <div>
+          {console.log(data)}
           <main className="container-rdv">
-            <h2> Bonjour {data.firstname}</h2>
-            <p> Vos prochains rendez-vous</p>
+            <h2> Bonjour {data.account.firstname}</h2>
+            <h3> Vos prochains rendez-vous</h3>
             {appointmentsdata.length === 0 ? (
               <div> Pas de rendez vous à venir </div>
             ) : (
               <div>
-                {appointmentsdata.map((appointment, idx) => {
+                {appointmentsdata.map((rdv) => {
                   return (
-                    <div key={appointment._id} className="rdv">
-                      <div className="rdv-left">
-                        <p>{`${formatDate(appointment.date)} - ${
-                          appointment.time
-                        }`}</p>
-                        {appointment.speciality || (
-                          <p>appointment.speciality</p>
-                        )}
-                        {appointment.institution || (
-                          <p>appointment.institution</p>
-                        )}
-                        {appointment.address || <p>appointment.address</p>}
+                    <Link key={rdv._id} to={"/showAppointment/" + rdv._id}>
+                      <div className="rdv">
+                        <div className="rdv-left">
+                          <p>{`${formatDate(rdv.date)} - ${rdv.time}`}</p>
+                          <p>{`${rdv.speciality} - ${rdv.institution}`}</p>
+                        </div>
+                        <div className="rdv-right">
+                          <FontAwesomeIcon
+                            color="#4C548C"
+                            icon="fa-solid fa-bell"
+                          />
+                          <FontAwesomeIcon
+                            color="#4C548C"
+                            icon="fa-solid fa-share-nodes"
+                          />
+                        </div>
                       </div>
-                      <div className="rdv-right">
-                        <FontAwesomeIcon
-                          color="#4C548C"
-                          icon="fa-solid fa-bell"
-                        />
-                        <FontAwesomeIcon
-                          color="#4C548C"
-                          icon="fa-solid fa-share-nodes"
-                        />
-                      </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
             )}
-            <p> Vos forums favoris</p>
+            <h3> Vos forums favoris</h3>
             <div className="favoris-list">
               {/* Mapping favoris */}
               {favorisData.length > 0 ? (
                 favorisData.map((group, index) => (
                   <div className="favoris-content" key={index}>
                     <Link to={`/group/${group.groupId}`}>
-                      <div>
+                      <div className="rdv">
+                        <div className="rdv-left">
+                          <p>{group.groupName}</p>
+                          <p> {group.numberOfUsers} membres</p>
+                        </div>
+                        <div className="rdv-right">
+                          <p>
+                            Allez voir{" "}
+                            <FontAwesomeIcon
+                              color="#4C548C"
+                              icon="fa-regular fa-eye"
+                              size="lg"
+                            />
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* <div>
                         <p className="favoris-name">{group.groupName}</p>
                         <p className="favoris-member">
                           {group.numberOfUsers} membres
@@ -119,7 +131,7 @@ const Reception = ({ token, id }) => {
                           Allez voir{" "}
                           <FontAwesomeIcon icon="fa-regular fa-eye" size="lg" />
                         </p>
-                      </div>
+                      </div> */}
                     </Link>
                   </div>
                 ))
