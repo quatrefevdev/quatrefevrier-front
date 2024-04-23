@@ -44,13 +44,16 @@ import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import Group from "./pages/Group";
+import CreateGroup from "./pages/Group/Create";
 import PostSinglePage from "./pages/Post";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
 import Mentoring from "./pages/Mentoring/Mentoring";
 import MyAccount from "./pages/MyAccount/MyAccount";
-
+import SecondaryEffects from "./pages/Carnet/SecondaryEffects/SecondaryEffects";
+import MyWeight from "./pages/Carnet/MyWeight/MyWeight";
+import MyNotes from "./pages/Carnet/MyNotes/MyNotes";
 // Components
 import BinWarning from "./components/Modals/BinWarning";
 
@@ -59,7 +62,7 @@ function App() {
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
+  const [id, setId] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [del, setDel] = useState(false);
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
@@ -115,6 +118,7 @@ function App() {
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
         <Route path="/post/:postId" element={<PostSinglePage />} />
+        <Route path="/group/create" element={<CreateGroup/>} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
@@ -123,6 +127,9 @@ function App() {
         />
         <Route path="/message" element={<Message />}></Route>
         <Route path="/parrain" element={<Mentoring />}></Route>
+        <Route path="/secondaryeffects" element={<SecondaryEffects />}></Route>
+        <Route path="/myweight" element={<MyWeight />}></Route>
+        <Route path="/mynotes" element={<MyNotes />}></Route>
 
         <Route
           path="/reception"

@@ -14,13 +14,13 @@ const CarnetHome = () => {
           <Link to={"/MyAppointments"}>
             <button>Mes rendez-vous médicaux</button>
           </Link>
-          <Link>
+          <Link to={"/secondaryeffects"}>
             <button>Mes effets secondaires</button>
           </Link>
-          <Link>
+          <Link to={"/myweight"}>
             <button>Mon poids</button>
           </Link>
-          <Link>
+          <Link to={"/mynotes"}>
             <button>Mes notes</button>
           </Link>
         </div>

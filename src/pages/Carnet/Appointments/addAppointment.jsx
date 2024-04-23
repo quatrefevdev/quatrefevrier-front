@@ -38,7 +38,7 @@ const AddAppointment = ({ token }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/appointments/" + id,
+        `${import.meta.env.VITE_API_URL}/appointments/`,
         formData,
         {
           headers: {
@@ -48,14 +48,14 @@ const AddAppointment = ({ token }) => {
         }
       );
       alert("Nouveau rendez-vous enregistré!");
-      navigate("/myAppointments/" + id);
+      navigate("/myAppointments");
     } catch (error) {
       console.log(error.response.data);
     }
   };
   return (
     <>
-      <Header pageToGoBack={"/myAppointments/" + id} />
+      <Header pageToGoBack={"/myAppointments"} />
       <main className="container-rdv">
         <div className="title">
           <h3>Ajoutez votre prochain rendez-vous</h3>
