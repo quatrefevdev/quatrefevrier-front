@@ -65,7 +65,7 @@ const MyAppointments = ({ token }) => {
         </Link> */}
         <div className="title">
           <h3>Mes rendez-vous</h3>
-          <Link to={"/addAppointment/" + id}>
+          <Link to={"/addAppointment"}>
             <ButtonComponent txt="Ajouter +" />
           </Link>
         </div>

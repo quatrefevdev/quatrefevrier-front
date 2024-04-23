@@ -28,7 +28,7 @@ const Reception = ({ token, id }) => {
         setData(response.data);
 
         const appointments = await axios.get(
-          `http://localhost:3000/appointments/${response.data._id}?limit=+${appLimit}`,
+          `http://localhost:3000/appointments?limit=+${appLimit}`,
 
           {
             headers: {
