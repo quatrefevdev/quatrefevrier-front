@@ -7,7 +7,7 @@ import "../Carnet/Appointments/myAppointments.scss";
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Footer from "../../components/Footer/Footer";
+// import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
 
 const Reception = ({ token, id }) => {
