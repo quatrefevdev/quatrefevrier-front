@@ -8,6 +8,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
+import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
 
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,9 @@ const Reception = ({ token, id }) => {
         setData(response.data);
 
         const appointments = await axios.get(
+
           `${import.meta.env.VITE_API_URL}/appointments?limit=+${appLimit}`,
+
 
           {
             headers: {
@@ -57,6 +60,7 @@ const Reception = ({ token, id }) => {
         console.log(error);
       }
     };
+    redirectIfNoToken(token, navigate);
     fetchData();
   }, []);
 
@@ -64,7 +68,7 @@ const Reception = ({ token, id }) => {
     <>
       {isLoading ? (
         <h2>Chargement de la page...</h2>
-      ) : token ? (
+      ) : (
         <div>
           {console.log(data)}
           <main className="container-rdv">
@@ -146,10 +150,6 @@ const Reception = ({ token, id }) => {
             </div>
             <Footer selected=""></Footer>
           </main>
-        </div>
-      ) : (
-        <div>
-          <Navigate to="/login" />
         </div>
       )}
     </>

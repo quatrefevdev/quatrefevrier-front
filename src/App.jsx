@@ -118,15 +118,15 @@ function App() {
         ></Route>
         <Route path="/group/:groupId" element={<Group />} />
         <Route path="/post/:postId" element={<PostSinglePage />} />
-        <Route path="/group/create" element={<CreateGroup/>} />
+        <Route path="/group/create" element={<CreateGroup />} />
 
         <Route path="/forgetPassword" element={<FortgetPassword />} />
         <Route
           path="/onboarding"
           element={<OnBoarding id={id} token={token} />}
         />
-        <Route path="/message" element={<Message />}></Route>
-        <Route path="/parrain" element={<Mentoring />}></Route>
+        <Route path="/message" element={<Message token={token} />}></Route>
+        <Route path="/parrain" element={<Mentoring token={token} />}></Route>
         <Route path="/secondaryeffects" element={<SecondaryEffects />}></Route>
         <Route path="/myweight" element={<MyWeight />}></Route>
         <Route path="/mynotes" element={<MyNotes />}></Route>
