@@ -59,7 +59,7 @@ function App() {
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
+  const [id, setId] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [del, setDel] = useState(false);
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies

@@ -74,14 +74,16 @@ const Reception = ({ token, id }) => {
                   return (
                     <div key={appointment._id} className="rdv">
                       <div className="rdv-left">
-                        <p>{`${appointment.date} - ${appointment.time}`}</p>
-                        {appointment.speciality && (
+                        <p>{`${formatDate(appointment.date)} - ${
+                          appointment.time
+                        }`}</p>
+                        {appointment.speciality || (
                           <p>appointment.speciality</p>
                         )}
-                        {appointment.institution && (
+                        {appointment.institution || (
                           <p>appointment.institution</p>
                         )}
-                        {appointment.address && <p>appointment.address</p>}
+                        {appointment.address || <p>appointment.address</p>}
                       </div>
                       <div className="rdv-right">
                         <FontAwesomeIcon
