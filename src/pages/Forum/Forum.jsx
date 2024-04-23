@@ -258,9 +258,7 @@ const Forum = ({ token, handleToken }) => {
                 </button>
                 <button
                   className="buttonCreateSearch"
-                  // onClick={() => {
-                  //   handleLogout();
-                  // }}
+                  onClick={() => navigate("/group/create")}
                 >
                   Créer un forum +
                 </button>
