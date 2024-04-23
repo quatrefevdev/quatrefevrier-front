@@ -64,7 +64,7 @@ const OnBoarding = ({ token }) => {
       }
     };
     fetchData();
-  }, [isLoading]);
+  }, []);
 
   //regex to check the phone number format
   function validatePhoneNumber(phoneNumber) {
