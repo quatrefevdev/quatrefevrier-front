@@ -58,6 +58,7 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
       <main className="container-rdv">
         <div className="title">
           <h3>Mon rendez-vous</h3>
+          <button>Modifier</button>
           <FontAwesomeIcon
             icon="fa-solid fa-trash"
             color="#4C548C"
