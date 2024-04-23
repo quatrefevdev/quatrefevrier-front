@@ -89,22 +89,28 @@
   margin-bottom: 30px;
 }
 .rectanglefemmediv > img {
-  height: 80px;
-  width: 40px;
+  height: 40px;
+  width: 20px;
 }
 .rectanglefemmediv {
   border: 1px solid #4c548c;
   margin-right: 10px;
-  padding: 10px;
+  padding: 20px;
 }
+
 .rectanglehommediv > img {
   height: 40px;
   width: 20px;
 }
+.rectanglehommedivbold > img {
+  height: 40px;
+  width: 20px;
+}
+
 .rectanglehommediv {
   border: 1px solid #4c548c;
   margin-right: 10px;
-  padding: 10px;
+  padding: 20px;
 }
 .choicesexonboarding {
   display: flex;
