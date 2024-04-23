@@ -31,11 +31,7 @@ const Reception = ({ token, id }) => {
         setData(response.data);
 
         const appointments = await axios.get(
-
-          `${import.meta.env.VITE_API_URL}/appointments/${
-            response.data._id
-          }?limit=+${appLimit}`,
-
+          `${import.meta.env.VITE_API_URL}/appointments?limit=+${appLimit}`,
 
           {
             headers: {
