@@ -34,6 +34,15 @@
 }
 .titlesexonboarding {
   margin-bottom: 30px;
+  font-family: "NN-Bold";
+  font-style: bold;
+}
+.txtrectanglehomme,
+.txtrectanglefemme {
+  margin-top: 10px;
+}
+.txtfemmehomme {
+  margin-top: 10px;
 }
 
 .datepickeronboarding {
@@ -92,10 +101,10 @@
   height: 40px;
   width: 20px;
 }
-.rectanglefemmediv {
-  border: 1px solid #4c548c;
-  margin-right: 10px;
-  padding: 20px;
+
+.rectanglefemmedivbold > img {
+  height: 40px;
+  width: 20px;
 }
 
 .rectanglehommediv > img {
@@ -106,27 +115,36 @@
   height: 40px;
   width: 20px;
 }
+.rectanglefemmediv {
+  border: 1px solid #4c548c;
+  margin-right: 10px;
+  padding: 20px;
+  border-radius: 5px;
+}
 
 .rectanglehommediv {
   border: 1px solid #4c548c;
   margin-right: 10px;
   padding: 20px;
+  border-radius: 5px;
 }
 .choicesexonboarding {
   display: flex;
   width: "100%";
 }
 .rectanglefemmedivbold {
-  border: 5px solid #4c548c;
+  border: 3px solid #4c548c;
   border-image: linear-gradient(#4c548c, #ef787c) 27;
   margin-right: 10px;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 5px;
 }
 .rectanglehommedivbold {
-  border: 5px solid #4c548c;
-  border-image: linear-gradient(#4c548c, #ef787c) 27;
+  border: 3px solid #4c548c;
+  border-image: linear-gradient(45deg, #4c548c, #ef787c) 27;
   margin-right: 10px;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 5px;
 }
 .cancernotselected {
   border: 2px solid transparent;
@@ -137,6 +155,7 @@
   font-family: "NN-Bold";
   font-size: 13px;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .cancerselected {
@@ -148,6 +167,7 @@
   text-align: left;
   font-size: 13px;
   border-radius: 8px;
+  padding-left: 10px;
 }
 .cancerselecteddiv {
   display: flex;
@@ -157,6 +177,10 @@
 
 .cancerkindlistboxdiv {
   margin-bottom: 20px;
+}
+.cancerkinddiv {
+  border: 1px solid black;
+  padding-left: 5px;
 }
 
 .titlecancerkindonboarding {
@@ -180,6 +204,7 @@
   font-size: 13px;
   border-radius: 8px;
   text-align: left;
+  padding-left: 10px;
 }
 .cancersteplistboxdiv {
   margin-bottom: 20px;
@@ -193,6 +218,7 @@
   font-size: 13px;
   border-radius: 8px;
   text-align: left;
+  padding-left: 10px;
 }
 .cancerstepselecteddiv {
   display: flex;
@@ -232,34 +258,68 @@
 
 .avatarbuttononboardingdiv {
   display: flex;
-  justify-content: flex-start;
   gap: 10px;
-  margin-top: 20px;
   margin-left: 20px;
   margin-right: 30px;
   margin-bottom: 40px;
+  text-align: center;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+}
+.buttonavatarpicker {
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ff7979;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer; /* "hand" cursor */
+}
+.buttonavatarpicker > p {
+  font-family: "NN-Bold";
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+.buttonavatarpicker:hover {
+  background-color: #dc5c5f;
+}
+.buttonclassselected:hover {
+  background-color: #dc5c5f;
+}
+
+.buttonclassselected {
+  font-family: "NN-Medium";
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #dc5c5f;
+  border: none;
 }
 .avatarpicker + label {
   font-weight: 700;
   color: white;
-  background-color: #ef787c;
+  background-color: #ff7979;
   border-radius: 5px;
   padding: 10px;
   display: inline-block;
   font-size: 15px;
   font-family: "NN-Bold";
   align-content: center;
+  margin-top: 20px;
   text-align: center;
-  width: 100px;
-  height: 50px;
+  width: 90px;
+  height: 40px;
   cursor: pointer; /* "hand" cursor */
 }
 
 .avatarpicker:focus + label,
-.avatarpicker + label:hover {
-  background-color: #4c548c;
+.avatarpicker:hover + label:hover {
+  background-color: #dc5c5f;
 }
 .labelavatar {
   text-align: center;
@@ -276,4 +336,7 @@
 .firstnamediv,
 .phonediv {
   margin-bottom: 40px;
+}
+.avatartitleonboarding {
+  width: "100%";
 }

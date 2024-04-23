@@ -1,16 +1,13 @@
 {
   "results": [
     {
-      "cancerstep": "En attente de diagnostique"
+      "cancerstep": "En attente de diagnostic"
     },
     {
       "cancerstep": "En cours de traitement"
     },
     {
       "cancerstep": "En suivi post-traitement"
-    },
-    {
-      "cancerstep": "En rémission"
     },
     {
       "cancerstep": "En soins palliatifs"

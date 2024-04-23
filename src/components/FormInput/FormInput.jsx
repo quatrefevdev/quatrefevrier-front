@@ -1,9 +1,20 @@
 import "./FormInput.scss";
 
-const FormInput = ({ title, name, placeholder, state, setState, type }) => {
+const FormInput = ({
+  title,
+  undertitle,
+  name,
+  placeholder,
+  state,
+  setState,
+  type,
+}) => {
   return (
     <div>
       <h2 className="titleinput">{title}</h2>
+      <div className="inputundertitle">
+        <p>{undertitle}</p>
+      </div>
       <div className="divforminput">
         <input
           className="forminput"
