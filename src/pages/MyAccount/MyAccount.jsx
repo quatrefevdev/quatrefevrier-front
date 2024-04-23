@@ -16,26 +16,56 @@ library.add(faPen, faPlus);
 //JSON Files
 import cancerstepfile from "../../Json/cancerstep.json";
 
-//Component
-import FormInput from "../../components/FormInput/FormInput";
+//regex to check the phone number format
+function validatePhoneNumber(phoneNumber) {
+  var regex =
+    /^\(?([0-9]{2})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{2})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/;
+  if (regex.test(phoneNumber)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-const MyAccount = ({ id, token, handleToken }) => {
+const MyAccount = ({ token, handleToken }) => {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [cancerKind, setCancerKind] = useState();
+  const [cancerstep, setCancerStep] = useState();
   const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [phonenumber, setPhoneNumber] = useState();
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [error, setError] = useState("");
+  const [avatar, setAvatar] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:3000/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         console.log("Mes datas : ", response.data);
         setData(response.data);
+        console.log(isUpdated);
+        if (response.data.account.username && isUpdated === false) {
+          setUserName(response.data.account.username);
+        }
+        if (response.data.email && isUpdated === false) {
+          setEmail(response.data.email);
+        }
+        if (response.data.account.phonenumber && isUpdated === false) {
+          setPhoneNumber(response.data.account.phonenumber);
+        }
+        if (response.data.account.cancerKind && isUpdated === false) {
+          setCancerKind(response.data.account.cancerKind);
+        }
+        setIsUpdated(true);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -44,108 +74,46 @@ const MyAccount = ({ id, token, handleToken }) => {
     fetchData();
   }, []);
 
-  const handleSubmit = (event, type) => {
-    // Empêche le rafraichissement par défaut du navigateur lors de la soumission
-    event.preventDefault();
+  const handleSubmit = (event) => {
     setError("");
     try {
-      const fetchData = async () => {
+      const fetchUpdatedData = async () => {
         // Je crée une nouvelle instance du constructeur FormData
         const formData = new FormData();
-        switch (type) {
-          case "email":
-            formData.append("email", email);
-            const response1 = await axios.post(
-              `http://localhost:3000/user/updateuser?email=` + { email },
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            break;
-          case "pseudo":
-            formData.append("username", username);
-            const response2 = await axios.post(
-              `http://localhost:3000/user/updateuser?username=` + { username },
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            break;
-          case "phonenumber":
-            formData.append("phonenumber", phonenumber);
-            const response3 = await axios.post(
-              `http://localhost:3000/user/updateuser?phonenumber=` +
-                { phonenumber },
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            break;
-          case "avatar":
-            formData.append("avatar", avatar);
-            const response4 = await axios.post(
-              `http://localhost:3000/user/updateuser?avatar=` + { avatar },
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            break;
-          case "cancerstep":
-            formData.append("cancerstep", cancerstep);
-            const response5 = await axios.post(
-              `http://localhost:3000/user/updateuser?cancerstep=` + { avatar },
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            break;
+        // Rajouter 2 paires clef/valeur à mon formdata
+        formData.append("avatar", avatar);
+        // Création des autres clef/valeur au formData;
+        formData.append("email", email);
+        formData.append("username", username);
+        formData.append("cancerstep", cancerstep);
+        formData.append("phonenumber", phonenumber);
+        try {
+          const response = await axios.post(
+            `${import.meta.env.VITE_API_URL}/user/updateuserinfo/`,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          setData(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.log("Erreur message : ", error.response.data.message);
+          if (error.response.data.message === "Ce pseudo est déjà pris") {
+            setError("Désolé, ce pseudo est déjà pris");
+          }
+          if (error.response.data.message === "Ce mail existe déjà") {
+            setError("Désolé, ce mail existe déjà");
+          }
         }
       };
-      fetchData();
+      fetchUpdatedData();
     } catch (error) {
       console.log("Erreur message : ", error.response.data.message);
     }
-  };
-  const pseudoChange = (event) => {
-    event.preventDefault();
-    keyb;
-    handleSubmit(event, "pseudo");
-  };
-  const emailChange = (event) => {
-    event.preventDefault();
-    handleSubmit(event, "email");
-  };
-  const phonenumberChange = (event) => {
-    event.preventDefault();
-    handleSubmit(event, "phonenumber");
-  };
-  const avatarChange = (event) => {
-    event.preventDefault();
-    handleSubmit(event, "avatar");
-  };
-  const cancerStepChange = (event) => {
-    event.preventDefault();
-    handleSubmit(event, "cancerstep");
   };
 
   const handleLogout = () => {
@@ -165,52 +133,63 @@ const MyAccount = ({ id, token, handleToken }) => {
         <p className="pseudotitle"> Mon pseudo :</p>
 
         <input
-          className="inputpseudo"
-          value={data.account.username}
+          className="inputaccountpseudo"
+          value={username}
           type="text"
-          placeholder={data.account.username}
+          set={username}
           name="inputpseudo"
           color="white"
           // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
           onChange={(event) => {
             setUserName(event.target.value);
+            console.log(username);
           }}
         />
       </div>
       <div className="emailclass">
         <p className="emailtitle"> Mon email : </p>
-        <p className="emailtext">{data.email}</p>
-        <div onClick={() => emailChange}>
-          <FontAwesomeIcon
-            className="emailiconclass"
-            icon="fa-solid fa-pen"
-            size="2xs"
-          />
-        </div>
+        <input
+          className="inputaccountemail"
+          value={email}
+          type="text"
+          name="inputaccountemail"
+          color="white"
+          // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
+          onChange={(event) => {
+            setEmail(event.target.value);
+            console.log(email);
+          }}
+        />
       </div>
       <div className="phonenumberclass">
         <p className="phonenumbertitle"> Mon numéro de téléphone : </p>
-        <p className="phonenumbertext">{data.account.phonenumber}</p>
-        <div onClick={() => phonenumberChange}>
-          <FontAwesomeIcon
-            className="phonenumbericonclass"
-            icon="fa-solid fa-pen"
-            size="2xs"
-          />
-        </div>
+        <input
+          className="inputaccountphone"
+          value={phonenumber}
+          type="text"
+          name="inputaccountphone"
+          color="white"
+          // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
+          onChange={(event) => {
+            setPhoneNumber(event.target.value);
+            console.log(phonenumber);
+          }}
+        />
       </div>
       <div className="avatarclass">
         <p className="avatartitle"> Mon avatar :</p>
-        {data.account.avatar && (
+        {data.account.avatar ? (
           <div className="avatarimgdiv">
             <img
               className="avatarimg"
               src={data.account.avatar.secure_url}
               alt="avatar"
             ></img>
-            <div onClick={() => avatarChange}>
-              <FontAwesomeIcon className="plusicon" icon="fa-solid fa-plus" />
-            </div>
+          </div>
+        ) : (
+          <div onClick={() => avatarChange}>
+            <FontAwesomeIcon className="plusicon" icon="fa-solid fa-plus" />
+            <p> Ajouter un avatar </p>
           </div>
         )}
       </div>
@@ -218,7 +197,7 @@ const MyAccount = ({ id, token, handleToken }) => {
         <p className="cancersteptitle"> Etape du cancer : </p>
         <select
           className="cancerstepselect"
-          onChange={(e) => setCancerKind(e.target.value)}
+          onChange={(e) => setCancerStep(e.target.value)}
         >
           {cancerstepfile.results.map((cancer, idx) => {
             return (
@@ -233,6 +212,10 @@ const MyAccount = ({ id, token, handleToken }) => {
         <button className="buttonLogout" onClick={() => handleLogout()}>
           Déconnexion
         </button>
+        <button className="buttonSave" onClick={() => handleSubmit()}>
+          Enregistrer
+        </button>
+        <p> {error}</p>
       </div>
       <Footer selected="compte"></Footer>
     </div>

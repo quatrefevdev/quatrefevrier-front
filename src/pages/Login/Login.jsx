@@ -50,7 +50,7 @@ const Login = ({ handleToken, setId }) => {
       const fetchData = async () => {
         try {
           const response = await axios.post(
-            "http://localhost:3000/user/login",
+            `${import.meta.env.VITE_API_URL}/user/login`,
             {
               email: email,
               password: password,

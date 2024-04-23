@@ -20,15 +20,22 @@ const Reception = ({ token, id }) => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:3000/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setData(response.data);
 
         const appointments = await axios.get(
-          `http://localhost:3000/appointments?limit=+${appLimit}`,
+
+          `${import.meta.env.VITE_API_URL}/appointments/${
+            response.data._id
+          }?limit=+${appLimit}`,
+
 
           {
             headers: {

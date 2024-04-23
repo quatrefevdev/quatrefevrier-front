@@ -9,13 +9,12 @@
 .alreadyaccountonboarding {
   color: #4c548c;
   font-family: "NN-Bold";
+  font-weight: bold;
   cursor: pointer;
   margin-top: 5px;
   font-size: 12px;
   text-align: center;
-}
-a:link {
-  text-decoration: none !important;
+  text-decoration: underline;
 }
 
 .helptxtonboarding {
@@ -30,7 +29,7 @@ a:link {
   color: #4c548c;
   font-family: "NN-Bold";
 
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
 }
 .titlesexonboarding {
@@ -40,7 +39,7 @@ a:link {
 .datepickeronboarding {
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 .titledatepickeronboarding {
   text-align: center;
@@ -99,8 +98,8 @@ a:link {
   padding: 10px;
 }
 .rectanglehommediv > img {
-  height: 80px;
-  width: 40px;
+  height: 40px;
+  width: 20px;
 }
 .rectanglehommediv {
   border: 1px solid #4c548c;
@@ -128,7 +127,7 @@ a:link {
   height: 30px;
   width: 300px;
   color: #4c548c;
-  text-align: center;
+  text-align: let;
   font-family: "NN-Bold";
   font-size: 13px;
   border-radius: 8px;
@@ -140,7 +139,7 @@ a:link {
   width: 300px;
   color: #4c548c;
   font-family: "NN-Bold";
-  text-align: center;
+  text-align: left;
   font-size: 13px;
   border-radius: 8px;
 }
@@ -151,20 +150,20 @@ a:link {
 }
 
 .cancerkindlistboxdiv {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .titlecancerkindonboarding {
   text-align: center;
   color: #4c548c;
   font-family: "NN-Bold";
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .titlecancersteponboarding {
-  text-align: center;
   color: #4c548c;
   font-family: "NN-Bold";
   margin-bottom: 30px;
+  text-align: left;
 }
 .cancerstepnotselected {
   border: 2px solid transparent;
@@ -174,10 +173,10 @@ a:link {
   font-family: "NN-Bold";
   font-size: 13px;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 }
 .cancersteplistboxdiv {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .cancerstepselected {
   border: 2px solid #4c548c;
@@ -187,17 +186,27 @@ a:link {
   font-family: "NN-Bold";
   font-size: 13px;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 }
 .cancerstepselecteddiv {
   display: flex;
   line-height: 26px;
   margin-bottom: 5px;
 }
-.titleUserTypeOnBoard {
-  text-align: center;
+.titleusertypeonboard {
   font-family: "NN-Bold";
+  width: "100%";
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   color: #4c548c;
+}
+.sousphraseusertype {
+  width: "100%";
+  height: 50px;
+  margin-top: 10px;
+  font-family: "NN-Light";
+  text-align: center;
 }
 
 .buttonpatientaidantdiv {
@@ -205,7 +214,7 @@ a:link {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .avatarpicker {
@@ -222,7 +231,7 @@ a:link {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   justify-content: center;
   align-items: center;
 }
@@ -260,5 +269,5 @@ a:link {
 .namediv,
 .firstnamediv,
 .phonediv {
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }

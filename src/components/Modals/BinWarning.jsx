@@ -1,5 +1,4 @@
 import axios from "axios";
-import "./binWarning.scss";
 const BinWarning = ({ setVisibility, setDel }) => {
   return (
     <div
