@@ -5,7 +5,6 @@ import axios from "axios";
 import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
 import React from "react";
-import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
@@ -121,17 +120,6 @@ const Reception = ({ token, id }) => {
                       </div>
                     </Link>
                   </div>
-<<<<<<< HEAD
-                </div>
-              );
-            })}
-          </div>
-        )}
-        <p> Les dernières actus de vos forums favoris</p>
-      </main>
-      <Footer selected="none"></Footer>
-    </div>
-=======
                 ))
               ) : (
                 <div>
@@ -148,7 +136,6 @@ const Reception = ({ token, id }) => {
         </div>
       )}
     </>
->>>>>>> b9409338726638e8636870f44e2887bd747445c5
   );
 };
 export default Reception;
