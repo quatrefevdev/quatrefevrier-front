@@ -104,7 +104,7 @@ const Signup = ({ handleToken, setId }) => {
       case 1 /* Email (Input+regex) */:
         const checkemail = validateEmail(email);
         checkemailindb();
-        console.log("EMAIL IN DB ?", data);
+        console.log("EMAIL IN DB ?", error);
         if (checkemail === false || error !== "") {
           if (!checkemail) {
             setError("Désolé, ce mail n'est pas valide ");
