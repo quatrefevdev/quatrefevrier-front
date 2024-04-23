@@ -6,6 +6,7 @@ import axios from "axios";
 import React, { useCallback } from "react";
 import Footer from "../../components/Footer/Footer";
 import Cookies from "js-cookie";
+import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
 
 //Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -71,6 +72,7 @@ const MyAccount = ({ token, handleToken }) => {
         console.log(error);
       }
     };
+    redirectIfNoToken(token, navigate);
     fetchData();
   }, []);
 
