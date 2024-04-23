@@ -5,6 +5,7 @@ import "../../css/fonts.css";
 import axios from "axios";
 import React, { useCallback } from "react";
 import Footer from "../../components/Footer/Footer";
+import Cookies from "js-cookie";
 
 //Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -18,7 +19,7 @@ import cancerstepfile from "../../Json/cancerstep.json";
 //Component
 import FormInput from "../../components/FormInput/FormInput";
 
-const MyAccount = ({ id, token }) => {
+const MyAccount = ({ id, token, handleToken }) => {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -145,6 +146,12 @@ const MyAccount = ({ id, token }) => {
   const cancerStepChange = (event) => {
     event.preventDefault();
     handleSubmit(event, "cancerstep");
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    handleToken(token);
+    navigate("/login");
   };
   return isLoading ? (
     <h2>Chargement de la page...</h2>

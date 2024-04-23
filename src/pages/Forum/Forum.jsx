@@ -25,7 +25,7 @@ const Forum = ({ token, handleToken }) => {
   const handleNextStep = async (suggestion) => {
     try {
       //Request to modify the user model to switch the isNew and add array of id of group
-      const response = await axios.put(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/updateuser/`,
         {
           needToChooseForum: false,
