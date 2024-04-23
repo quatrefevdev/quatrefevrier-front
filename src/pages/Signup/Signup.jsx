@@ -51,7 +51,7 @@ const Signup = ({ handleToken, setId }) => {
       setError("");
       setEmailInDb(false);
       const response = await axios.post(
-        "http://localhost:3000/user/checkemailindb",
+        `${import.meta.env.VITE_API_URL}/user/checkemailindb`,
         {
           email: email,
         }
@@ -76,10 +76,13 @@ const Signup = ({ handleToken, setId }) => {
   const fetchData = async () => {
     try {
       setError("");
-      const response = await axios.post("http://localhost:3000/user/signup/", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/signup/`,
+        {
+          email: email,
+          password: password,
+        }
+      );
       setData(response.data);
       handleToken(response.data.token);
       setId(response.data.id);

@@ -11,6 +11,7 @@ import image_homme from "../../images/symbole_homme.png";
 //Component
 import FormInput from "../../components/FormInput/FormInput";
 import ButtonComponent from "../../components/Button/ButtonComponent";
+import ButtonComponentQst from "../../components/Button/ButtonComponentQst";
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
 
 import "../../components/Reactdatepicker/Reactdatepicker.css";
@@ -33,31 +34,32 @@ const OnBoarding = ({ token }) => {
   const [dateofbirth, setDateofBirth] = useState(new Date());
   const [cancerkindsel, setCancerKind] = useState([]);
   const [cancerstepsel, setCancerStep] = useState("");
-  const [phonenumber, setPhoneNumber] = useState();
+  const [phonenumber, setPhoneNumber] = useState("");
   const [data, setData] = useState({});
+  const [userdata, setUserData] = useState({});
   const [avatar, setAvatar] = useState({});
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
   const [usertype, setUserType] = useState("");
   const newCancerKindArr = [...cancerkindsel];
   const [isLoading, setIsLoading] = useState(true);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:3000/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log("Mes datas : ", response.data);
-        setData(response.data);
+        const response_user = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserData(response_user.data);
         setIsLoading(false);
-        console.log(data.account.needToDoOnboarding);
-        if (data.account.needToDoOnboarding === false) {
+        if (response_user.data.account.needToDoOnboarding === false) {
           navigate("/reception");
         }
       } catch (error) {
@@ -67,6 +69,49 @@ const OnBoarding = ({ token }) => {
     redirectIfNoToken(token, navigate);
     fetchData();
   }, []);
+
+  const updateUserData = async () => {
+    // Je crée une nouvelle instance du constructeur FormData
+    const formData = new FormData();
+    // Rajouter 2 paires clef/valeur à mon formdata
+    formData.append("avatar", avatar);
+    // Création des autres clef/valeur au formData;
+    formData.append("username", username);
+    formData.append("lastname", lastname);
+    formData.append("firstname", firstname);
+    formData.append("sex", sex);
+    formData.append("dateofbirth", dateofbirth);
+    formData.append("cancerkind", JSON.stringify(cancerkindsel));
+    formData.append("cancerstep", cancerstepsel);
+    formData.append("phonenumber", phonenumber);
+    formData.append("accountype", usertype);
+    formData.append("needToDoOnboarding", false);
+    console.log("MON FUCKING TOKEN : ", token);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/updateuser/`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log("Erreur message : ", error.response.data.message);
+      if (
+        error.response.data.message ===
+        "This mail already exists, ask user to connect"
+      ) {
+        setError(
+          "Cet Email existe déjà, merci de vous connecter à votre compte"
+        );
+      }
+    }
+  };
 
   //regex to check the phone number format
   function validatePhoneNumber(phoneNumber) {
@@ -88,7 +133,7 @@ const OnBoarding = ({ token }) => {
       // Gestion de tout les cas de mauvaises saisies utilisateurs, contrôles, regex ...
       case 1 /* User type (Buttons) */:
         if (!usertype) {
-          setError("Désolé, peux tu choisir une catégorie");
+          setError("Merci saisir une réponse avant de continuer");
         } else {
           setStep(step + 1);
           setVal(0);
@@ -183,50 +228,8 @@ const OnBoarding = ({ token }) => {
         break;
     }
     if (step >= 10) {
-      try {
-        const fetchData = async () => {
-          // Je crée une nouvelle instance du constructeur FormData
-          const formData = new FormData();
-          // Rajouter 2 paires clef/valeur à mon formdata
-          formData.append("avatar", avatar);
-
-          //console.log("Avatar", avatar);
-
-          // Création des autres clef/valeur au formData;
-          formData.append("username", username);
-          formData.append("lastname", lastname);
-          formData.append("firstname", firstname);
-          formData.append("sex", sex);
-          formData.append("dateofbirth", dateofbirth);
-          formData.append("cancerkind", JSON.stringify(cancerkindsel));
-          formData.append("cancerstep", cancerstepsel);
-          formData.append("phonenumber", phonenumber);
-          formData.append("accountype", usertype);
-          formData.append("needToDoOnboarding", false);
-
-          const response = await axios.post(
-            "http://localhost:3000/user/updateuser/",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-        };
-        fetchData();
-        navigate("/reception");
-      } catch (error) {
-        console.log("Erreur message : ", error.response.data.message);
-        if (
-          error.response.data.message ===
-          "This mail already exists, ask user to connect"
-        ) {
-          setError(
-            "Cet Email existe déjà, merci de vous connecter à votre compte"
-          );
-        }
-      }
+      updateUserData();
+      navigate("/reception");
     }
   };
 
@@ -235,7 +238,7 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      if (step === 9 && usertype !== "Aidant") {
+      if (step === 9 && usertype === "Aidant") {
         setStep(step - 3);
       } else {
         setStep(step - 1);
@@ -258,14 +261,23 @@ const OnBoarding = ({ token }) => {
       case 1 /* User type (Buttons) */:
         arr.push(
           <div>
-            <h2 className="titleUserTypeOnBoard"> Vous êtes ? </h2>
+            <div className="txtusertypediv">
+              <h2 className="titleusertypeonboard">
+                Quelle est votre situation actuelle ?
+              </h2>
+              <div className="sousphraseusertype">
+                <p>
+                  Nous vous posons la question afin de vous orienter au mieux.
+                </p>
+              </div>
+            </div>
             <div className="buttonpatientaidantdiv">
-              <ButtonComponent
+              <ButtonComponentQst
                 pressFct={UserTypePatient}
                 value={usertype === "Patient" ? 1 : 0}
                 txt="Patient"
               />
-              <ButtonComponent
+              <ButtonComponentQst
                 pressFct={UserTypeAidant}
                 value={usertype === "Aidant" ? 1 : 0}
                 txt="Aidant"
@@ -319,28 +331,10 @@ const OnBoarding = ({ token }) => {
       case 5 /* Sex choice (Image+Onclick) */:
         arr.push(
           <div className="sexonboardingdiv">
-            <div className="titlesexonboarding">Vous êtes ?</div>
+            <div className="titlesexonboarding">
+              Êtes-vous un homme ou une femme ?
+            </div>
             <div className="choicesexonboarding">
-              {sex !== "F" ? (
-                <div className="rectanglefemmediv" onClick={() => setSex("F")}>
-                  <img
-                    className="imagefemmediv"
-                    src={image_femme}
-                    alt="image_femme"
-                  />
-                  <div className="txtrectanglefemme">Une femme</div>
-                </div>
-              ) : (
-                <div className="rectanglefemmedivbold">
-                  <img
-                    className="imagefemmediv"
-                    src={image_femme}
-                    alt="image_femme"
-                  />
-                  <div className="txtrectanglefemme">Une femme</div>
-                </div>
-              )}
-
               {sex !== "H" ? (
                 <div className="rectanglehommediv" onClick={() => setSex("H")}>
                   <img
@@ -358,6 +352,25 @@ const OnBoarding = ({ token }) => {
                     alt="image_homme"
                   />
                   <div className="txtrectanglehomme">Un homme</div>
+                </div>
+              )}
+              {sex !== "F" ? (
+                <div className="rectanglefemmediv" onClick={() => setSex("F")}>
+                  <img
+                    className="imagefemmediv"
+                    src={image_femme}
+                    alt="image_femme"
+                  />
+                  <div className="txtrectanglefemme">Une femme</div>
+                </div>
+              ) : (
+                <div className="rectanglefemmedivbold">
+                  <img
+                    className="imagefemmediv"
+                    src={image_femme}
+                    alt="image_femme"
+                  />
+                  <div className="txtrectanglefemme">Une femme</div>
                 </div>
               )}
             </div>
@@ -533,6 +546,7 @@ const OnBoarding = ({ token }) => {
                   txt="< Précédent"
                 />
               )}
+
               <ButtonComponent
                 id="Next"
                 value={val}
@@ -545,13 +559,15 @@ const OnBoarding = ({ token }) => {
             ) : (
               <p className="errortxtonboardinghidden">{error}</p>
             )}
-            <div className="divaccount">
-              <Link to={`/Login`}>
-                <p className="alreadyaccountonboarding">
-                  Déjà un compte? Connectez-vous !
-                </p>
-              </Link>
-            </div>
+            {step === 1 && (
+              <div className="divaccount">
+                <Link to={`/Login`}>
+                  <p className="alreadyaccountonboarding">
+                    Déjà un compte ? Connectez-vous
+                  </p>
+                </Link>
+              </div>
+            )}
           </form>
         </div>
       )}
