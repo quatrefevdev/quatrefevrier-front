@@ -121,15 +121,6 @@ const Reception = ({ token, id }) => {
                       </div>
                     </Link>
                   </div>
-                  //             </div>
-                  //           );
-                  //         })}
-                  //       </div>
-                  //     )}
-                  //     <p> Les dernières actus de vos forums favoris</p>
-                  //   </main>
-                  //   <Footer selected="none"></Footer>
-                  // </div>
                 ))
               ) : (
                 <div>
