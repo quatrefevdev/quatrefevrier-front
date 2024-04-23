@@ -127,7 +127,9 @@ function App() {
         ></Route>
         <Route
           path="/myaccount"
-          element={<MyAccount id={id} token={token} />}
+          element={
+            <MyAccount id={id} token={token} handleToken={handleToken} />
+          }
         ></Route>
       </Routes>
       {visibility && (
