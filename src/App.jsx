@@ -91,11 +91,14 @@ function App() {
           path="/forum"
           element={<Forum token={token} handleToken={handleToken} />}
         ></Route>
-        <Route path="/carnetHome" element={<CarnetHome id={id} />}></Route>
-        <Route path="/myAppointments/:id" element={<MyAppointments />}></Route>
+        <Route path="/carnetHome" element={<CarnetHome />}></Route>
+        <Route
+          path="/myAppointments/"
+          element={<MyAppointments token={token} />}
+        ></Route>
 
         <Route
-          path="/addAppointment/:id"
+          path="/addAppointment/"
           element={<AddAppointment token={token} />}
         ></Route>
         <Route
@@ -127,7 +130,9 @@ function App() {
         ></Route>
         <Route
           path="/myaccount"
-          element={<MyAccount id={id} token={token} />}
+          element={
+            <MyAccount id={id} token={token} handleToken={handleToken} />
+          }
         ></Route>
       </Routes>
       {visibility && (

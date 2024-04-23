@@ -2,7 +2,7 @@ import "./carnetHome.scss";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
-const CarnetHome = ({ id }) => {
+const CarnetHome = () => {
   return (
     <>
       <main
@@ -11,7 +11,7 @@ const CarnetHome = ({ id }) => {
       >
         <h2>Bienvenue sur votre espace de suivi médical</h2>
         <div className="carnet-buttons">
-          <Link to={"/MyAppointments/" + id}>
+          <Link to={"/MyAppointments"}>
             <button>Mes rendez-vous médicaux</button>
           </Link>
           <Link>
