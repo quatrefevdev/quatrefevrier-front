@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./post-card.scss";
 
 const PostCard = ({post_url, post_body, post_author, comments_count}) => {
-    console.log(post_author);
     return (
         <Link className="post-container" to={post_url}>        
             {post_author ? (
