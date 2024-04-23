@@ -49,35 +49,14 @@ a:link {
   margin-top: 20px;
 }
 
-.progressbar {
-  width: 50%;
-  height: 5px;
-  border-radius: 10px;
-  background-color: #e6e6e6;
-  margin-bottom: 10px;
-}
-
-.progressbarfill {
-  height: 100%;
-  width: 50%;
-  border-radius: 10px;
-  background-color: white;
-  transition: width 0.5s ease-out;
-}
-.progressbardiv {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
 .posrelinputsignupdiv1 {
   position: relative;
 }
 .inputsignupdiv1 {
   position: absolute;
   left: 300px;
-  top: 50px;
+
+  top: 52px;
 }
 .posrelinputsignupdiv2 {
   position: relative;
@@ -85,7 +64,8 @@ a:link {
 .inputsignupdiv2 {
   position: absolute;
   left: 300px;
-  top: 27px;
+
+  top: 28px;
 }
 .divparentcheck {
   position: relative;
