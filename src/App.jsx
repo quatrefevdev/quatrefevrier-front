@@ -50,7 +50,9 @@ import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
 import Mentoring from "./pages/Mentoring/Mentoring";
 import MyAccount from "./pages/MyAccount/MyAccount";
-
+import SecondaryEffects from "./pages/Carnet/SecondaryEffects/SecondaryEffects";
+import MyWeight from "./pages/Carnet/MyWeight/MyWeight";
+import MyNotes from "./pages/Carnet/MyNotes/MyNotes";
 // Components
 import BinWarning from "./components/Modals/BinWarning";
 
@@ -123,6 +125,9 @@ function App() {
         />
         <Route path="/message" element={<Message />}></Route>
         <Route path="/parrain" element={<Mentoring />}></Route>
+        <Route path="/secondaryeffects" element={<SecondaryEffects />}></Route>
+        <Route path="/myweight" element={<MyWeight />}></Route>
+        <Route path="/mynotes" element={<MyNotes />}></Route>
 
         <Route
           path="/reception"
