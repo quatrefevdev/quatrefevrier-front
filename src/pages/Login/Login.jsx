@@ -67,7 +67,7 @@ const Login = ({ handleToken, setId }) => {
             handleEmail(email, 2);
           }
           console.log("Login ID : ", response.data.id);
-          if (response.data.config.needToDoOnboarding === false) {
+          if (response.data.needToDoOnboarding === false) {
             navigate("/reception");
           } else navigate("/onboarding");
         } catch (error) {

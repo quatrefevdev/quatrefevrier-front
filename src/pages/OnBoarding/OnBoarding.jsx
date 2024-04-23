@@ -11,6 +11,7 @@ import image_homme from "../../images/symbole_homme.png";
 //Component
 import FormInput from "../../components/FormInput/FormInput";
 import ButtonComponent from "../../components/Button/ButtonComponent";
+import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
 
 import "../../components/Reactdatepicker/Reactdatepicker.css";
 //Datepicker
@@ -56,13 +57,14 @@ const OnBoarding = ({ token }) => {
         setData(response.data);
         setIsLoading(false);
         console.log(data.account.needToDoOnboarding);
-        if (!data.account.needToDoOnboarding) {
+        if (data.account.needToDoOnboarding === false) {
           navigate("/reception");
         }
       } catch (error) {
         console.log(error);
       }
     };
+    redirectIfNoToken(token, navigate);
     fetchData();
   }, []);
 
@@ -233,7 +235,7 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (step > 1) {
-      if (step === 9 || usertype !== "Aidant") {
+      if (step === 9 && usertype !== "Aidant") {
         setStep(step - 3);
       } else {
         setStep(step - 1);
