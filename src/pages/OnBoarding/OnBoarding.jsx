@@ -151,7 +151,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 3 /* Name (Input) */:
         if (!lastname) {
-          setError("Allez ! T'as bien un petit nom ");
+          setError("Merci saisir votre nom avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -160,7 +160,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 4 /* Firstname (Input) */:
         if (!firstname) {
-          setError("Renseigne ton prénom s'il te plait");
+          setError("Merci saisir votre prénom avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -169,7 +169,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 5 /* Sex choice (Image+Onclick) */:
         if (!sex) {
-          setError("Clic sur un des deux genres s'il te plait");
+          setError("Merci saisir un genre avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -179,7 +179,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 6 /* Date of birth (datepicker) */:
         if (!dateofbirth) {
-          setError("Sélectionne ta date de naissance s'il te plait");
+          setError("Merci saisir votre date de naissance avant de continuer");
         } else {
           if (usertype === "Aidant") {
             setStep(step + 3);
@@ -197,7 +197,9 @@ const OnBoarding = ({ token }) => {
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
         if (cancerkindsel.length === 0) {
-          setError("Sélectionne ton type de cancer s'il te plait");
+          setError(
+            "Merci sélectionner une ou plusieurs réponses avant de continuer"
+          );
         } else {
           setStep(step + 1);
           setError("");
@@ -206,7 +208,9 @@ const OnBoarding = ({ token }) => {
         break;
       case 8 /* Cancer step (listbox)*/:
         if (cancerstepsel.length === 0) {
-          setError("Sélectionne la phase de ton cancer s'il te plait");
+          setError(
+            "Merci sélectionner une ou plusieurs réponses avant de continuer"
+          );
         } else {
           setStep(step + 1);
           setError("");
@@ -216,7 +220,7 @@ const OnBoarding = ({ token }) => {
       case 9 /* Phone number (Input+regex) */:
         const checknumber = validatePhoneNumber(phonenumber);
         if (!phonenumber || checknumber === false) {
-          setError("T'as bien un 06 !");
+          setError("Merci saisir votre numéro de téléphone avant de continuer");
         } else {
           setStep(step + 1);
           setVal(0);
