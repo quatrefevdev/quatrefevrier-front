@@ -51,7 +51,9 @@ import FortgetPassword from "./pages/Login/FortgetPassword";
 import Message from "./pages/Message/Message";
 import Mentoring from "./pages/Mentoring/Mentoring";
 import MyAccount from "./pages/MyAccount/MyAccount";
-
+import SecondaryEffects from "./pages/Carnet/SecondaryEffects/SecondaryEffects";
+import MyWeight from "./pages/Carnet/MyWeight/MyWeight";
+import MyNotes from "./pages/Carnet/MyNotes/MyNotes";
 // Components
 import BinWarning from "./components/Modals/BinWarning";
 
@@ -60,7 +62,7 @@ function App() {
   // - Si je trouve un cookie token, ce cookie
   // - Sinon, null
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [id, setId] = useState("661fed5fcb8a76b9e4a116ec");
+  const [id, setId] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [del, setDel] = useState(false);
   // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
@@ -125,6 +127,9 @@ function App() {
         />
         <Route path="/message" element={<Message />}></Route>
         <Route path="/parrain" element={<Mentoring />}></Route>
+        <Route path="/secondaryeffects" element={<SecondaryEffects />}></Route>
+        <Route path="/myweight" element={<MyWeight />}></Route>
+        <Route path="/mynotes" element={<MyNotes />}></Route>
 
         <Route
           path="/reception"
