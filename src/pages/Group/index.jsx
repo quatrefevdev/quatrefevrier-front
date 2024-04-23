@@ -21,13 +21,27 @@ const Group = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showPostModal, setShowPostModal] = useState(false);
 
+
   // Récupération des données du groupe quand le composant render
+  // Vérifier si l'ulisateur est membre du groupe
+  let groupMembers = [];
+  const [userIsMember, setUserIsMember] = useState(false);
+  const checkGroupMember = (members_array) => {
+    for (let i = 0; i < members_array.length; i++) {
+      // Passage du state à true si le token de l'utilisateur est déjà dans la liste des membres du groupe
+      if (token === members_array[i].token) {
+        setUserIsMember(true);
+      }
+    }
+  }
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/group/${groupId}`
       );
       setData(data);
+      groupMembers = data.group_members;
+      checkGroupMember(groupMembers);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -38,10 +52,6 @@ const Group = () => {
     fetchData();
   }, []);
 
-  console.log("groupId >>> ", groupId);
-  console.log("data >>> ", data);
-
-  // TODO 😋 R : ne permettre de rejoindre le groupe que si on est pas dans la liste
   const token = Cookies.get("token");
   const joinGroup = async () => {
     try {
@@ -68,11 +78,17 @@ const Group = () => {
       <div className={!showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"}>
         <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
-          <ButtonComponent 
-            value={0} 
-            txt="Rejoindre le groupe"
-            pressFct={() => joinGroup()}
-          />
+          {!userIsMember ?           
+            <ButtonComponent 
+              value={0} 
+              txt="Rejoindre le groupe"
+              pressFct={() => {
+                joinGroup();
+                window.location.reload();
+              }}
+            /> :
+            <p>Vous êtes membre de ce groupe</p>
+          }
         </div>
         <div className="group-search"></div>
         <div className="group-posts">
@@ -89,11 +105,14 @@ const Group = () => {
           })}
         </div>
         <div className="group-page-footer">
-          <ButtonComponent
-            value={1}
-            txt="Rédiger un post"
-            pressFct={() => setShowPostModal(true)}
-          />
+          {userIsMember ?        
+            <ButtonComponent
+              value={1}
+              txt="Rédiger un post"
+              pressFct={() => setShowPostModal(true)}
+            /> :
+            <p>Vous devez être membre du groupe pour poster.</p>
+          }
         </div>
       </div>
       {showPostModal && (
