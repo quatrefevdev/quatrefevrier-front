@@ -1,0 +1,56 @@
+@import "../../../css/variables.scss";
+
+.all-groups-page-wrapper {
+    padding: 180px 30px 20px;
+    .page-header {
+        position: fixed;
+        width: 100%;
+        top: 40px;
+        left: 0;
+        background-color: $white;
+        padding: 0 30px 20px;
+        border-bottom: 1px solid $purple;
+    }
+    h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+    .search-container {
+        display: flex;
+        align-items: flex-start;
+        div {
+            width: 100%;
+            .divforminput {
+                width: 100%;
+                input {
+                    width: 100%;
+                    font-size: 20px;
+                    padding: 10px 5px;
+                    margin: 0;
+                    &::placeholder {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .group-container {
+        padding: 10px;
+        border: 1px solid $darkblue;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        color: $darkblue;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .group-info {
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
