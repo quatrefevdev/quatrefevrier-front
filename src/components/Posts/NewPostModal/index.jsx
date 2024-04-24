@@ -62,7 +62,6 @@ const NewPostModal = ({groupId, setVisibleState, updatePageData}) => {
                         pressFct={(e) => {
                             e.preventDefault(); 
                             submitPost();
-                            updatePageData();
                         }}
                     />
                 </div>
