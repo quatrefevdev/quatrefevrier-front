@@ -45,7 +45,7 @@ const Login = ({ handleToken, setId }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     if (!email || !password) {
-      setError("Il manque l'adresse email ou le mot de passe");
+      setError("Merci de renseigner l'adresse email et le mot de passe");
     } else {
       const fetchData = async () => {
         try {

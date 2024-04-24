@@ -189,9 +189,20 @@ const MyAccount = ({ token, handleToken }) => {
             ></img>
           </div>
         ) : (
-          <div onClick={() => avatarChange}>
-            <FontAwesomeIcon className="plusicon" icon="fa-solid fa-plus" />
-            <p> Ajouter un avatar </p>
+          <div className="addavatar">
+            {/* {avatar && <img src={URL.createObjectURL(avatar)} alt="produit" />}
+            <label htmlFor="picture-input" style={{ color: "darkgreen" }}>
+              + Ajoute une photo
+            </label>
+            <input
+              style={{ display: "none" }}
+              id="picture-input"
+              type="file"
+              onChange={(event) => {
+                console.log(event);
+                setAvatar(event.target.files[0]);
+              }}
+            /> */}
           </div>
         )}
       </div>
