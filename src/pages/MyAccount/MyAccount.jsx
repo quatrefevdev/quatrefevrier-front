@@ -38,7 +38,9 @@ const MyAccount = ({ token, handleToken }) => {
   const [phonenumber, setPhoneNumber] = useState();
   const [isUpdated, setIsUpdated] = useState(false);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState({});
+  const [info, setInfo] = useState("");
+  const [avatar, setAvatar] = useState();
+  const [avatarChoice, setAvatarChoice] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,6 +68,10 @@ const MyAccount = ({ token, handleToken }) => {
         if (response.data.account.cancerKind && isUpdated === false) {
           setCancerKind(response.data.account.cancerKind);
         }
+        if (response.data.account.avatar && isUpdated === false) {
+          setAvatar(response.data.account.avatar);
+        }
+        console.log(avatar);
         setIsUpdated(true);
         setIsLoading(false);
       } catch (error) {
@@ -78,6 +84,7 @@ const MyAccount = ({ token, handleToken }) => {
 
   const handleSubmit = (event) => {
     setError("");
+    setInfo("");
     try {
       const fetchUpdatedData = async () => {
         // Je crée une nouvelle instance du constructeur FormData
@@ -101,7 +108,7 @@ const MyAccount = ({ token, handleToken }) => {
             }
           );
           setData(response.data);
-          console.log(response.data);
+          setInfo("Données actualisées");
         } catch (error) {
           console.log("Erreur message : ", error.response.data.message);
           if (error.response.data.message === "Ce pseudo est déjà pris") {
@@ -180,55 +187,101 @@ const MyAccount = ({ token, handleToken }) => {
       </div>
       <div className="avatarclass">
         <p className="avatartitle"> Mon avatar :</p>
-        {data.account.avatar ? (
+        {data.account.avatar && avatarChoice === false ? (
           <div className="avatarimgdiv">
             <img
               className="avatarimg"
               src={data.account.avatar.secure_url}
               alt="avatar"
             ></img>
-          </div>
-        ) : (
-          <div className="addavatar">
-            {/* {avatar && <img src={URL.createObjectURL(avatar)} alt="produit" />}
             <label htmlFor="picture-input" style={{ color: "darkgreen" }}>
-              + Ajoute une photo
+              <div className="changeavatar"></div>
             </label>
+            {/* )} */}
             <input
               style={{ display: "none" }}
               id="picture-input"
               type="file"
               onChange={(event) => {
-                console.log(event);
+                setAvatarChoice(true);
                 setAvatar(event.target.files[0]);
               }}
-            /> */}
+            />
+          </div>
+        ) : (
+          <div className="addavatardiv">
+            {avatar !== undefined && (
+              <div className="avatarimgdiv">
+                <img
+                  className="avatarimg"
+                  src={URL.createObjectURL(avatar)}
+                  alt="produit"
+                />
+                <label htmlFor="picture-input">
+                  <div className="modifyavatar">
+                    <p>+ Modifier ma photo</p>
+                  </div>
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  id="picture-input"
+                  type="file"
+                  onChange={(event) => {
+                    setAvatar(event.target.files[0]);
+                  }}
+                />
+              </div>
+            )}
+            {!avatar && (
+              <div>
+                <label htmlFor="picture-input">
+                  <div className="addavatar">
+                    <p>+ Ajoute une photo</p>
+                  </div>
+                </label>
+
+                <input
+                  style={{ display: "none" }}
+                  id="picture-input"
+                  type="file"
+                  onChange={(event) => {
+                    console.log(event);
+                    setAvatar(event.target.files[0]);
+                  }}
+                />
+              </div>
+            )}
           </div>
         )}
       </div>
-      <div className="cancerstepclass">
-        <p className="cancersteptitle"> Etape du cancer : </p>
-        <select
-          className="cancerstepselect"
-          onChange={(e) => setCancerStep(e.target.value)}
-        >
-          {cancerstepfile.results.map((cancer, idx) => {
-            return (
-              <option value={cancer.cancerstep}>
-                <p className="cancersteptext">{cancer.cancerstep}</p>
-              </option>
-            );
-          })}
-        </select>
-      </div>{" "}
-      <div className="handleLogout">
-        <button className="buttonLogout" onClick={() => handleLogout()}>
-          Déconnexion
-        </button>
-        <button className="buttonSave" onClick={() => handleSubmit()}>
-          Enregistrer
-        </button>
-        <p> {error}</p>
+      {data.account.accountype !== "Aidant" && (
+        <div className="cancerstepclass">
+          <p className="cancersteptitle"> Etape du cancer : </p>
+          <select
+            className="cancerstepselect"
+            onChange={(e) => setCancerStep(e.target.value)}
+          >
+            {cancerstepfile.results.map((cancer, idx) => {
+              return (
+                <option value={cancer.cancerstep}>
+                  <p className="cancersteptext">{cancer.cancerstep}</p>
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      )}
+      <div className="handlebutton">
+        <div>
+          <button className="buttonSave" onClick={() => handleSubmit()}>
+            Enregistrer
+          </button>
+          <button className="buttonLogout" onClick={() => handleLogout()}>
+            Déconnexion
+          </button>
+          <p className="errorclass"> {error}</p>
+          <p className="infoclass"> {info}</p>
+        </div>
       </div>
       <Footer selected="compte"></Footer>
     </div>
