@@ -1,4 +1,4 @@
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./MyAccount.scss";
 import "../../css/fonts.css";
@@ -11,7 +11,6 @@ import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIf
 //Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(faPen, faPlus);
 
 //JSON Files
@@ -85,43 +84,48 @@ const MyAccount = ({ token, handleToken }) => {
   const handleSubmit = (event) => {
     setError("");
     setInfo("");
-    try {
-      const fetchUpdatedData = async () => {
-        // Je crée une nouvelle instance du constructeur FormData
-        const formData = new FormData();
-        // Rajouter 2 paires clef/valeur à mon formdata
-        formData.append("avatar", avatar);
-        // Création des autres clef/valeur au formData;
-        formData.append("email", email);
-        formData.append("username", username);
-        formData.append("cancerstep", cancerstep);
-        formData.append("phonenumber", phonenumber);
-        try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}/user/updateuserinfo/`,
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data",
-              },
+    const phoneIsValid = validatePhoneNumber(phonenumber);
+    if (phoneIsValid === true) {
+      try {
+        const fetchUpdatedData = async () => {
+          // Je crée une nouvelle instance du constructeur FormData
+          const formData = new FormData();
+          // Rajouter 2 paires clef/valeur à mon formdata
+          formData.append("avatar", avatar);
+          // Création des autres clef/valeur au formData;
+          formData.append("email", email);
+          formData.append("username", username);
+          formData.append("cancerstep", cancerstep);
+          formData.append("phonenumber", phonenumber);
+          try {
+            const response = await axios.post(
+              `${import.meta.env.VITE_API_URL}/user/updateuserinfo/`,
+              formData,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+            setData(response.data);
+            setInfo("Données actualisées");
+          } catch (error) {
+            console.log("Erreur message : ", error.response.data.message);
+            if (error.response.data.message === "Ce pseudo est déjà pris") {
+              setError("Désolé, ce pseudo est déjà pris");
             }
-          );
-          setData(response.data);
-          setInfo("Données actualisées");
-        } catch (error) {
-          console.log("Erreur message : ", error.response.data.message);
-          if (error.response.data.message === "Ce pseudo est déjà pris") {
-            setError("Désolé, ce pseudo est déjà pris");
+            if (error.response.data.message === "Ce mail existe déjà") {
+              setError("Désolé, ce mail existe déjà");
+            }
           }
-          if (error.response.data.message === "Ce mail existe déjà") {
-            setError("Désolé, ce mail existe déjà");
-          }
-        }
-      };
-      fetchUpdatedData();
-    } catch (error) {
-      console.log("Erreur message : ", error.response.data.message);
+        };
+        fetchUpdatedData();
+      } catch (error) {
+        console.log("Erreur message : ", error.response.data.message);
+      }
+    } else {
+      setError("Merci de renseigner un numéro de téléphone au bon format");
     }
   };
 
