@@ -591,7 +591,7 @@ const OnBoarding = ({ token }) => {
               <div className="divaccount">
                 <Link to={`/Login`}>
                   <p className="alreadyaccountonboarding">
-                    Déjà un compte ? Connectez-vous
+                    Déjà un compte ? <span>Connectez-vous</span>
                   </p>
                 </Link>
               </div>
