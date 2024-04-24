@@ -68,6 +68,9 @@
     },
     {
       "cancerkind": "Sarcome"
+    },
+    {
+      "cancerkind": "Autre"
     }
   ]
 }

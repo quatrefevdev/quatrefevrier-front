@@ -151,7 +151,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 3 /* Name (Input) */:
         if (!lastname) {
-          setError("Allez ! T'as bien un petit nom ");
+          setError("Merci saisir votre nom avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -160,7 +160,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 4 /* Firstname (Input) */:
         if (!firstname) {
-          setError("Renseigne ton prénom s'il te plait");
+          setError("Merci saisir votre prénom avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -169,7 +169,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 5 /* Sex choice (Image+Onclick) */:
         if (!sex) {
-          setError("Clic sur un des deux genres s'il te plait");
+          setError("Merci saisir un genre avant de continuer");
         } else {
           setStep(step + 1);
           setError("");
@@ -179,7 +179,7 @@ const OnBoarding = ({ token }) => {
         break;
       case 6 /* Date of birth (datepicker) */:
         if (!dateofbirth) {
-          setError("Sélectionne ta date de naissance s'il te plait");
+          setError("Merci saisir votre date de naissance avant de continuer");
         } else {
           if (usertype === "Aidant") {
             setStep(step + 3);
@@ -197,7 +197,9 @@ const OnBoarding = ({ token }) => {
         break;
       case 7 /* Cancer Kind (multiple listbox)*/:
         if (cancerkindsel.length === 0) {
-          setError("Sélectionne ton type de cancer s'il te plait");
+          setError(
+            "Merci sélectionner une ou plusieurs réponses avant de continuer"
+          );
         } else {
           setStep(step + 1);
           setError("");
@@ -206,7 +208,9 @@ const OnBoarding = ({ token }) => {
         break;
       case 8 /* Cancer step (listbox)*/:
         if (cancerstepsel.length === 0) {
-          setError("Sélectionne la phase de ton cancer s'il te plait");
+          setError(
+            "Merci sélectionner une ou plusieurs réponses avant de continuer"
+          );
         } else {
           setStep(step + 1);
           setError("");
@@ -216,7 +220,7 @@ const OnBoarding = ({ token }) => {
       case 9 /* Phone number (Input+regex) */:
         const checknumber = validatePhoneNumber(phonenumber);
         if (!phonenumber || checknumber === false) {
-          setError("T'as bien un 06 !");
+          setError("Merci saisir votre numéro de téléphone avant de continuer");
         } else {
           setStep(step + 1);
           setVal(0);
@@ -306,6 +310,7 @@ const OnBoarding = ({ token }) => {
             <FormInput
               name="inputonboarding"
               title="Votre nom : "
+              undertitle="Nous demandons votre nom de famille pour utiliser son initiale et différencier les utilisateurs portant le même prénom sur le forum              "
               placeholder=""
               state={lastname}
               setState={setLastName}
@@ -380,7 +385,7 @@ const OnBoarding = ({ token }) => {
       case 6 /* Date of birth (datepicker) */:
         arr.push(
           <div className="titledatepickeronboarding">
-            Quelle est votre date de naissance?
+            <h2>Quelle est votre date de naissance?</h2>
             <DatePicker
               locale="fr"
               dateFormat="P"
@@ -401,41 +406,44 @@ const OnBoarding = ({ token }) => {
       case 7 /* Cancer Kind (multiple listbox)*/:
         arr.push(
           <div>
-            <div className="titlecancerkindonboarding">Type(s) de cancer :</div>
+            <div className="titlecancerkindonboarding">
+              <h2>Par quel(s) cancer(s) êtes-vous touché.e ?</h2>
+            </div>
             {/* Affichage du contenu de la listbox */}
-
-            {cancerkindfile.results.map((cancer, idx) => {
-              return (
-                <div key={idx} className="cancerselecteddiv">
-                  {cancerkindsel.includes(cancer.cancerkind) === false ? (
-                    <p
-                      className="cancernotselected"
-                      onClick={() => {
-                        newCancerKindArr.push(cancer.cancerkind);
-                        setCancerKind(newCancerKindArr);
-                      }}
-                    >
-                      {cancer.cancerkind}
-                    </p>
-                  ) : (
-                    <p
-                      className="cancerselected"
-                      onClick={() => {
-                        {
-                          newCancerKindArr.splice(
-                            cancerkindsel.indexOf(cancer.cancerkind),
-                            1
-                          );
+            <div className="cancerkinddiv">
+              {cancerkindfile.results.map((cancer, idx) => {
+                return (
+                  <div key={idx} className="cancerselecteddiv">
+                    {cancerkindsel.includes(cancer.cancerkind) === false ? (
+                      <p
+                        className="cancernotselected"
+                        onClick={() => {
+                          newCancerKindArr.push(cancer.cancerkind);
                           setCancerKind(newCancerKindArr);
-                        }
-                      }}
-                    >
-                      {cancer.cancerkind}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
+                        }}
+                      >
+                        {cancer.cancerkind}
+                      </p>
+                    ) : (
+                      <p
+                        className="cancerselected"
+                        onClick={() => {
+                          {
+                            newCancerKindArr.splice(
+                              cancerkindsel.indexOf(cancer.cancerkind),
+                              1
+                            );
+                            setCancerKind(newCancerKindArr);
+                          }
+                        }}
+                      >
+                        {cancer.cancerkind}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
             <div className="cancerkindlistboxdiv"></div>
           </div>
         );
@@ -443,7 +451,9 @@ const OnBoarding = ({ token }) => {
       case 8 /* Cancer step (listbox)*/:
         arr.push(
           <div>
-            <div className="titlecancersteponboarding">Vous êtes :</div>
+            <div className="titlecancersteponboarding">
+              <h2> Où en êtes-vous dans le parcours ?</h2>
+            </div>
             {/* Affichage du contenu de la listbox */}
             {cancerstepfile.results.map((cancer, idx) => {
               return (
@@ -484,7 +494,9 @@ const OnBoarding = ({ token }) => {
           <div className="phonediv">
             <FormInput
               name="inputonboarding"
-              title="Quel est votre numéro de téléphone?"
+              title="Quel est votre numéro de téléphone ?"
+              undertitle="Nous demandons votre numéro de téléphone pour vous envoyer des rappels de rendez-vous
+              "
               placeholder=""
               state={phonenumber}
               setState={setPhoneNumber}
@@ -496,6 +508,10 @@ const OnBoarding = ({ token }) => {
       case 10 /*Avatar */:
         arr.push(
           <div className="avatarbuttononboardingdiv">
+            <div className="avatartitleonboarding">
+              <h2>Souhaitez-vous ajouter une photo à votre profil ?</h2>
+            </div>
+
             <input
               type="file"
               id="file"
@@ -505,8 +521,11 @@ const OnBoarding = ({ token }) => {
               }}
             />
             <label className="labelavatar" htmlFor="file">
-              Sélectionne un avatar
+              OUI
             </label>
+            <button className="buttonavatarpicker" onClick={handleSubmit}>
+              <p>NON</p>
+            </button>
           </div>
         );
         break;
@@ -531,14 +550,17 @@ const OnBoarding = ({ token }) => {
               <div className="progressbar">
                 <div
                   className="progressbarfill"
-                  style={{ width: `${step * 10}%`, backgroundColor: "#4c548c" }}
+                  style={{
+                    width: `${(step * 100) / 11}%`,
+                    backgroundColor: "#4c548c",
+                  }}
                 ></div>
               </div>
             </div>
             {displayInput()}
 
             <div className="buttondivonboarding">
-              {step !== 1 && (
+              {step !== 1 && step !== 10 && (
                 <ButtonComponent
                   id="Previous"
                   value={val}
@@ -546,13 +568,14 @@ const OnBoarding = ({ token }) => {
                   txt="< Précédent"
                 />
               )}
-
-              <ButtonComponent
-                id="Next"
-                value={val}
-                pressFct={handleSubmit}
-                txt="Suivant >"
-              />
+              {step !== 10 && (
+                <ButtonComponent
+                  id="Next"
+                  value={val}
+                  pressFct={handleSubmit}
+                  txt="Suivant >"
+                />
+              )}
             </div>
             {error ? (
               <p className="errortxtonboarding">{error}</p>

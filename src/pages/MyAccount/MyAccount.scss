@@ -15,12 +15,15 @@
 .coordclass {
   margin-bottom: 10px;
   text-decoration: underline;
+  font-family: "NN-Bold";
+  font-size: 14px;
 }
 .pseudoclass,
 .emailclass,
 .phonenumberclass {
   display: flex;
   margin-bottom: 10px;
+  align-items: center;
 }
 .avatarclass,
 .cancerstepclass {
@@ -35,6 +38,7 @@
   margin-right: 10px;
   color: #4c548c;
   font-family: "NN-Bold";
+  width: 160px;
 }
 
 .pseudotext,
@@ -66,4 +70,21 @@
   justify-content: center;
   align-items: center;
   margin: auto 0;
+}
+
+.addavatar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 150px;
+  display: flex;
+}
+.plusicon {
+  margin-right: 10px;
+}
+
+.avataraccountpicker {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  z-index: -1;
 }

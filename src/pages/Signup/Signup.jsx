@@ -29,7 +29,7 @@ const Signup = ({ handleToken, setId }) => {
   const [step, setStep] = useState(1);
   const [emailindb, setEmailInDb] = useState();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const [errorMsg, setError] = useState("");
   const [data, setData] = useState();
   const lowerCase = /[a-z]/g;
   const upperCase = /[A-Z]/g;
@@ -71,6 +71,7 @@ const Signup = ({ handleToken, setId }) => {
       } else if (error.response.data.message === "Missing parameter") {
         setError("Désolé, il nous faudrait ton email ");
       }
+      console.log(errorMsg);
     }
   };
   const fetchData = async () => {
@@ -107,8 +108,8 @@ const Signup = ({ handleToken, setId }) => {
       case 1 /* Email (Input+regex) */:
         const checkemail = validateEmail(email);
         checkemailindb();
-        console.log("EMAIL IN DB ?", error);
-        if (checkemail === false || error !== "") {
+        console.log("EMAIL IN DB ?", { errorMsg });
+        if (checkemail === false || errorMsg !== "") {
           if (!checkemail) {
             setError("Désolé, ce mail n'est pas valide ");
           }
@@ -267,10 +268,10 @@ const Signup = ({ handleToken, setId }) => {
             txt="Suivant >"
           />
         </div>
-        {error ? (
-          <p className="errortxtsignup">{error}</p>
+        {errorMsg ? (
+          <p className="errortxtsignup">{errorMsg}</p>
         ) : (
-          <p className="errortxtsignuphidden">{error}</p>
+          <p className="errortxtsignuphidden">{errorMsg}</p>
         )}
         <div className="divaccount">
           <Link to={`/Login`}>
