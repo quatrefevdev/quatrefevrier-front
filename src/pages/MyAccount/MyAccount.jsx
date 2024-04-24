@@ -199,9 +199,10 @@ const MyAccount = ({ token, handleToken }) => {
               alt="avatar"
             ></img>
             <label htmlFor="picture-input" style={{ color: "darkgreen" }}>
-              <div className="changeavatar"></div>
+              <div className="changeavatar">
+                <p>+ Modifier ma photo</p>
+              </div>
             </label>
-            {/* )} */}
             <input
               style={{ display: "none" }}
               id="picture-input"
