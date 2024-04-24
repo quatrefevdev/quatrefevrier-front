@@ -8,17 +8,19 @@ import "./all-groups.scss";
 
 // Import des composants
 import Header from "../../../components/Header/Header";
+import FormInput from "../../../components/FormInput/FormInput";
 
 const AllGroupsPage = () => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const {data} = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/groups`
+                    `${import.meta.env.VITE_API_URL}/groups?search=${search}`
                 )
                 setData(data[1].groups);
                 setIsLoading(false);
@@ -27,7 +29,7 @@ const AllGroupsPage = () => {
             }
         }
         fetchData();
-    }, []);    
+    }, [search]);    
     
     const allValidGroups = data;
 
@@ -41,11 +43,20 @@ const AllGroupsPage = () => {
                 pageToGoBack={`/forum`}
             />
             <div className="all-groups-page-wrapper">
-                <h1>Rechercher un forum</h1>
+                <div className="page-header">
+                    <h1>Rechercher un forum</h1>
+                    <form className="search-container">
+                        <FormInput
+                            placeholder="Saisissez votre recherche ici"
+                            state={search}
+                            setState={setSearch}
+                        />
+                    </form>
+                </div>
                 {allValidGroups ?
                     allValidGroups.map((group) => {
                         return (
-                            <Link to={`/group/${group._id}`} className="group-container">
+                            <Link key={group._id} to={`/group/${group._id}`} className="group-container">
                                 <h2>{group.group_name}</h2>
                                 <div className="group-info">
                                     {/* Affichage du nombre de membres du forum */}
