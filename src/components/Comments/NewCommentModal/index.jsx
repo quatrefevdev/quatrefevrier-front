@@ -30,7 +30,7 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
             console.log(error);
         }
     }
-
+    
     return (
         <div className="comment-modal-container">
             <form className="form-container">
@@ -52,7 +52,6 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
                         pressFct={(e) => {
                             e.preventDefault(); 
                             submitComment();
-                            updatePageData();
                         }}
                     />
                 </div>

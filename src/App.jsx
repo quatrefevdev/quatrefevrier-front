@@ -43,7 +43,9 @@ import CarnetHome from "./pages/Carnet/CarnetHome";
 import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
+import ModifyAppointment from "./pages/Carnet/Appointments/ModifyAppointment";
 import Group from "./pages/Group";
+import AllGroupsPage from "./pages/Group/AllGroups";
 import CreateGroup from "./pages/Group/Create";
 import PostSinglePage from "./pages/Post";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -109,13 +111,19 @@ function App() {
           element={
             <ShowAppointment
               token={token}
-              user_id={id}
               del={del}
               setDel={setDel}
               setVisibility={setVisibility}
             />
           }
         ></Route>
+
+          <Route path="/forums" element={<AllGroupsPage/>} />
+        <Route
+          path="/modifyAppointment/:appointment_id"
+          element={<ModifyAppointment token={token} />}
+        />
+
         <Route path="/group/:groupId" element={<Group />} />
         <Route path="/post/:postId" element={<PostSinglePage />} />
         <Route path="/group/create" element={<CreateGroup />} />

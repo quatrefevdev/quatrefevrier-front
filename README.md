@@ -8,8 +8,8 @@
 - [x] **Responsive**
 - [x] Backend **Node JS** [Github](https://github.com/quatrefevrier/quatrefevrier-back)
 
-Front Hosted on [Netlify]() \
-Backend hosted on [NorthFlank]()
+Front Hosted on [Netlify](https://quatre-fevrier.netlify.app/) \
+Backend hosted on [NorthFlank](https://site--backend-quatrefevrier--mzyqmpjvmv6g.code.run/)
 
 ## Content
 
@@ -17,9 +17,24 @@ Backend hosted on [NorthFlank]()
   - Welcome : path=`/`
   - Login : path=`/login`
   - SignUp : path=`/signup`
+  - Onboarding : path=`/onboarding`
+  - Reception : path=`/reception`
   - Forum : path=`/forum`
+  - Groups : path=`/groups`
+  - Group : path=`/group/:groupId`
+  - CreateGroup : path=`/group/create`
+  - Post : path=`/post/:postId`
+  - CarnetHome : path=`/carnetHome`
+  - MyAppointments: path=`/myAppointments`
+  - AddAppointment: path=`/addApppointment`
+  - ShowAppointments: path= `/showAppointment/:appointment_id`
   - ForgetPassword : path=`/ForgetPassword`
-  - OnBoarding : path=`/onboarding`
+  - Message : path=`/message`
+  - Parrain : path=`/parrain`
+  - SeconddaryEffect : path=`/secondaryeffects`
+  - MyWeight : path=`/myweight`
+  - MyNotes : path=`/mynotes`
+  - MyAccount : path=`/myaccount`
 
 ## Tech Stack
 

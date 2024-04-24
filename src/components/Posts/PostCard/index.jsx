@@ -5,13 +5,19 @@ import { Link } from "react-router-dom";
 import "./post-card.scss";
 
 const PostCard = ({post_url, post_body, post_author, comments_count}) => {
+
+    // Calcul de l'age de l'utilisateur
+    const currentDate = Date.now();
+    const userBirthDate = new Date(post_author.dateofbirth).getTime();
+    const userAge = new Date(currentDate - userBirthDate).getUTCFullYear() - 1970;
+
     return (
-        <Link className="post-container" to={post_url}>        
+        <Link className="post-container" to={post_url}>
             {post_author ? (
                 <h2>
                     {post_author.username} - 
-                    {post_author.dateofbirth ? post_author.dateofbirth : "35 ans"} - 
-                    {post_author.cancerkind ? post_author.cancerkind[0] : ""}</h2>
+                    {post_author.dateofbirth ? userAge + " ans" : "35 ans"} - 
+                    {post_author.cancerkind ? post_author.cancerkind[0].replace(`["`, "").replace(`"]`, "") : ""}</h2>
             ) : (
                 <h2>Utilisateur du forum</h2>
             )}

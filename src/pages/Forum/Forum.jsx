@@ -10,7 +10,7 @@ import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIf
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 
-const Forum = ({ token, handleToken }) => {
+const Forum = ({ token }) => {
   const [data, setData] = useState({});
   const [userData, setUserData] = useState({});
   const [groupData, setGroupData] = useState([]);
@@ -48,7 +48,6 @@ const Forum = ({ token, handleToken }) => {
           },
         }
       );
-      //await Promise.all([request, response]);
 
       // Ensure both requests were successful
       if (request.status === 200) {
@@ -62,9 +61,6 @@ const Forum = ({ token, handleToken }) => {
       console.log("Erreur message : ", error);
     }
   };
-  // const handlePreviousStep = () => {
-  //   setStep(step - 1);
-  // };
 
   // function to add / remove  selected item in screen step 1.
   const handleSuggest = (suggest) => {
@@ -77,7 +73,6 @@ const Forum = ({ token, handleToken }) => {
       newTab.splice(index, 1);
       setSuggestion(newTab);
     }
-    //console.log(suggestion);
   };
 
   // function to add / remove favoris
@@ -102,7 +97,7 @@ const Forum = ({ token, handleToken }) => {
 
   const fetchData = async () => {
     try {
-      setIsLoading(true);
+      //setIsLoading(true);
       if (step === 1) {
         // Get the info about the user to know if he is new
         const response = await axios.get(
@@ -115,10 +110,7 @@ const Forum = ({ token, handleToken }) => {
         );
         setUserData(response.data);
         const isNew = response.data.userRef.account.needToChooseForum;
-        console.log(isNew);
         const allGroups = response.data.userRef.account.forumlist;
-        // console.log(allGroups);
-        //console.log(step);
         // if he isn't new, he go to the next screen.
         if (!isNew) {
           setStep(2);
@@ -129,7 +121,6 @@ const Forum = ({ token, handleToken }) => {
           ` ${import.meta.env.VITE_API_URL}/groups`
         );
         setData(responseGroups.data);
-        //console.log(responseGroups.data[1].groups);
         setIsLoading(false);
       } else {
         const [responseGroupData, responsefav, responseNotMember] =
@@ -156,13 +147,11 @@ const Forum = ({ token, handleToken }) => {
         }
 
         const groupData = responseGroupData.data || [];
-        //console.log(groupData);
         if (groupData) {
           setGroupData(groupData);
         }
 
         const favData = responsefav.data || [];
-        //console.log(favData);
         if (favData) {
           setFavGroupData(favData);
         }
@@ -178,7 +167,6 @@ const Forum = ({ token, handleToken }) => {
     fetchData();
   }, [step]);
 
-  //console.log(id);
   // Display screen step 1 only the first time with user.isNew
   const displayForum = () => {
     switch (step) {
@@ -192,10 +180,8 @@ const Forum = ({ token, handleToken }) => {
             </>
           );
         } else {
-          //console.log(data[1].groups);
           const array = data[1].groups;
           const newArray = array.filter((group) => !group.is_cancer);
-          //console.log("ICI USER DATA ", userData);
           return (
             <>
               <div>
@@ -249,11 +235,13 @@ const Forum = ({ token, handleToken }) => {
                 (favGroup) => favGroup.groupId === group.groupId
               )
           );
-          //console.log(otherGroup);
           return (
             <>
               <div className="handleDisplay">
-                <button className="buttonCreateSearch">
+                <button 
+                  className="buttonCreateSearch"
+                  onClick={() => navigate("/forums")}
+                >
                   Chercher un forum
                 </button>
                 <button

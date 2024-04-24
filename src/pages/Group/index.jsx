@@ -93,7 +93,6 @@ const Group = () => {
         <div className="group-search"></div>
         <div className="group-posts">
           {data.group_posts.map((post) => {
-            console.log(post);
             return (
               <PostCard
                 key={post._id}
