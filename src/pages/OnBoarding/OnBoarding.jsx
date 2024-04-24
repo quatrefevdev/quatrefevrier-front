@@ -40,9 +40,10 @@ const OnBoarding = ({ token }) => {
   const [avatar, setAvatar] = useState({});
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
-  const [usertype, setUserType] = useState("");
+  const [usertype, setUserType] = useState("Patient");
   const newCancerKindArr = [...cancerkindsel];
   const [isLoading, setIsLoading] = useState(true);
+  const [userChoice, setUserChoice] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -86,7 +87,6 @@ const OnBoarding = ({ token }) => {
     formData.append("phonenumber", phonenumber);
     formData.append("accountype", usertype);
     formData.append("needToDoOnboarding", false);
-    console.log("MON FUCKING TOKEN : ", token);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/updateuser/`,
@@ -129,6 +129,7 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     setError("");
+    console.log(usertype);
     switch (step) {
       // Gestion de tout les cas de mauvaises saisies utilisateurs, contrôles, regex ...
       case 1 /* User type (Buttons) */:
@@ -251,12 +252,14 @@ const OnBoarding = ({ token }) => {
     }
   };
   const UserTypePatient = (event) => {
-    event.preventDefault();
     setUserType("Patient");
+    setUserChoice(1);
+    handleSubmit(event);
   };
   const UserTypeAidant = (event) => {
-    event.preventDefault();
     setUserType("Aidant");
+    setUserChoice(2);
+    handleSubmit(event);
   };
 
   function displayInput() {
@@ -278,12 +281,12 @@ const OnBoarding = ({ token }) => {
             <div className="buttonpatientaidantdiv">
               <ButtonComponentQst
                 pressFct={UserTypePatient}
-                value={usertype === "Patient" ? 1 : 0}
+                value={userChoice === 1 ? 1 : 0}
                 txt="Patient"
               />
               <ButtonComponentQst
                 pressFct={UserTypeAidant}
-                value={usertype === "Aidant" ? 1 : 0}
+                value={userChoice === 2 ? 1 : 0}
                 txt="Aidant"
               />
             </div>
@@ -454,36 +457,38 @@ const OnBoarding = ({ token }) => {
             <div className="titlecancersteponboarding">
               <h2> Où en êtes-vous dans le parcours ?</h2>
             </div>
-            {/* Affichage du contenu de la listbox */}
-            {cancerstepfile.results.map((cancer, idx) => {
-              return (
-                <div key={idx} className="cancerstepselecteddiv">
-                  {cancerstepsel.indexOf(cancer.cancerstep) === -1 ? (
-                    <div>
-                      <p
-                        className="cancerstepnotselected"
-                        onClick={() => {
-                          setCancerStep(cancer.cancerstep);
-                        }}
-                      >
-                        {cancer.cancerstep}
-                      </p>
-                    </div>
-                  ) : (
-                    <div>
-                      <p
-                        className="cancerstepselected"
-                        onClick={() => {
-                          setCancerStep("");
-                        }}
-                      >
-                        {cancer.cancerstep}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            <div className="cancerstepdiv">
+              {/* Affichage du contenu de la listbox */}
+              {cancerstepfile.results.map((cancer, idx) => {
+                return (
+                  <div key={idx} className="cancerstepselecteddiv">
+                    {cancerstepsel.indexOf(cancer.cancerstep) === -1 ? (
+                      <div>
+                        <p
+                          className="cancerstepnotselected"
+                          onClick={() => {
+                            setCancerStep(cancer.cancerstep);
+                          }}
+                        >
+                          {cancer.cancerstep}
+                        </p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p
+                          className="cancerstepselected"
+                          onClick={() => {
+                            setCancerStep("");
+                          }}
+                        >
+                          {cancer.cancerstep}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
             <div className="cancersteplistboxdiv"></div>
           </div>
         );
@@ -568,7 +573,7 @@ const OnBoarding = ({ token }) => {
                   txt="< Précédent"
                 />
               )}
-              {step !== 10 && (
+              {step !== 1 && step !== 10 && (
                 <ButtonComponent
                   id="Next"
                   value={val}
@@ -586,7 +591,7 @@ const OnBoarding = ({ token }) => {
               <div className="divaccount">
                 <Link to={`/Login`}>
                   <p className="alreadyaccountonboarding">
-                    Déjà un compte ? Connectez-vous
+                    Déjà un compte ? <span>Connectez-vous</span>
                   </p>
                 </Link>
               </div>

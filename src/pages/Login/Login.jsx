@@ -155,7 +155,9 @@ const Login = ({ handleToken, setId }) => {
 
         <Link to={"/Signup"}>
           <div className="noaccountlogin">
-            <p>Toujours pas de compte ? Inscris-toi !</p>
+            <p className="noaccountlogintxt">
+              Toujours pas de compte ? <span> Créer un compte </span>
+            </p>
           </div>
         </Link>
       </form>
