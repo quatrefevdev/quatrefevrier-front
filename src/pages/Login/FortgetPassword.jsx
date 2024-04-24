@@ -3,6 +3,7 @@ import "./ForgetPassword.scss";
 import "../../css/fonts.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Incoming from "../../components/Incoming/Incoming";
 
 //Components
 import FormInput from "../../components/FormInput/FormInput";
@@ -39,6 +40,10 @@ const FortgetPassword = ({ handleToken }) => {
     }
   };
 
+  const goBack = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="containerfgpass">
       <form
@@ -57,10 +62,17 @@ const FortgetPassword = ({ handleToken }) => {
             setState={setEmail}
             type="text"
           />
-
+          <section className="forgetPassword-section">
+            <Incoming />
+          </section>
           {error && <p className="errorreportfgpass"> {error}</p>}
-          <div className="buttondivfgpass">
-            <ButtonComponent pressFct={handleSubmit} txt="Se connecter >" />
+          <div className="navbuttonfgpass">
+            <div className="buttondivfgpass">
+              <ButtonComponent pressFct={goBack} txt="< Précédent" />
+            </div>
+            <div className="buttonconnvfgpass">
+              <ButtonComponent pressFct={handleSubmit} txt="Se connecter >" />
+            </div>
           </div>
         </div>
       </form>

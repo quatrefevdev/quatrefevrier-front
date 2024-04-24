@@ -128,7 +128,7 @@ function App() {
         <Route path="/message" element={<Message token={token} />}></Route>
         <Route path="/parrain" element={<Mentoring token={token} />}></Route>
         <Route path="/secondaryeffects" element={<SecondaryEffects />}></Route>
-        <Route path="/myweight" element={<MyWeight />}></Route>
+        <Route path="/myweight" element={<MyWeight token={token} />}></Route>
         <Route path="/mynotes" element={<MyNotes />}></Route>
 
         <Route
