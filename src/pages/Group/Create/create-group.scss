@@ -1,3 +1,5 @@
+@import "../../../css/variables.scss";
+
 .create-group-page-wrapper {
     padding: 120px 30px;
     display: flex;
@@ -13,6 +15,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        .error-container {
+            padding: 10px;
+            border: 1px solid $pink;
+            color: $pink;
+            border-radius: 5px;
+            margin-top: 20px;
         }
     }
 }
