@@ -55,17 +55,21 @@ const PostSinglePage = () => {
         <p className="post-body">{data.post_body}</p>
         <div className="comments-container">
           <h2>Commentaires</h2>
-          {data.post_comments.map((comment) => {
-            return (
-              <div className="comment">
-                <div className="author">
-                  <img className="author-avatar" src={comment.comment_author.account.avatar?.secure_url} />
-                  <span className="comment-author">{comment.comment_author.account.username}</span>
+          {data.post_comments.length > 0 ?           
+            data.post_comments.map((comment) => {
+              return (
+                <div className="comment">
+                  <div className="author">
+                    <img className="author-avatar" src={comment.comment_author.account.avatar?.secure_url} />
+                    <span className="comment-author">{comment.comment_author.account.username}</span>
+                  </div>
+                  <p className="comment-body">{comment.comment_body}</p>
                 </div>
-                <p className="comment-body">{comment.comment_body}</p>
-              </div>
+              )
+            }) : (
+              <p>Pas encore de commentaire sur ce post.</p>
             )
-          })}
+          }
         </div>
         <div className="post-page-footer">
           <ButtonComponent

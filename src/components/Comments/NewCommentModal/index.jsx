@@ -53,7 +53,6 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
                         pressFct={(e) => {
                             e.preventDefault(); 
                             submitComment();
-                            updatePageData();
                         }}
                     />
                 </div>
