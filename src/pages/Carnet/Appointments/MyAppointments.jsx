@@ -9,7 +9,6 @@ import Header from "../../../components/Header/Header";
 import formatDate from "../../../assets/utils";
 
 const MyAppointments = ({ token }) => {
-  const { id } = useParams();
   const [data, setData] = useState("");
   const [comingAppointments, setComingAppointments] = useState("");
   const [pastAppointments, setPastAppointments] = useState("");

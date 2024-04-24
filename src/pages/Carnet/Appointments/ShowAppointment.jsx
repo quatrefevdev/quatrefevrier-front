@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import formatDate from "../../../assets/utils";
-const ShowAppointment = ({ del, setDel, setVisibility }) => {
+const ShowAppointment = ({ token, del, setDel, setVisibility }) => {
   const navigate = useNavigate();
   const { appointment_id } = useParams();
   const [rdv, setRdv] = useState("");
@@ -21,7 +21,13 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
   const fecthAppointment = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`
+        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       setRdv(response.data);
       setDate(response.data[0].date);
@@ -33,7 +39,13 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
   const deleteRequest = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`
+        `${import.meta.env.VITE_API_URL}/appointment/${appointment_id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       alert("Rendez-vous effacé!");
       navigate("/myAppointments");
@@ -49,7 +61,7 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
       setDel(false);
     }
   }, [del]);
-
+  // console.log(rdv[0].file.secure_url);
   return isLoading ? (
     <h1>En cours de chargement...</h1>
   ) : (
@@ -58,7 +70,13 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
       <main className="container-rdv">
         <div className="title">
           <h3>Mon rendez-vous</h3>
-          <button>Modifier</button>
+          <button
+            onClick={() => {
+              navigate(`/modifyAppointment/${appointment_id}`);
+            }}
+          >
+            Modifier
+          </button>
           <FontAwesomeIcon
             icon="fa-solid fa-trash"
             color="#4C548C"
@@ -67,13 +85,6 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
             }}
           />
         </div>
-        {/* <form
-          action=""
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}
-        > */}
         <div className="inline-inputs">
           <div className="input-div">
             <h4>Date</h4>
@@ -118,7 +129,7 @@ const ShowAppointment = ({ del, setDel, setVisibility }) => {
             />
             {/* </div> */}
             <button
-              style={{ marginBottom: isBig ? "80px" : "0px;" }}
+              style={{ marginBottom: isBig ? "80px" : "0px" }}
               onClick={() => {
                 setIsBig(!isBig);
               }}
