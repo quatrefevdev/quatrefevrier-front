@@ -11,9 +11,11 @@
   font-family: "NN-Bold";
   font-weight: bold;
   cursor: pointer;
-  margin-top: 5px;
+
   font-size: 12px;
   text-align: center;
+}
+.alreadyaccountonboarding > span {
   text-decoration: underline;
 }
 
@@ -194,6 +196,9 @@
   font-family: "NN-Bold";
   margin-bottom: 30px;
   text-align: left;
+}
+.cancerstepdiv {
+  border: 1px solid black;
 }
 .cancerstepnotselected {
   border: 2px solid transparent;

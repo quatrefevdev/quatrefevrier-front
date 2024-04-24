@@ -69,7 +69,7 @@ const Signup = ({ handleToken, setId }) => {
       ) {
         setError("L'adresse email existe déjà ");
       } else if (error.response.data.message === "Missing parameter") {
-        setError("Désolé, il nous faudrait ton email ");
+        setError("Merci de renseigner une adresse email");
       }
       console.log(errorMsg);
     }
@@ -94,7 +94,7 @@ const Signup = ({ handleToken, setId }) => {
         error.response.data.message ===
         "There is already an account with this email"
       ) {
-        setError("Il existe déjà un compte avec cet email.");
+        setError("Il existe déjà un compte avec cet email");
       }
     }
   };
@@ -275,7 +275,9 @@ const Signup = ({ handleToken, setId }) => {
         )}
         <div className="divaccount">
           <Link to={`/Login`}>
-            <p className="alreadyaccount">Déjà un compte? Connectez-vous !</p>
+            <p className="alreadyaccount">
+              Déjà un compte? <span>Connectez-vous </span>
+            </p>
           </Link>
         </div>
       </form>
