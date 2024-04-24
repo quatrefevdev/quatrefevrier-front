@@ -14,10 +14,10 @@ import FormInput from "../../../components/FormInput/FormInput";
 const CreateGroup = () => {
     const [title, setTitle] = useState("");
     const [newGroupId, setNewGroupId] = useState();
+    const [error, setError] = useState(false);
     const token = Cookies.get("token");
 
     const submitGroup = async () => {
-        console.log(title);
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/group/create`, {
                 group_name: title,
@@ -29,16 +29,17 @@ const CreateGroup = () => {
             setNewGroupId(response.data.newGroup._id);
         } catch (error) {
             console.log(error);
+            setError(true);
         }
     }
     
     return (
         <div className="create-group-page-wrapper">
-            <h1>Créer un nouveau groupe</h1>
+            <h1>Créer un nouveau forum</h1>
             <form className="create-group-container">
                 <FormInput
-                    title="Choisissez le nom de votre groupe"
-                    placeholder="Nom du groupe"
+                    title="Choisissez le nom de votre forum"
+                    placeholder="Nom du forum"
                     state={title}
                     setState={setTitle}
                     name="group_title"
@@ -51,6 +52,11 @@ const CreateGroup = () => {
                         submitGroup();
                     }}
                 />
+                {error &&                
+                    <div className="error-container">
+                        <p>Veuillez rensigner un nom pour le forum</p>
+                    </div>
+                }
             </form>
             {/* Redirection vers la page du groupe lorsque l'id est définit */}
             {newGroupId &&

@@ -31,6 +31,7 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
         }
     }
 
+    // TODO : mettre à jour les commentaires on publish
     return (
         <div className="comment-modal-container">
             <form className="form-container">
@@ -52,7 +53,6 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
                         pressFct={(e) => {
                             e.preventDefault(); 
                             submitComment();
-                            updatePageData();
                         }}
                     />
                 </div>
