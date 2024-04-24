@@ -253,7 +253,10 @@ const Forum = ({ token, handleToken }) => {
           return (
             <>
               <div className="handleDisplay">
-                <button className="buttonCreateSearch">
+                <button 
+                  className="buttonCreateSearch"
+                  onClick={() => navigate("/forums")}
+                >
                   Chercher un forum
                 </button>
                 <button

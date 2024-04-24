@@ -44,6 +44,7 @@ import MyAppointments from "./pages/Carnet/Appointments/MyAppointments";
 import AddAppointment from "./pages/Carnet/Appointments/addAppointment";
 import ShowAppointment from "./pages/Carnet/Appointments/ShowAppointment";
 import Group from "./pages/Group";
+import AllGroupsPage from "./pages/Group/AllGroups";
 import CreateGroup from "./pages/Group/Create";
 import PostSinglePage from "./pages/Post";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
@@ -116,6 +117,7 @@ function App() {
             />
           }
         ></Route>
+        <Route path="/forums" element={<AllGroupsPage/>} />
         <Route path="/group/:groupId" element={<Group />} />
         <Route path="/post/:postId" element={<PostSinglePage />} />
         <Route path="/group/create" element={<CreateGroup />} />

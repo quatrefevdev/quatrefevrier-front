@@ -13,7 +13,6 @@ const PostCard = ({post_url, post_body, post_author, comments_count}) => {
 
     return (
         <Link className="post-container" to={post_url}>
-            {console.log(post_author)}        
             {post_author ? (
                 <h2>
                     {post_author.username} - 
