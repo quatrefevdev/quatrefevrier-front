@@ -1,5 +1,11 @@
 .group-page-wrapper {
     padding: 40px 0 52px;
+    p {
+        font-family: "Nunito", sans-serif;
+    }
+    .buttonclass {
+        width: auto;
+    }
     &.no-scroll {
         overflow: hidden;
         height: 100vh;
@@ -25,7 +31,7 @@
     .group-page-footer {
         position: fixed;
         bottom: 52px; // Hauteur de la navigation
-        padding-bottom: 20px;
+        padding-bottom: 60px;
         left: 0;
         width: 100%;
         display: flex;

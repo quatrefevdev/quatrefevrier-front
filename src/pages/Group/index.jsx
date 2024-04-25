@@ -112,7 +112,7 @@ const Group = () => {
         <div className="group-page-footer">
           {userIsMember ? (
             <ButtonComponent
-              value={1}
+              value={0}
               txt="Rédiger un post"
               pressFct={() => setShowPostModal(true)}
             />

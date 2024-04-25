@@ -2,6 +2,9 @@
 
 .single-post-page-wrapper {
     padding: 40px 30px 52px;
+    .buttonclass {
+        width: auto;
+    }
     .post-page-header {
         margin-bottom: 10px;
     }
@@ -30,7 +33,8 @@
                 }
                 .comment-author {
                     font-size: 12px;
-                    font-family: "NN-Bold";
+                    font-family: "Nunito", sans-serif;
+                    font-weight: 700;
                 }
             }
             .comment-body {
@@ -41,7 +45,7 @@
     .post-page-footer {
         position: fixed;
         bottom: 52px; // Hauteur de la navigation
-        padding-bottom: 20px;
+        padding-bottom: 60px;
         left: 0;
         width: 100%;
         display: flex;

@@ -73,7 +73,7 @@ const PostSinglePage = () => {
         </div>
         <div className="post-page-footer">
           <ButtonComponent
-            value={1}
+            value={0}
             txt="Poster un commentaire"
             pressFct={() => setShowCommentModal(true)}
           />
