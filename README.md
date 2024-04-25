@@ -27,7 +27,8 @@ Backend hosted on [NorthFlank](https://site--backend-quatrefevrier--mzyqmpjvmv6g
   - CarnetHome : path=`/carnetHome`
   - MyAppointments: path=`/myAppointments`
   - AddAppointment: path=`/addApppointment`
-  - ShowAppointments: path= `/showAppointment/:appointment_id`
+  - ShowAppointment: path= `/showAppointment/:appointment_id`
+  - ModifyAppointment: path = `/ModifyAppointment/:appointment_id`
   - ForgetPassword : path=`/ForgetPassword`
   - Message : path=`/message`
   - Parrain : path=`/parrain`
@@ -45,7 +46,7 @@ Backend hosted on [NorthFlank](https://site--backend-quatrefevrier--mzyqmpjvmv6g
 1. Clone the repository :
 
 ```bash
-git clone https://github.com/quatrefevrier/quatrefevrier-front
+git clone https://github.com/quatrefevdev/quatrefevrier-front
 ```
 
 2. Install dependencies and run (on localhost):

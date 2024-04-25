@@ -80,10 +80,10 @@ const Reception = ({ token, id }) => {
       ) : (
         <div>
           <main className="container-rdv">
-            <h2> Bonjour {data.account.firstname}</h2>
-            <h3> Vos prochains rendez-vous</h3>
+            <h1> Bonjour {data.account.firstname},</h1>
+            <h3 style={{ marginTop: "20px" }}> Vos prochains rendez-vous:</h3>
             {appointmentsdata.length === 0 ? (
-              <div> Pas de rendez vous à venir </div>
+              <h4> Pas de rendez vous à venir </h4>
             ) : (
               <div>
                 {appointmentsdata.map((rdv) => {
@@ -110,7 +110,7 @@ const Reception = ({ token, id }) => {
                 })}
               </div>
             )}
-            <h3> Vos forums favoris</h3>
+            <h3 style={{ marginTop: "20px" }}> Vos forums favoris:</h3>
             <div className="favoris-list">
               {/* Mapping favoris */}
               {favorisData.length > 0 ? (
@@ -133,26 +133,12 @@ const Reception = ({ token, id }) => {
                           </p>
                         </div>
                       </div>
-
-                      {/* <div>
-                        <p className="favoris-name">{group.groupName}</p>
-                        <p className="favoris-member">
-                          {group.numberOfUsers} membres
-                        </p>
-                      </div>
-
-                      <div className="favoris-button">
-                        <p>
-                          Allez voir{" "}
-                          <FontAwesomeIcon icon="fa-regular fa-eye" size="lg" />
-                        </p>
-                      </div> */}
                     </Link>
                   </div>
                 ))
               ) : (
                 <div>
-                  <p>Vous n'avez pas de forum favoris !</p>
+                  <h4>Vous n'avez pas de forum favoris !</h4>
                 </div>
               )}
             </div>
