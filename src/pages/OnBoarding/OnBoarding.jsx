@@ -572,7 +572,18 @@ const OnBoarding = ({ token }) => {
   return (
     <>
       {isLoading ? (
-        <h2>Chargement de la page...</h2>
+        <div>
+          <Loader
+            visible={true}
+            height="80"
+            width="80"
+            color="#4c548c"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
       ) : (
         <div className="containeronboarding">
           <form
