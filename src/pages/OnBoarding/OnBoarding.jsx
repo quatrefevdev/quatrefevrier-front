@@ -1,6 +1,7 @@
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./OnBoarding.scss";
+import Loader from "../../components/loader/Loader";
 import "../../css/fonts.css";
 import axios from "axios";
 import React, { useCallback } from "react";
@@ -71,9 +72,6 @@ const OnBoarding = ({ token }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    handleSubmit(event);
-  }, [avatar]);
   const updateUserData = async () => {
     // Je crée une nouvelle instance du constructeur FormData
     const formData = new FormData();
@@ -264,6 +262,7 @@ const OnBoarding = ({ token }) => {
   };
   const SubmitAvatar = async (event) => {
     setAvatar(event.target.files[0]);
+    handleSubmit(event);
   };
   function displayInput() {
     let arr = [];

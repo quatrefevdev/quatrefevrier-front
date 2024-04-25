@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Signup.scss";
 import "../../css/fonts.css";
+import Loader from "../../components/loader/Loader";
 import axios from "axios";
 import React from "react";
 //Components
