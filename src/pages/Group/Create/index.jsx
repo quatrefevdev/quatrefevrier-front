@@ -10,6 +10,8 @@ import "./create-group.scss";
 // Import des composants
 import ButtonComponent from "../../../components/Button/ButtonComponent";
 import FormInput from "../../../components/FormInput/FormInput";
+import Footer from "../../../components/Footer/Footer";
+import Header from "../../../components/Header/Header";
 
 const CreateGroup = () => {
     const [title, setTitle] = useState("");
@@ -34,6 +36,8 @@ const CreateGroup = () => {
     }
     
     return (
+        <>
+        <Header pageToGoBack={"/forum"} />
         <div className="create-group-page-wrapper">
             <h1>Créer un nouveau forum</h1>
             <form className="create-group-container">
@@ -63,6 +67,8 @@ const CreateGroup = () => {
                 <Navigate to={`/group/${newGroupId}`} />
             }
         </div>
+        <Footer selected="forum"/>
+        </>
     )
 }
 

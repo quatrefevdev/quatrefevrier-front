@@ -12,6 +12,7 @@ import PostCard from "../../components/Posts/PostCard";
 import NewPostModal from "../../components/Posts/NewPostModal";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Loader from "../../components/loader/Loader";
 
 const Group = () => {
   // Réupération de l'id passé en params
@@ -69,9 +70,7 @@ const Group = () => {
   };
 
   return isLoading ? (
-    <div className="container">
-      <p>Chargement en cours...</p>
-    </div>
+    <Loader/>
   ) : (
     <>
       <Header pageToGoBack={`/forum`} />
@@ -95,7 +94,6 @@ const Group = () => {
             <p>Vous êtes membre de ce groupe</p>
           )}
         </div>
-        <div className="group-search"></div>
         <div className="group-posts">
           {data.group_posts.map((post) => {
             return (

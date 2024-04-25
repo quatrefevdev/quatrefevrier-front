@@ -2,11 +2,18 @@
 
 .single-post-page-wrapper {
     padding: 40px 30px 52px;
+    height: 100vh;
+    overflow-y: hidden;
     .buttonclass {
         width: auto;
     }
     .post-page-header {
         margin-bottom: 10px;
+    }
+    .content-wrapper {
+        height: calc(100vh - 72px); // Déduction de la naviagation et du header
+        overflow-x: scroll;
+        padding-bottom: 180px;
     }
     .post-body {
         margin-bottom: 10px;
