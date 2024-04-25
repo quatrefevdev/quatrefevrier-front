@@ -2,7 +2,7 @@ import axios from "axios";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import Incoming from "../../../components/Incoming/Incoming";
-import "./ModifyAppointment.scss";
+// import "./ModifyAppointment.scss";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -25,6 +25,7 @@ const ModifyAppointment = ({ token }) => {
   const [time, setTime] = useState("");
   const [doctorName, setDoctorName] = useState("");
   const [spec, setSpec] = useState("");
+  const [newTime, setNewTime] = useState(false);
   const [address, setAddress] = useState("");
   const [institution, setInstitution] = useState("");
   const [notes, setNotes] = useState("");
@@ -132,13 +133,26 @@ const ModifyAppointment = ({ token }) => {
             <label htmlFor="heure">
               <h4>Heure</h4>
             </label>
-            <TimePicker time={time} setTime={setTime} />
+            {newTime ? (
+              <TimePicker time={time} setTime={setTime} />
+            ) : (
+              <div
+                style={{ marginBottom: "10px" }}
+                onClick={() => {
+                  setNewTime(true);
+                }}
+                id="info-div"
+              >
+                {rdv[0].time}
+              </div>
+            )}
           </div>
           <div className="input-div">
             <label htmlFor="doctor">
               <h4>Nom du médecin</h4>
             </label>
             <input
+              id="info-div"
               type="text"
               name="doctor"
               value={doctorName}
@@ -150,6 +164,7 @@ const ModifyAppointment = ({ token }) => {
               <h4>Spécialité</h4>
             </label>
             <input
+              id="info-div"
               type="text"
               name="spec"
               value={spec}
@@ -161,6 +176,7 @@ const ModifyAppointment = ({ token }) => {
               <h4>Adresse</h4>
             </label>
             <input
+              id="info-div"
               type="text"
               name="adress"
               value={address}
@@ -172,6 +188,7 @@ const ModifyAppointment = ({ token }) => {
               <h4>Institution</h4>
             </label>
             <input
+              id="info-div"
               type="text"
               name="institut"
               value={institution}
