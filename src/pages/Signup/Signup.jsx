@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Signup.scss";
 import "../../css/fonts.css";
+import Loader from "../../components/loader/Loader";
 import axios from "axios";
 import React from "react";
 //Components
@@ -28,6 +29,7 @@ const Signup = ({ handleToken, setId, token }) => {
   const [showpassword2, setShowPassword2] = useState(false);
   const [step, setStep] = useState(1);
   const [emailindb, setEmailInDb] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [errorMsg, setError] = useState("");
   const [data, setData] = useState();
@@ -55,7 +57,9 @@ const Signup = ({ handleToken, setId, token }) => {
     }
   };
   useEffect(() => {
+    setIsLoading(true);
     checkToken(token);
+    setIsLoading(false);
   }, []);
 
   //regex to check the email format
@@ -168,7 +172,20 @@ const Signup = ({ handleToken, setId, token }) => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div>
+      <Loader
+        visible={true}
+        height="80"
+        width="80"
+        color="#4c548c"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  ) : (
     <div className="containersignup">
       <form
         style={{

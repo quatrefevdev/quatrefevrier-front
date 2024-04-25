@@ -1,6 +1,7 @@
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./OnBoarding.scss";
+import Loader from "../../components/loader/Loader";
 import "../../css/fonts.css";
 import axios from "axios";
 import React, { useCallback } from "react";
@@ -259,7 +260,7 @@ const OnBoarding = ({ token }) => {
     setUserChoice(2);
     handleSubmit(event);
   };
-  const SubmitAvatar = (event) => {
+  const SubmitAvatar = async (event) => {
     setAvatar(event.target.files[0]);
     handleSubmit(event);
   };
@@ -570,7 +571,18 @@ const OnBoarding = ({ token }) => {
   return (
     <>
       {isLoading ? (
-        <h2>Chargement de la page...</h2>
+        <div>
+          <Loader
+            visible={true}
+            height="80"
+            width="80"
+            color="#4c548c"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
       ) : (
         <div className="containeronboarding">
           <form
