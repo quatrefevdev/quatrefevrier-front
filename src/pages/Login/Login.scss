@@ -1,14 +1,8 @@
 .containerlogin {
-  margin: 0 auto;
+  margin: 100px auto;
   max-width: 320px;
   height: 700px;
   background-color: white;
-  border: none;
-}
-
-.emaillogin::placeholder {
-  color: white;
-  background-color: #4c548c;
 }
 
 .emaillogin {
@@ -16,7 +10,7 @@
   margin-top: 50px;
   border-width: 0px;
   border: none;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   border-bottom: solid 1px white;
   margin-bottom: 30px;
   font-size: 20px;
@@ -25,17 +19,16 @@
   color: white;
   font-weight: bold;
 }
-
-.passwordlogin::placeholder {
-  color: white;
-  background-color: #4c548c;
+.posrelinputlogindiv1 {
+  margin-top: 10px;
+  position: relative;
 }
 
 .passwordlogin {
   background-color: #4c548c;
   border-width: 0px;
   border: none;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   margin-bottom: 30px;
   font-size: 20px;
   margin-left: 10px;
@@ -44,7 +37,7 @@
 }
 
 .noaccountlogin {
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 12px;
   line-height: 10px;
   color: #4d548b;
@@ -56,17 +49,16 @@
   font-weight: bold;
 }
 .forgetpasswordlogin {
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 12px;
   line-height: 10px;
   color: #4d548b;
   width: 300px;
-
+  text-decoration: underline;
   cursor: pointer;
   margin-top: 30px;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 .buttonsubmitlogin {
   width: 105px;
@@ -78,7 +70,7 @@
   cursor: pointer;
   margin: 0 auto;
   text-align: center;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   font-size: 16px;
 }
@@ -86,16 +78,16 @@
 .errorreportlogin {
   text-align: center;
   color: red;
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   margin-top: 10px;
 }
 .titlelogin {
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .h1login {
-  margin-bottom: 50px;
-  font-family: "NN-Bold";
+  margin-bottom: 90px;
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   color: #4c548c;
   font-size: 20px;
@@ -105,14 +97,13 @@
 .buttondivlogin {
   justify-content: center;
   display: flex;
+  margin-top: 210px;
 }
-.posrelinputlogindiv1 {
-  position: relative;
-}
+
 .inputlogindiv1 {
   position: absolute;
-  left: 300px;
-  top: 25px;
+  left: 285px;
+  top: 5px;
 }
 
 .checkboxloginstyle {
@@ -125,16 +116,17 @@
   position: relative;
 }
 .checkboxlogintextdiv {
-  font-family: "NN-Bold";
-  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
   color: #4c548c;
   margin-right: 10px;
   position: absolute;
-  left: 70px;
+  left: 65px;
   top: -16px;
 }
 .noaccountlogintxt > span {
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   text-decoration: underline;
 }

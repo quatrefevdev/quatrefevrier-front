@@ -293,25 +293,40 @@ const OnBoarding = ({ token }) => {
         break;
       case 2 /* UserName (Input) */:
         arr.push(
-          <div className="usernamediv">
-            <FormInput
-              title="Votre pseudo : "
-              name="inputonboarding"
-              placeholder=""
-              state={username}
-              setState={setUserName}
-              type="text"
-            />
+          <div>
+            <div className="pseudotitleonbd">
+              <h2>Votre pseudo :</h2>
+            </div>
+            <div className="usernamediv">
+              <FormInput
+                title=""
+                name="inputonboarding"
+                placeholder=""
+                state={username}
+                setState={setUserName}
+                type="text"
+              />
+            </div>
           </div>
         );
         break;
       case 3 /* Name (Input) */:
         arr.push(
           <div className="namediv">
+            <div className="nametitleonbd">
+              <h2>Votre nom : </h2>
+            </div>
+            <div>
+              <p className="underlinenameonbd">
+                Nous demandons votre nom de famille pour utiliser son initiale
+                et différencier les utilisateurs portant le même prénom sur le
+                forum
+              </p>
+            </div>
             <FormInput
               name="inputonboarding"
-              title="Votre nom : "
-              undertitle="Nous demandons votre nom de famille pour utiliser son initiale et différencier les utilisateurs portant le même prénom sur le forum              "
+              title=""
+              undertitle=""
               placeholder=""
               state={lastname}
               setState={setLastName}
@@ -323,9 +338,12 @@ const OnBoarding = ({ token }) => {
       case 4 /* Firstname (Input) */:
         arr.push(
           <div className="firstnamediv">
+            <div className="firstnametitleonbd">
+              <h2>Votre prénom : </h2>
+            </div>
             <FormInput
               name="inputonboarding"
-              title="Votre prénom : "
+              title=""
               placeholder=""
               state={firstname}
               setState={setFirstName}
@@ -338,7 +356,7 @@ const OnBoarding = ({ token }) => {
         arr.push(
           <div className="sexonboardingdiv">
             <div className="titlesexonboarding">
-              Êtes-vous un homme ou une femme ?
+              <h2>Êtes-vous un homme ou une femme ?</h2>
             </div>
             <div className="choicesexonboarding">
               {sex !== "H" ? (
@@ -386,7 +404,9 @@ const OnBoarding = ({ token }) => {
       case 6 /* Date of birth (datepicker) */:
         arr.push(
           <div className="titledatepickeronboarding">
-            <h2>Quelle est votre date de naissance?</h2>
+            <div className="datepickertitle">
+              <h2>Quelle est votre date de naissance?</h2>
+            </div>
             <DatePicker
               locale="fr"
               dateFormat="P"
@@ -495,11 +515,19 @@ const OnBoarding = ({ token }) => {
       case 9 /* Phone number (Input+regex) */:
         arr.push(
           <div className="phonediv">
+            <div className="phonetitleonbd">
+              <h2>Quel est votre numéro de téléphone ?</h2>
+            </div>
+            <div className="underlinephoneonbd">
+              <p>
+                Nous demandons votre numéro de téléphone pour vous envoyer des
+                rappels de rendez-vous
+              </p>
+            </div>
             <FormInput
               name="inputonboarding"
-              title="Quel est votre numéro de téléphone ?"
-              undertitle="Nous demandons votre numéro de téléphone pour vous envoyer des rappels de rendez-vous
-              "
+              title=""
+              undertitle=""
               placeholder=""
               state={phonenumber}
               setState={setPhoneNumber}

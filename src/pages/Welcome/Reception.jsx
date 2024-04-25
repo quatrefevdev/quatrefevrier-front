@@ -64,16 +64,19 @@ const Reception = ({ token, id }) => {
   return (
     <>
       {isLoading ? (
-        <Loader
-          visible={true}
-          height="80"
-          width="80"
-          color="#4c548c"
-          ariaLabel="tail-spin-loading"
-          radius="1"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
+        <div>
+          <Loader
+            visible={true}
+            height="80"
+            width="80"
+            color="#4c548c"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+          <Footer selected=""></Footer>
+        </div>
       ) : (
         <div>
           <main className="container-rdv">
