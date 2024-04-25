@@ -92,7 +92,11 @@ const AddAppointment = ({ token }) => {
               <label htmlFor="heure">
                 <h4>Heure*</h4>
               </label>
-              <TimePicker time={time} setTime={setTime} />
+              <TimePicker
+                className="pictureinput"
+                time={time}
+                setTime={setTime}
+              />
             </div>
           </div>
           <div className="inline-inputs">
@@ -101,6 +105,7 @@ const AddAppointment = ({ token }) => {
                 <h4>Nom du médecin</h4>
               </label>
               <input
+                className="doctorinput"
                 type="text"
                 name="doctor"
                 onChange={(event) => setDoctorName(event.target.value)}
@@ -111,6 +116,7 @@ const AddAppointment = ({ token }) => {
                 <h4>Spécialité</h4>
               </label>
               <input
+                className="specinput"
                 type="text"
                 name="spec"
                 onChange={(event) => setSpec(event.target.value)}
@@ -122,6 +128,7 @@ const AddAppointment = ({ token }) => {
               <h4>Adresse</h4>
             </label>
             <input
+              className="adressinput"
               type="text"
               name="adress"
               onChange={(event) => setAddress(event.target.value)}
@@ -132,6 +139,7 @@ const AddAppointment = ({ token }) => {
               <h4>Institution</h4>
             </label>
             <input
+              className="institutinput"
               type="text"
               name="institut"
               onChange={(event) => setInstitution(event.target.value)}
@@ -144,6 +152,7 @@ const AddAppointment = ({ token }) => {
             <textarea
               rows={5}
               cols={50}
+              className="notesinput"
               type="text"
               name="notes"
               placeholder="Code bâtiment, questions, apparition d'effets secondaire, etc."
@@ -158,6 +167,7 @@ const AddAppointment = ({ token }) => {
                 style={{ width: "100%" }}
               />
               <button
+                className="pictureinput"
                 onClick={() => {
                   setPicture("");
                 }}
@@ -167,7 +177,11 @@ const AddAppointment = ({ token }) => {
             </div>
           ) : (
             <div id="upload">
-              <label htmlFor="picture" style={{ marginRight: "10px" }}>
+              <label
+                className="pictureinput"
+                htmlFor="picture"
+                style={{ marginRight: "10px" }}
+              >
                 Téléchargez un document
               </label>
               <input
@@ -178,17 +192,25 @@ const AddAppointment = ({ token }) => {
                   setPicture(e.target.files[0]);
                 }}
               />
-              <FontAwesomeIcon icon="fa-solid fa-upload" color="#32365a" />
+              <FontAwesomeIcon
+                className="pictureinput"
+                icon="fa-solid fa-upload"
+                color="#32365a"
+              />
             </div>
           )}
           <span>Ordonnance, compte-rendu, etc</span>
           <div className="checkbox-div">
             <div>
-              <input type="checkbox" onChange={() => setAlarm(!alarm)} />
+              <input
+                type="checkbox"
+                className="pictureinput"
+                onChange={() => setAlarm(!alarm)}
+              />
               <p>Recevoir une alerte 24h avant</p>
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" className="pictureinput" />
               <p>Partager avec mon aidant.e</p>
             </div>
           </div>

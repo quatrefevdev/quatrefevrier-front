@@ -259,7 +259,10 @@ const OnBoarding = ({ token }) => {
     setUserChoice(2);
     handleSubmit(event);
   };
-
+  const SubmitAvatar = (event) => {
+    setAvatar(event.target.files[0]);
+    handleSubmit(event);
+  };
   function displayInput() {
     let arr = [];
     switch (step) {
@@ -548,7 +551,7 @@ const OnBoarding = ({ token }) => {
               id="file"
               className="avatarpicker"
               onChange={(event) => {
-                setAvatar(event.target.files[0]);
+                SubmitAvatar(event);
               }}
             />
             <label className="labelavatar" htmlFor="file">

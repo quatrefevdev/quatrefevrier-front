@@ -32,14 +32,18 @@ const Login = ({ handleToken, setId }) => {
       Cookies.remove("token-email", email, { expires: 15 });
     }
   };
+  const navigate = useNavigate();
 
   // Lecture de la valeur de token-email (mail sauvegardé) une seule fois
   // au chargement de la page
   useEffect(() => {
     const email_value = Cookies.get("token-email");
     setEmail(email_value);
+    const token_value = Cookies.get("token");
+    if (token_value) {
+      navigate("/reception");
+    }
   }, []);
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
