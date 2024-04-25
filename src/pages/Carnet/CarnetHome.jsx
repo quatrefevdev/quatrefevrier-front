@@ -12,16 +12,16 @@ const CarnetHome = () => {
         <h2>Bienvenue sur votre espace de suivi médical</h2>
         <div className="carnet-buttons">
           <Link to={"/MyAppointments"}>
-            <button>Mes rendez-vous médicaux</button>
+            <button className="rdvbutton">Mes rendez-vous médicaux</button>
           </Link>
           <Link to={"/secondaryeffects"}>
-            <button>Mes effets secondaires</button>
+            <button className="sebutton">Mes effets secondaires</button>
           </Link>
           <Link to={"/myweight"}>
-            <button>Mon poids</button>
+            <button className="mwbutton">Mon poids</button>
           </Link>
           <Link to={"/mynotes"}>
-            <button>Mes notes</button>
+            <button className="mnbutton">Mes notes</button>
           </Link>
         </div>
       </main>

@@ -11,7 +11,6 @@
   font-family: "Nunito", sans-serif;
   font-weight: bold;
   cursor: pointer;
-
   font-size: 12px;
   text-align: center;
 }
@@ -51,6 +50,9 @@
   text-align: center;
   margin-top: 30px;
   margin-bottom: 40px;
+}
+.datepickeronboarding:hover {
+  cursor: pointer;
 }
 .datepickertitle {
   margin-bottom: 10px;
@@ -115,6 +117,10 @@
 .rectanglehommediv > img {
   height: 40px;
   width: 20px;
+}
+.rectanglehommediv:hover,
+.rectanglefemmediv:hover {
+  cursor: pointer;
 }
 .rectanglehommedivbold > img {
   height: 40px;

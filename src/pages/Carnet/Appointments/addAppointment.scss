@@ -17,8 +17,18 @@ button {
   padding: 5px 10px;
   border: 1px solid #32365a;
   border-radius: 5px;
+  cursor: pointer;
 }
 .eventList {
   margin-bottom: 20px;
 }
 // }
+.timepicker:hover,
+.doctorinput:hover,
+.specinput:hover,
+.adressinput:hover,
+.institutinput:hover,
+.notesinput:hover,
+.pictureinput:hover {
+  cursor: pointer;
+}
