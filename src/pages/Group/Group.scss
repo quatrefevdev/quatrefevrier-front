@@ -1,5 +1,11 @@
 .group-page-wrapper {
     padding: 40px 0 52px;
+    p {
+        font-family: "Nunito", sans-serif;
+    }
+    .buttonclass {
+        width: auto;
+    }
     &.no-scroll {
         overflow: hidden;
         height: 100vh;
@@ -18,14 +24,14 @@
         background-color: #FFFFFF;
     }
     .group-posts {
-        height: calc(100vh - 52px); // Hauteur de la navigation déduite
-        padding: 60px 30px 90px;
+        height: calc(100vh - 96px); // Hauteur de la navigation déduite
+        padding: 60px 30px 120px;
         overflow-y: scroll;
     }
     .group-page-footer {
         position: fixed;
         bottom: 52px; // Hauteur de la navigation
-        padding-bottom: 20px;
+        padding-bottom: 60px;
         left: 0;
         width: 100%;
         display: flex;

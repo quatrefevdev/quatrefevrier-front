@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import formatDate from "../../../assets/utils";
+import Loader from "../../../components/loader/Loader";
+
 const ShowAppointment = ({ token, del, setDel, setVisibility }) => {
   const navigate = useNavigate();
   const { appointment_id } = useParams();
@@ -63,7 +65,7 @@ const ShowAppointment = ({ token, del, setDel, setVisibility }) => {
   }, [del]);
   // console.log(rdv[0].file.secure_url);
   return isLoading ? (
-    <h1>En cours de chargement...</h1>
+    <Loader />
   ) : (
     <>
       <Header pageToGoBack={"/myAppointments"} />

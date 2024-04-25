@@ -6,8 +6,11 @@
 
 * {
   box-sizing: border-box;
-  // font-family: "Nunito", sans-serif !important;
 }
+// * {
+//   box-sizing: border-box;
+//   font-family: "Nunito", sans-serif !important;
+// }
 
 body {
   font-family: "Nunito", sans-serif;
@@ -49,6 +52,6 @@ h4 {
   font-size: 14px;
 }
 p {
-  font-family: "NN-medium";
+  font-family: "Nunito", sans-serif;
   font-size: 12px;
 }
