@@ -29,7 +29,6 @@ const FortgetPassword = ({ handleToken }) => {
             }
           );
           setData(response.data);
-          console.log("Email envoyé", response.data);
           setError("");
           navigate("/login");
         } catch (error) {

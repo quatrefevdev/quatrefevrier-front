@@ -53,9 +53,7 @@ const MyAccount = ({ token, handleToken }) => {
             },
           }
         );
-        console.log("Mes datas : ", response.data);
         setData(response.data);
-        console.log(isUpdated);
         if (response.data.account.username && isUpdated === false) {
           setUserName(response.data.account.username);
         }
@@ -71,11 +69,10 @@ const MyAccount = ({ token, handleToken }) => {
         if (response.data.account.avatar && isUpdated === false) {
           setAvatar(response.data.account.avatar);
         }
-        console.log(avatar);
         setIsUpdated(true);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
     redirectIfNoToken(token, navigate);
@@ -112,7 +109,6 @@ const MyAccount = ({ token, handleToken }) => {
             setData(response.data);
             setInfo("Données actualisées");
           } catch (error) {
-            console.log("Erreur message : ", error.response.data.message);
             if (error.response.data.message === "Ce pseudo est déjà pris") {
               setError("Désolé, ce pseudo est déjà pris");
             }
@@ -122,9 +118,7 @@ const MyAccount = ({ token, handleToken }) => {
           }
         };
         fetchUpdatedData();
-      } catch (error) {
-        console.log("Erreur message : ", error.response.data.message);
-      }
+      } catch (error) {}
     } else {
       setError("Merci de renseigner un numéro de téléphone au bon format");
     }
@@ -164,7 +158,6 @@ const MyAccount = ({ token, handleToken }) => {
           // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
           onChange={(event) => {
             setUserName(event.target.value);
-            console.log(username);
           }}
         />
       </div>
@@ -179,7 +172,6 @@ const MyAccount = ({ token, handleToken }) => {
           // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
           onChange={(event) => {
             setEmail(event.target.value);
-            console.log(email);
           }}
         />
       </div>
@@ -194,7 +186,6 @@ const MyAccount = ({ token, handleToken }) => {
           // Quand le contenu de mon input change, cette callback est appelée avec l'événement (un objet) en argument
           onChange={(event) => {
             setPhoneNumber(event.target.value);
-            console.log(phonenumber);
           }}
         />
       </div>
@@ -208,9 +199,10 @@ const MyAccount = ({ token, handleToken }) => {
               alt="avatar"
             ></img>
             <label htmlFor="picture-input" style={{ color: "darkgreen" }}>
-              <div className="changeavatar"></div>
+              <div className="changeavatar">
+                <p>+ Modifier ma photo</p>
+              </div>
             </label>
-            {/* )} */}
             <input
               style={{ display: "none" }}
               id="picture-input"
@@ -258,7 +250,6 @@ const MyAccount = ({ token, handleToken }) => {
                   id="picture-input"
                   type="file"
                   onChange={(event) => {
-                    console.log(event);
                     setAvatar(event.target.files[0]);
                   }}
                 />

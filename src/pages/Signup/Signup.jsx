@@ -57,12 +57,11 @@ const Signup = ({ handleToken, setId }) => {
         }
       );
       setData(response.data);
-      console.log("REPONSE :", response.data);
+
       if (response.data) {
         setEmailInDb(true);
       }
     } catch (error) {
-      console.log(error);
       if (
         error.response.data.message ===
         "There is already an account with this email"
@@ -71,7 +70,6 @@ const Signup = ({ handleToken, setId }) => {
       } else if (error.response.data.message === "Missing parameter") {
         setError("Merci de renseigner une adresse email");
       }
-      console.log(errorMsg);
     }
   };
   const fetchData = async () => {
@@ -89,7 +87,6 @@ const Signup = ({ handleToken, setId }) => {
       setId(response.data.id);
       navigate("/onboarding");
     } catch (error) {
-      console.log(error);
       if (
         error.response.data.message ===
         "There is already an account with this email"
@@ -108,7 +105,7 @@ const Signup = ({ handleToken, setId }) => {
       case 1 /* Email (Input+regex) */:
         const checkemail = validateEmail(email);
         checkemailindb();
-        console.log("EMAIL IN DB ?", { errorMsg });
+
         if (checkemail === false || errorMsg !== "") {
           if (!checkemail) {
             setError("Désolé, ce mail n'est pas valide ");

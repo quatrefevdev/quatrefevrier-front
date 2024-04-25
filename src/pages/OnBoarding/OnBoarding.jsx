@@ -64,7 +64,7 @@ const OnBoarding = ({ token }) => {
           navigate("/reception");
         }
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
     redirectIfNoToken(token, navigate);
@@ -99,9 +99,7 @@ const OnBoarding = ({ token }) => {
         }
       );
       setData(response.data);
-      console.log(response.data);
     } catch (error) {
-      console.log("Erreur message : ", error.response.data.message);
       if (
         error.response.data.message ===
         "This mail already exists, ask user to connect"
@@ -129,7 +127,7 @@ const OnBoarding = ({ token }) => {
     // Empêche le rafraichissement par défaut du navigateur lors de la soumission
     event.preventDefault();
     setError("");
-    console.log(usertype);
+
     switch (step) {
       // Gestion de tout les cas de mauvaises saisies utilisateurs, contrôles, regex ...
       case 1 /* User type (Buttons) */:

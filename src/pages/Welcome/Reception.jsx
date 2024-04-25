@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
+
 //Css style
 import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
@@ -43,7 +44,6 @@ const Reception = ({ token, id }) => {
           }
         );
         setAppointments(appointments.data);
-        console.log("Appointments : ", appointmentsdata);
 
         const favoris = await axios.get(
           `${import.meta.env.VITE_API_URL}/forum/group/favoris`,
@@ -55,9 +55,7 @@ const Reception = ({ token, id }) => {
         );
         setFavorisData(favoris.data);
         setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     redirectIfNoToken(token, navigate);
     fetchData();
@@ -78,7 +76,6 @@ const Reception = ({ token, id }) => {
         />
       ) : (
         <div>
-          {console.log(data)}
           <main className="container-rdv">
             <h2> Bonjour {data.account.firstname}</h2>
             <h3> Vos prochains rendez-vous</h3>
