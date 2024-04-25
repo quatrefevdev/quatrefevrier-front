@@ -20,7 +20,7 @@ library.add(faEye, faEyeSlash, faCheck);
 
 registerLocale("fr", fr);
 
-const Signup = ({ handleToken, setId }) => {
+const Signup = ({ handleToken, setId, token }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -34,6 +34,29 @@ const Signup = ({ handleToken, setId }) => {
   const lowerCase = /[a-z]/g;
   const upperCase = /[A-Z]/g;
   const numbers = /[0-9]/g;
+
+  const checkToken = async (token) => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data.needToDoOnboarding === false) {
+        navigate("/reception");
+      } else navigate("/onboarding");
+    } catch (error) {
+      if (error.response.status === 401) {
+        // Redirect to login page if unauthorized
+        return;
+      } else {
+        console.error("Error checking authentication:", error);
+      }
+    }
+  };
+  useEffect(() => {
+    checkToken(token);
+  }, []);
 
   //regex to check the email format
   function validateEmail(email) {

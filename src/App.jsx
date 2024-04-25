@@ -86,11 +86,15 @@ function App() {
         <Route path="/" element={<Welcome token={token} />} />
         <Route
           path="/login"
-          element={<Login handleToken={handleToken} setId={setId} />}
+          element={
+            <Login handleToken={handleToken} setId={setId} token={token} />
+          }
         />
         <Route
           path="/signup"
-          element={<Signup handleToken={handleToken} setId={setId} />}
+          element={
+            <Signup handleToken={handleToken} setId={setId} token={token} />
+          }
         />
         <Route
           path="/forum"
@@ -118,7 +122,7 @@ function App() {
           }
         ></Route>
 
-        <Route path="/forums" element={<AllGroupsPage/>} />
+        <Route path="/forums" element={<AllGroupsPage />} />
 
         <Route
           path="/modifyAppointment/:appointment_id"
