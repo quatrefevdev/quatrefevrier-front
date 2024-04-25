@@ -58,10 +58,6 @@ const Login = ({ handleToken, setId, token }) => {
     checkToken(token);
     const email_value = Cookies.get("token-email");
     setEmail(email_value);
-    const token_value = Cookies.get("token");
-    if (token_value) {
-      navigate("/reception");
-    }
   }, []);
 
   const handleSubmit = (event) => {
