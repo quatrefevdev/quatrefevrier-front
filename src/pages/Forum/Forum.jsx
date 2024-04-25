@@ -262,7 +262,7 @@ const Forum = ({ token }) => {
                   Créer un forum +
                 </button>
               </div>
-              <div>
+              <div className="forum-item">
                 <h2>Vos forums favoris</h2>
                 <div className="forum-list">
                   {/* Mapping favoris */}
@@ -295,7 +295,7 @@ const Forum = ({ token }) => {
                   )}
                 </div>
               </div>
-              <div>
+              <div className="forum-item">
                 <h2>Vos forums</h2>
                 <div className="forum-list">
                   {/* Mapping forum with 2 / 3 results */}
@@ -331,7 +331,7 @@ const Forum = ({ token }) => {
                   )}
                 </div>
               </div>
-              <div>
+              <div className="forum-item">
                 <h2>Autres forums</h2>
                 {/* Mapping suggestions with 2 / 3 results */}
                 {otherGroup && otherGroup.length > 0 ? (

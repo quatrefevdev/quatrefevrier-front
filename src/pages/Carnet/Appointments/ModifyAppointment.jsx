@@ -13,6 +13,7 @@ import formatDate from "../../../assets/utils";
 // Date and Time pickers
 import DatePicker from "react-datepicker";
 import TimePicker from "../../../components/BasicTimePicker";
+import Loader from "../../../components/loader/Loader";
 
 const ModifyAppointment = ({ token }) => {
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ const ModifyAppointment = ({ token }) => {
   }, []);
   console.log(rdv[0]);
   return isLoading ? (
-    <h1>En cours de chargement...</h1>
+    <Loader />
   ) : (
     <>
       <Header pageToGoBack={"/myAppointments"} />
