@@ -33,6 +33,15 @@ const NewCommentModal = ({postId, setVisibleState, updatePageData}) => {
     
     return (
         <div className="comment-modal-container">
+            <div className="modal-close">
+                <ButtonComponent
+                    value={0}
+                    txt="Fermer"
+                    pressFct={() => {
+                        setVisibleState(false);
+                    }}
+                />
+            </div>
             <form className="form-container">
                 <h2 className="titleinput">Publier un nouveau commentaire</h2>
                 <div className="divforminput">
