@@ -8,7 +8,7 @@
 
 .alreadyaccount {
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   cursor: pointer;
   margin-top: 10px;
   font-size: 12px;
@@ -20,7 +20,7 @@ a:link {
 
 .helptxtsignup {
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   text-align: center;
   font-size: 12px;
 
@@ -30,7 +30,7 @@ a:link {
 .errortxtsignup {
   text-align: center;
   color: red;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   margin-top: 20px;
 }
 
@@ -44,7 +44,7 @@ a:link {
 .errortxtsignuphidden {
   text-align: center;
   color: red;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   visibility: hidden;
   margin-top: 20px;
 }
@@ -90,7 +90,7 @@ a:link {
 }
 
 .alreadyaccount > span {
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   text-decoration: underline;
 }

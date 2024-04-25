@@ -1,21 +1,20 @@
 .containermyaccount {
   max-width: 320px;
-  margin: 0 auto;
+  margin: 50px auto;
   border: none;
   height: 700px;
   background-color: white;
 }
 .titlemyaccount {
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .coordclass {
   margin-bottom: 10px;
   text-decoration: underline;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
 }
 .pseudoclass,
@@ -38,7 +37,7 @@
 .phonenumbertitle {
   margin-right: 10px;
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   width: 160px;
 }
 
@@ -48,7 +47,7 @@
 .cancersteptext,
 .phonenumbertext {
   margin-right: 10px;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .avatartitle,
 .cancersteptitle {
@@ -105,7 +104,7 @@
 .addavatar > p,
 .modifyavatar > p {
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
 }
 .plusicon {
@@ -132,6 +131,11 @@
 .inputaccountemail,
 .inputaccountpseudo {
   cursor: pointer;
+  border: 1px solid #4c548c;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: #4c548c;
+  font-family: "Nunito", sans-serif;
 }
 
 .modifyavatar {
@@ -166,11 +170,11 @@
   margin-top: 20px;
   color: red;
   text-align: center;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .infoclass {
   margin-top: 20px;
   color: 4c548c;
   text-align: center;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
