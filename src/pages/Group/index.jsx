@@ -21,7 +21,6 @@ const Group = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showPostModal, setShowPostModal] = useState(false);
 
-
   // Récupération des données du groupe quand le composant render
   // Vérifier si l'ulisateur est membre du groupe
   let groupMembers = [];
@@ -33,7 +32,7 @@ const Group = () => {
         setUserIsMember(true);
       }
     }
-  }
+  };
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
@@ -56,15 +55,18 @@ const Group = () => {
   const joinGroup = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/group/${groupId}/join`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
+        `${import.meta.env.VITE_API_URL}/group/${groupId}/join`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return isLoading ? (
     <div className="container">
@@ -72,23 +74,26 @@ const Group = () => {
     </div>
   ) : (
     <>
-      <Header
-        pageToGoBack={`/forum`}
-      />
-      <div className={!showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"}>
+      <Header pageToGoBack={`/forum`} />
+      <div
+        className={
+          !showPostModal ? "group-page-wrapper" : "no-scroll group-page-wrapper"
+        }
+      >
         <div className="group-header">
           <h1 className="group-title">{data.group_name}</h1>
-          {!userIsMember ?           
-            <ButtonComponent 
-              value={0} 
+          {!userIsMember ? (
+            <ButtonComponent
+              value={0}
               txt="Rejoindre le groupe"
               pressFct={() => {
                 joinGroup();
                 window.location.reload();
               }}
-            /> :
+            />
+          ) : (
             <p>Vous êtes membre de ce groupe</p>
-          }
+          )}
         </div>
         <div className="group-search"></div>
         <div className="group-posts">
@@ -105,14 +110,15 @@ const Group = () => {
           })}
         </div>
         <div className="group-page-footer">
-          {userIsMember ?        
+          {userIsMember ? (
             <ButtonComponent
               value={1}
               txt="Rédiger un post"
               pressFct={() => setShowPostModal(true)}
-            /> :
+            />
+          ) : (
             <p>Vous devez être membre du groupe pour poster.</p>
-          }
+          )}
         </div>
       </div>
       {showPostModal && (

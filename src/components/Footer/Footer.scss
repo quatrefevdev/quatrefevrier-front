@@ -6,6 +6,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  padding: 0 15px 15px 15px;
   //display: none;
   a {
     text-decoration: none;
@@ -26,13 +27,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 30px;
     width: 60px;
     height: 52px;
     font-weight: 600;
     font-size: 12px;
     line-height: 12px;
-    // border-top: red 1px solid;
-    // color: red;
   }
   .select {
     border-top: #ef787c 3px solid;
