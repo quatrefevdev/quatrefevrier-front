@@ -17,13 +17,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(faEye, faEyeSlash);
 
-const Login = ({ handleToken, setId }) => {
+const Login = ({ handleToken, setId, token }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [data, setData] = useState("");
   const [showpassword1, setShowPassword1] = useState(false);
   const [saveemail, setSaveEmail] = useState(); //checkbox
+
+  const navigate = useNavigate();
 
   const handleEmail = (email, param) => {
     if (email && param == 1) {
@@ -34,9 +36,29 @@ const Login = ({ handleToken, setId }) => {
   };
   const navigate = useNavigate();
 
+  const checkToken = async (token) => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data.needToDoOnboarding === false) {
+        navigate("/reception");
+      } else navigate("/onboarding");
+    } catch (error) {
+      if (error.response.status === 401) {
+        // Redirect to login page if unauthorized
+        return;
+      } else {
+        console.error("Error checking authentication:", error);
+      }
+    }
+  };
   // Lecture de la valeur de token-email (mail sauvegardé) une seule fois
   // au chargement de la page
   useEffect(() => {
+    checkToken(token);
     const email_value = Cookies.get("token-email");
     setEmail(email_value);
     const token_value = Cookies.get("token");
