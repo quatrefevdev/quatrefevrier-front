@@ -1,7 +1,6 @@
 .containersignup {
-  margin: 0 auto;
+  margin: 100px auto;
   max-width: 320px;
-  border: none;
   height: 700px;
   background-color: white;
 }
@@ -23,7 +22,6 @@ a:link {
   font-family: "Nunito", sans-serif;
   text-align: center;
   font-size: 12px;
-
   margin-bottom: 10px;
 }
 
@@ -55,21 +53,21 @@ a:link {
 .inputsignupdiv1 {
   position: absolute;
   left: 300px;
-
-  top: 52px;
+  top: 122px;
 }
 .posrelinputsignupdiv2 {
+  margin-top: 10px;
   position: relative;
 }
 .inputsignupdiv2 {
   position: absolute;
   left: 300px;
-
-  top: 28px;
+  top: 8px;
 }
 .divparentcheck {
   position: relative;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 260px;
   border: 1px solid transparent;
 }
 
@@ -93,4 +91,15 @@ a:link {
   font-family: "Nunito", sans-serif;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.emailtitlesignup {
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 90px;
+}
+.firstpagesignupdiv {
+  margin-bottom: 320px;
 }

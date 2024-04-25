@@ -35,7 +35,7 @@
   text-align: center;
 }
 .titlesexonboarding {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-family: "Nunito", sans-serif;
   font-style: bold;
 }
@@ -52,10 +52,14 @@
   margin-top: 30px;
   margin-bottom: 40px;
 }
+.datepickertitle {
+  margin-bottom: 10px;
+}
 .titledatepickeronboarding {
   text-align: center;
   color: #4c548c;
   font-family: "Nunito", sans-serif;
+  margin-bottom: 290px;
 }
 .errortxtonboarding {
   text-align: center;
@@ -80,7 +84,7 @@
 
 .progressbar {
   width: 50%;
-  height: 5px;
+  height: 3px;
   border-radius: 10px;
   background-color: #e6e6e6;
   margin-bottom: 10px;
@@ -94,7 +98,6 @@
   transition: width 0.5s ease-out;
 }
 .progressbardiv {
-  margin-top: 50px;
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
@@ -119,7 +122,7 @@
 }
 .rectanglefemmediv {
   border: 1px solid #4c548c;
-  margin-right: 10px;
+  margin-left: 10px;
   padding: 20px;
   border-radius: 5px;
 }
@@ -133,11 +136,12 @@
 .choicesexonboarding {
   display: flex;
   width: "100%";
+  margin-bottom: 190px;
 }
 .rectanglefemmedivbold {
   border: 3px solid #4c548c;
   border-image: linear-gradient(#4c548c, #ef787c) 27;
-  margin-right: 10px;
+  margin-left: 10px;
   padding: 20px;
   border-radius: 5px;
 }
@@ -199,6 +203,7 @@
 }
 .cancerstepdiv {
   border: 1px solid black;
+  margin-bottom: 185px;
 }
 .cancerstepnotselected {
   border: 2px solid transparent;
@@ -249,7 +254,7 @@
 .buttonpatientaidantdiv {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
   margin-top: 20px;
   margin-bottom: 40px;
 }
@@ -260,7 +265,29 @@
   opacity: 0;
   z-index: -1;
 }
+.pseudotitleonbd,
+.firstnametitleonbd {
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
 
+.nametitleonbd,
+.phonetitleonbd {
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.underlinenameonbd,
+.underlinephoneonbd {
+  margin-bottom: 10px;
+  text-align: center;
+}
 .avatarbuttononboardingdiv {
   display: flex;
   gap: 10px;
@@ -340,7 +367,7 @@
 .namediv,
 .firstnamediv,
 .phonediv {
-  margin-bottom: 40px;
+  margin-bottom: 320px;
 }
 .avatartitleonboarding {
   width: "100%";
