@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
+import Loader from "../../components/loader/Loader";
 
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +33,7 @@ const Reception = ({ token, id }) => {
         setData(response.data);
 
         const appointments = await axios.get(
-
           `${import.meta.env.VITE_API_URL}/appointments?limit=+${appLimit}`,
-
 
           {
             headers: {
@@ -67,7 +66,16 @@ const Reception = ({ token, id }) => {
   return (
     <>
       {isLoading ? (
-        <h2>Chargement de la page...</h2>
+        <Loader
+          visible={true}
+          height="80"
+          width="80"
+          color="#4c548c"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
       ) : (
         <div>
           {console.log(data)}

@@ -5,6 +5,7 @@ import "./Forum.scss";
 
 // Import component
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
+import Loader from "../../components/loader/Loader";
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -173,18 +174,23 @@ const Forum = ({ token }) => {
       case 1:
         if (isLoading === true) {
           return (
-            <>
-              <div>
-                <h1>EN CHARGEMENT</h1>
-              </div>
-            </>
+            <Loader
+              visible={true}
+              height="80"
+              width="80"
+              color="#4c548c"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
           );
         } else {
           const array = data[1].groups;
           const newArray = array.filter((group) => !group.is_cancer);
           return (
             <>
-              <div>
+              <div className="div-suggestion">
                 <h1>Découvrez nos suggestions de forums</h1>
                 <p>Accédez à d'autres groupes par la suite.</p>
               </div>
@@ -222,11 +228,16 @@ const Forum = ({ token }) => {
       case 2:
         if (isLoading === true) {
           return (
-            <>
-              <div>
-                <h1>EN CHARGEMENT</h1>
-              </div>
-            </>
+            <Loader
+              visible={true}
+              height="80"
+              width="80"
+              color="#4c548c"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
           );
         } else {
           const nonFavGroups = groupData.filter(
@@ -238,7 +249,7 @@ const Forum = ({ token }) => {
           return (
             <>
               <div className="handleDisplay">
-                <button 
+                <button
                   className="buttonCreateSearch"
                   onClick={() => navigate("/forums")}
                 >

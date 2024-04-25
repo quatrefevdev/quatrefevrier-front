@@ -5,17 +5,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 80px;
 
   .container-forum {
     margin: 3vh 1vw;
-    height: calc(100vh - 100px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     max-width: 600px;
     padding: 0 30px;
-    // margin-bottom: 80px;
   }
   h1 {
     font-weight: 900;
@@ -41,11 +41,20 @@
   }
 
   // Step 1 selection des suggestions
+  .div-suggestion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
   .div-select {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     gap: 8px;
+    height: 55vh;
+    overflow-y: scroll;
+    margin-bottom: 30px;
   }
   .select {
     display: flex;
@@ -58,6 +67,7 @@
     line-height: 13px;
     padding: 8px 16px 8px 16px;
     flex-grow: 1;
+    cursor: pointer;
   }
 
   // Bouton de la page forum pour les pages (step)
@@ -69,6 +79,7 @@
     border-radius: 8px;
     padding: 8px 16px 8px 16px;
     color: white;
+    cursor: pointer;
   }
 
   // bouton pour chercher / créer un forum
@@ -80,6 +91,7 @@
     border-radius: 8px;
     padding: 8px 16px 8px 16px;
     color: white;
+    cursor: pointer;
   }
 
   // Div des boutons step
@@ -114,6 +126,7 @@
     border-radius: 5px;
     padding: 8px 16px 8px 16px;
     width: 45%;
+    cursor: pointer;
   }
 
   .forum-button > p {
@@ -136,6 +149,10 @@
       padding: 0 15px;
     }
 
+    .div-select {
+      height: 70vh;
+      overflow-y: scroll;
+    }
     // bouton pour chercher / créer un forum
     .buttonCreateSearch {
       padding: 4px 8px;

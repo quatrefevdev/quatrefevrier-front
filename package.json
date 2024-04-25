@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-listbox": "^1.2.13",
+    "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.22.3",
     "react-search-autocomplete": "^8.5.2",
     "react-time-picker": "^6.6.0",
