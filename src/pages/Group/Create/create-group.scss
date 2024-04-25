@@ -5,6 +5,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    .titleinput {
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+    }
+    .forminput {
+        font-family: "Nunito", sans-serif;
+        &::placeholder {
+            font-family: "Nunito", sans-serif;
+        }
+    }
     h1 {
         font-size: 30px;
         text-align: center;

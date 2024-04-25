@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import formatDate from "../../../assets/utils";
+import Loader from "../../../components/loader/Loader";
 
 const MyAppointments = ({ token }) => {
   const [data, setData] = useState("");
@@ -51,7 +52,7 @@ const MyAppointments = ({ token }) => {
     fetchData();
   }, []);
   return isLoading ? (
-    <h2>Chargement de la page...</h2>
+    <Loader />
   ) : (
     <>
       <Header pageToGoBack="/carnetHome" />
