@@ -32,7 +32,6 @@ const Login = ({ handleToken, setId, token }) => {
       Cookies.remove("token-email", email, { expires: 15 });
     }
   };
-  const navigate = useNavigate();
 
   const checkToken = async (token) => {
     try {
