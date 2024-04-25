@@ -161,13 +161,38 @@
       padding: 0 15px;
     }
 
+    // Step 1 selection des suggestions
+    .div-suggestion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .select {
+      display: flex;
+      border: 1px solid black;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 13px;
+      padding: 8px 16px 8px 16px;
+      flex-grow: 1;
+      cursor: pointer;
+    }
     .div-select {
-      height: 70vh;
+      height: 58vh;
       overflow-y: scroll;
+      margin-bottom: 2px;
     }
     // bouton pour chercher / créer un forum
     .buttonCreateSearch {
       padding: 4px 8px;
+    }
+    .forum-item {
+      margin-top: 20px;
     }
 
     .forum-name {
