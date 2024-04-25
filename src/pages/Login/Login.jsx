@@ -25,8 +25,6 @@ const Login = ({ handleToken, setId, token }) => {
   const [showpassword1, setShowPassword1] = useState(false);
   const [saveemail, setSaveEmail] = useState(); //checkbox
 
-  const navigate = useNavigate();
-
   const handleEmail = (email, param) => {
     if (email && param == 1) {
       Cookies.set("token-email", email, { expires: 15 });
