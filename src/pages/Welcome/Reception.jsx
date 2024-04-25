@@ -62,7 +62,10 @@ const Reception = ({ token, id }) => {
   return (
     <>
       {isLoading ? (
-        <h2>Chargement de la page...</h2>
+        <div>
+          <h2>Chargement de la page...</h2>
+          <Footer selected=""></Footer>
+        </div>
       ) : (
         <div>
           <main className="container-rdv">

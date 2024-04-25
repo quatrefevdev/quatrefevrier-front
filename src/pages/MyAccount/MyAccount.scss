@@ -4,8 +4,6 @@
   border: none;
   height: 700px;
   background-color: white;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .titlemyaccount {
   text-align: center;
@@ -61,16 +59,29 @@
   height: 100px;
   width: 100px;
   border-radius: 50px;
+
   object-fit: cover;
-}
-.avatarimg {
   justify-content: center;
 }
 .avatarimgdiv {
   display: flex;
-  position: relative;
   justify-content: center;
+  position: relative;
 }
+
+.changeavatar {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  background-color: #e5e7e9;
+  left: 110px;
+  opacity: 0.4;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
 .plusicon {
   vertical-align: middle;
   justify-content: center;
@@ -106,17 +117,6 @@
   height: 0.1px;
   opacity: 0;
   z-index: -1;
-}
-
-.changeavatar {
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  left: 100px;
-  background-color: #e5e7e9;
-  opacity: 0.4;
-  border-radius: 50px;
-  cursor: pointer;
 }
 
 .addavatar {

@@ -129,7 +129,10 @@ const MyAccount = ({ token, handleToken }) => {
     navigate("/login");
   };
   return isLoading ? (
-    <h2>Chargement de la page...</h2>
+    <div>
+      <h2>Chargement de la page...</h2>
+      <Footer selected=""></Footer>
+    </div>
   ) : (
     <div className="containermyaccount">
       <div className="titlemyaccount">
@@ -194,6 +197,7 @@ const MyAccount = ({ token, handleToken }) => {
                 <p>+ Modifier ma photo</p>
               </div>
             </label>
+
             <input
               style={{ display: "none" }}
               id="picture-input"
