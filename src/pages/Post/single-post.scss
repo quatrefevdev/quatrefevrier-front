@@ -2,8 +2,18 @@
 
 .single-post-page-wrapper {
     padding: 40px 30px 52px;
+    height: 100vh;
+    overflow-y: hidden;
+    .buttonclass {
+        width: auto;
+    }
     .post-page-header {
         margin-bottom: 10px;
+    }
+    .content-wrapper {
+        height: calc(100vh - 72px); // Déduction de la naviagation et du header
+        overflow-x: scroll;
+        padding-bottom: 180px;
     }
     .post-body {
         margin-bottom: 10px;
@@ -30,7 +40,8 @@
                 }
                 .comment-author {
                     font-size: 12px;
-                    font-family: "NN-Bold";
+                    font-family: "Nunito", sans-serif;
+                    font-weight: 700;
                 }
             }
             .comment-body {
@@ -41,7 +52,7 @@
     .post-page-footer {
         position: fixed;
         bottom: 52px; // Hauteur de la navigation
-        padding-bottom: 20px;
+        padding-bottom: 60px;
         left: 0;
         width: 100%;
         display: flex;

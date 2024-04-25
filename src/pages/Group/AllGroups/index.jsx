@@ -9,6 +9,8 @@ import "./all-groups.scss";
 // Import des composants
 import Header from "../../../components/Header/Header";
 import FormInput from "../../../components/FormInput/FormInput";
+import Loader from "../../../components/loader/Loader";
+import Footer from "../../../components/Footer/Footer";
 
 const AllGroupsPage = () => {
 
@@ -34,9 +36,7 @@ const AllGroupsPage = () => {
     const allValidGroups = data;
 
     return isLoading ? (
-        <div className="all-groups-page-wrapper">
-            <h1>Chargement en cours...</h1>
-        </div>
+        <Loader />
     ) : (
         <>        
             <Header
@@ -53,35 +53,38 @@ const AllGroupsPage = () => {
                         />
                     </form>
                 </div>
-                {allValidGroups ?
-                    allValidGroups.map((group) => {
-                        return (
-                            <Link key={group._id} to={`/group/${group._id}`} className="group-container">
-                                <h2>{group.group_name}</h2>
-                                <div className="group-info">
-                                    {/* Affichage du nombre de membres du forum */}
-                                    {group.group_members.length > 1 ? (
-                                            <span className="members-count">{`${group.group_members.length} membres`}</span>
-                                        ) : group.group_members.length === 1 ? (
-                                            <span className="members-count">{`${group.group_members.length} membre`}</span>
+                <div className="groups-container">
+                    {allValidGroups ?
+                        allValidGroups.map((group) => {
+                            return (
+                                <Link key={group._id} to={`/group/${group._id}`} className="group-container">
+                                    <h2>{group.group_name}</h2>
+                                    <div className="group-info">
+                                        {/* Affichage du nombre de membres du forum */}
+                                        {group.group_members.length > 1 ? (
+                                                <span className="members-count">{`${group.group_members.length} membres`}</span>
+                                            ) : group.group_members.length === 1 ? (
+                                                <span className="members-count">{`${group.group_members.length} membre`}</span>
+                                            ) : (
+                                                <span className="members-count">{`Pas encore de membre`}</span>
+                                        )}
+                                        {/* Affichage du nombre de posts du forum */}
+                                        {group.group_posts.length > 1 ? (
+                                            <span className="posts-count">{`${group.group_posts.length} posts`}</span>
+                                        ) : group.group_posts.length === 1 ? (
+                                            <span className="posts-count">{`${group.group_posts.length} post`}</span>
                                         ) : (
-                                            <span className="members-count">{`Pas encore de membre`}</span>
-                                    )}
-                                    {/* Affichage du nombre de posts du forum */}
-                                    {group.group_posts.length > 1 ? (
-                                        <span className="posts-count">{`${group.group_posts.length} posts`}</span>
-                                    ) : group.group_posts.length === 1 ? (
-                                        <span className="posts-count">{`${group.group_posts.length} post`}</span>
-                                    ) : (
-                                        <span className="posts-count">{`Pas encore de post`}</span>
-                                    )}
-                                </div>
-                            </Link>
-                        )
-                    }) :
-                    <p>Pas encore de forums...</p>
-                }
+                                            <span className="posts-count">{`Pas encore de post`}</span>
+                                        )}
+                                    </div>
+                                </Link>
+                            )
+                        }) :
+                        <p>Pas encore de forums...</p>
+                    }
+                </div>
             </div>
+            <Footer/>
         </>
     )
 }
