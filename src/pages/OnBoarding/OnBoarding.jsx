@@ -71,6 +71,9 @@ const OnBoarding = ({ token }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    handleSubmit(event);
+  }, [avatar]);
   const updateUserData = async () => {
     // Je crée une nouvelle instance du constructeur FormData
     const formData = new FormData();
@@ -259,9 +262,8 @@ const OnBoarding = ({ token }) => {
     setUserChoice(2);
     handleSubmit(event);
   };
-  const SubmitAvatar = (event) => {
+  const SubmitAvatar = async (event) => {
     setAvatar(event.target.files[0]);
-    handleSubmit(event);
   };
   function displayInput() {
     let arr = [];
