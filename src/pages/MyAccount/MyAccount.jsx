@@ -7,6 +7,7 @@ import React, { useCallback } from "react";
 import Footer from "../../components/Footer/Footer";
 import Cookies from "js-cookie";
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
+import Loader from "../../components/loader/Loader";
 
 //Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -124,13 +125,21 @@ const MyAccount = ({ token, handleToken }) => {
   };
 
   const handleLogout = () => {
-    Cookies.remove("token");
-    handleToken(token);
+    handleToken(null);
     navigate("/login");
   };
   return isLoading ? (
     <div>
-      <h2>Chargement de la page...</h2>
+      <Loader
+        visible={true}
+        height="80"
+        width="80"
+        color="#4c548c"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
       <Footer selected=""></Footer>
     </div>
   ) : (

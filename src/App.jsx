@@ -117,7 +117,9 @@ function App() {
             />
           }
         ></Route>
+
         <Route path="/forums" element={<AllGroupsPage/>} />
+
         <Route
           path="/modifyAppointment/:appointment_id"
           element={<ModifyAppointment token={token} />}

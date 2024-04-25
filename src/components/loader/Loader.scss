@@ -1,0 +1,11 @@
+.main-loader {
+  height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

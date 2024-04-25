@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
+
 //Css style
 import "../../App.scss";
 import "../Carnet/Appointments/myAppointments.scss";
@@ -9,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "../../components/Footer/Footer";
 import formatDate from "../../assets/utils";
 import { redirectIfNoToken } from "../../components/RedirectIfNoToken/RedirectIfNoToken";
+import Loader from "../../components/loader/Loader";
 
 const Reception = ({ token, id }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +65,16 @@ const Reception = ({ token, id }) => {
     <>
       {isLoading ? (
         <div>
-          <h2>Chargement de la page...</h2>
+          <Loader
+            visible={true}
+            height="80"
+            width="80"
+            color="#4c548c"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
           <Footer selected=""></Footer>
         </div>
       ) : (
