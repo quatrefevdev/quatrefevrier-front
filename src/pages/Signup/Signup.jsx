@@ -148,23 +148,34 @@ const Signup = ({ handleToken, setId }) => {
   return (
     <div className="containersignup">
       <form
-        style={{ display: "flex", flexDirection: "column", marginTop: "50px" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         {step === 1 ? (
-          <FormInput
-            title="Votre email : "
-            name="inputsignup"
-            placeholder=""
-            state={email}
-            setState={setEmail}
-            autoCapitalize="none"
-            type="email"
-          />
+          <div className="firstpagesignupdiv">
+            <div className="emailtitlesignup">
+              <h2>Votre adresse mail :</h2>
+            </div>
+            <FormInput
+              title=""
+              name="inputsignup"
+              placeholder=""
+              state={email}
+              setState={setEmail}
+              autoCapitalize="none"
+              type="email"
+            />
+          </div>
         ) : (
           <div>
             <div className="posrelinputsignupdiv1">
+              <div className="emailtitlesignup">
+                <h2>Votre mot de passe : </h2>
+              </div>
               <FormInput
-                title="Votre mot de passe : "
+                title=""
                 name="inputsignup"
                 placeholder="Choisissez un mot de passe"
                 state={password}
@@ -220,7 +231,7 @@ const Signup = ({ handleToken, setId }) => {
               </p>
 
               <div className="divcheck1">
-                {password && password.match(lowerCase) && (
+                {password && password.match(upperCase) && (
                   <FontAwesomeIcon
                     icon="fa-solid fa-check"
                     size="xl"
@@ -229,7 +240,7 @@ const Signup = ({ handleToken, setId }) => {
                 )}
               </div>
               <div className="divcheck2">
-                {password && password.match(upperCase) && (
+                {password && password.match(lowerCase) && (
                   <FontAwesomeIcon
                     icon="fa-solid fa-check"
                     size="xl"

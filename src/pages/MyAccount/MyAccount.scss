@@ -1,23 +1,20 @@
 .containermyaccount {
   max-width: 320px;
-  margin: 0 auto;
+  margin: 50px auto;
   border: none;
   height: 700px;
   background-color: white;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .titlemyaccount {
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .coordclass {
   margin-bottom: 10px;
   text-decoration: underline;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
 }
 .pseudoclass,
@@ -40,7 +37,7 @@
 .phonenumbertitle {
   margin-right: 10px;
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   width: 160px;
 }
 
@@ -50,7 +47,7 @@
 .cancersteptext,
 .phonenumbertext {
   margin-right: 10px;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .avatartitle,
 .cancersteptitle {
@@ -61,16 +58,29 @@
   height: 100px;
   width: 100px;
   border-radius: 50px;
+
   object-fit: cover;
-}
-.avatarimg {
   justify-content: center;
 }
 .avatarimgdiv {
   display: flex;
-  position: relative;
   justify-content: center;
+  position: relative;
 }
+
+.changeavatar {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  background-color: #e5e7e9;
+  left: 110px;
+  opacity: 0.4;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
 .plusicon {
   vertical-align: middle;
   justify-content: center;
@@ -94,7 +104,7 @@
 .addavatar > p,
 .modifyavatar > p {
   color: #4c548c;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
 }
 .plusicon {
@@ -106,17 +116,6 @@
   height: 0.1px;
   opacity: 0;
   z-index: -1;
-}
-
-.changeavatar {
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  left: 100px;
-  background-color: #e5e7e9;
-  opacity: 0.4;
-  border-radius: 50px;
-  cursor: pointer;
 }
 
 .addavatar {
@@ -132,6 +131,11 @@
 .inputaccountemail,
 .inputaccountpseudo {
   cursor: pointer;
+  border: 1px solid #4c548c;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: #4c548c;
+  font-family: "Nunito", sans-serif;
 }
 
 .modifyavatar {
@@ -166,11 +170,11 @@
   margin-top: 20px;
   color: red;
   text-align: center;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }
 .infoclass {
   margin-top: 20px;
   color: 4c548c;
   text-align: center;
-  font-family: "NN-Bold";
+  font-family: "Nunito", sans-serif;
 }

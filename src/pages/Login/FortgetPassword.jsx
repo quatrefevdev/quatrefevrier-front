@@ -52,7 +52,10 @@ const FortgetPassword = ({ handleToken }) => {
         }}
       >
         <div className="titlefgpass">
-          <h1 className="h1fgpass">Réinitialiser le mot de passe</h1>
+          <h1 className="h1fgpass">
+            {" "}
+            Réinitialiser <br /> le mot de passe
+          </h1>
           <FormInput
             title=""
             name="inputsignup"
@@ -70,7 +73,7 @@ const FortgetPassword = ({ handleToken }) => {
               <ButtonComponent pressFct={goBack} txt="< Précédent" />
             </div>
             <div className="buttonconnvfgpass">
-              <ButtonComponent pressFct={handleSubmit} txt="Se connecter >" />
+              <ButtonComponent pressFct={handleSubmit} txt="Réinitialiser" />
             </div>
           </div>
         </div>
