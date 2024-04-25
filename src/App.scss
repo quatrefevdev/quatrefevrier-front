@@ -1,12 +1,16 @@
 /* === Import des variables === */
 @import "./css/variables.scss";
 
+/* === Import Google fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:wght@900&family=Roboto:wght@400;500;700&display=swap');
+
 * {
   box-sizing: border-box;
+  font-family: "Nunito", sans-serif !important;
 }
 
 body {
-  font-family: "NN-Light";
+  font-family: "Nunito", sans-serif;
   color: $darkblue;
 }
 
@@ -23,20 +27,24 @@ body {
 }
 
 h1 {
-  font-family: "NN-Black";
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
 }
 
 h2 {
-  font-family: "NN-bold";
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
   line-height: 25px;
 }
 
 h3 {
-  font-family: "NN-bold";
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
   color: #32365a;
 }
 h4 {
-  font-family: "NN-medium";
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
   color: #32365a;
   font-size: 14px;
 }

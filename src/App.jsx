@@ -117,13 +117,11 @@ function App() {
             />
           }
         ></Route>
-
-          <Route path="/forums" element={<AllGroupsPage/>} />
+        <Route path="/forums" element={<AllGroupsPage/>} />
         <Route
           path="/modifyAppointment/:appointment_id"
           element={<ModifyAppointment token={token} />}
         />
-
         <Route path="/group/:groupId" element={<Group />} />
         <Route path="/post/:postId" element={<PostSinglePage />} />
         <Route path="/group/create" element={<CreateGroup />} />
