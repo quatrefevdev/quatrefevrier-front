@@ -7,11 +7,12 @@
   .carnet-buttons {
     display: flex;
     flex-wrap: wrap;
+    max-width: 400px;
     gap: 10px;
     a {
       width: calc(50% - 5px);
     }
-    margin-bottom: 200px;
+    padding-bottom: 200px;
     button {
       width: 100%;
       aspect-ratio: 1/1;
